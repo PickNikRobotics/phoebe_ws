@@ -11,6 +11,15 @@
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
+  <!-- Dependencies from description file -->
+  <exec_depend>clearpath_control</exec_depend>
+  <exec_depend>clearpath_manipulators_description</exec_depend>
+  <exec_depend>clearpath_platform_description</exec_depend>
+  <exec_depend>clearpath_sensors_description</exec_depend>
+  <exec_depend>ewellix_description</exec_depend>
+  <exec_depend>picknik_accessories</exec_depend>
+  <exec_depend>ur_description</exec_depend>
+
   <export>
     <build_type>ament_cmake</build_type>
   </export>

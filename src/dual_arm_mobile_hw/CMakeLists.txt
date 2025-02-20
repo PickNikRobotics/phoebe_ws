@@ -5,11 +5,7 @@ find_package(ament_cmake REQUIRED)
 
 install(
   DIRECTORY
-    config
     description
-    launch
-    objectives
-    waypoints
   DESTINATION
     share/${PROJECT_NAME}
 )

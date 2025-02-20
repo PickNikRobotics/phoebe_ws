@@ -1,24 +1,30 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="r100-0599">
 
+  <!-- Used in ewellix.urdf.xacro to specify loading of lift hardware ros2_control interfaces -->
+  <xacro:arg name="use_manipulation_controllers" default="true"/>
+
   <!-- Common -->
   <xacro:include filename="$(find clearpath_platform_description)/urdf/common.urdf.xacro"/>
+
+  <!-- Setup -->
+  <!-- UR5e robot arm setup -->
+  <xacro:include filename="$(find ur_description)/urdf/ur_macro.xacro"/>
+  <xacro:arg name="joint_limit_params" default="$(find ur_description)/config/ur5e/joint_limits.yaml"/>
+  <xacro:arg name="kinematics_params" default="$(find ur_description)/config/ur5e/default_kinematics.yaml"/>
+  <xacro:arg name="physical_params" default="$(find ur_description)/config/ur5e/physical_parameters.yaml"/>
+  <xacro:arg name="visual_params" default="$(find ur_description)/config/ur5e/visual_parameters.yaml"/>
+
+  <!-- Robotiq 2F Gripper setup -->
+  <xacro:include filename="$(find dual_arm_mobile_hw)/description/picknik_ur_attachments_macro.xacro"/>
+  <!-- TODO: need to figure out how this works for 2 arms, /tmp/ttyUR2 ? -->
+  <xacro:arg name="tool_device_name" default="/tmp/ttyUR"/>
+  <xacro:arg name="has_tool_changer" default="false"/>
+  <xacro:arg name="use_fake_hardware" default="false"/>
 
   <!-- Platform -->
   <xacro:include filename="$(find clearpath_platform_description)/urdf/r100/r100.urdf.xacro"/>
   <xacro:r100 wheel="default"/>
-
-
-  <!-- Attachments -->
-
-
-  <!-- Links -->
-
-
-  <!-- Mounts -->
-
-
-  <!-- Sensors -->
 
   <!-- lidar2d_0 -->
   <xacro:include filename="$(find clearpath_sensors_description)/urdf/hokuyo_ust.urdf.xacro"/>
@@ -32,24 +38,65 @@
     <origin xyz="-0.3922 0.0 0.1856" rpy="0.0 0.0 3.14159"/>
   </xacro:hokuyo_ust>
 
-
-  <!-- Manipulators -->
-
-  <!-- lift_0 -->
+  <!-- lift_left -->
   <xacro:include filename="$(find clearpath_manipulators_description)/urdf/lift/ewellix.urdf.xacro"/>
-  <xacro:ewellix name="lift_0" parent_link="default_mount" ewellix_type="tlt_x25" port="/dev/clearpath/ewellix_left">
+  <xacro:ewellix name="lift_left" parent_link="default_mount" ewellix_type="tlt_x25" port="/dev/clearpath/ewellix_left">
     <origin xyz="0.0 0.2 0.04" rpy="0.0 0.0 0.0"/>
   </xacro:ewellix>
 
-  <!-- lift_1 -->
+  <!-- ur5e_left -->
+  <xacro:ur_robot
+    name="left_arm"
+    tf_prefix="left_"
+    parent="left_arm_mount_plate_2"
+    joint_limits_parameters_file="$(arg joint_limit_params)"
+    kinematics_parameters_file="$(arg kinematics_params)"
+    physical_parameters_file="$(arg physical_params)"
+    visual_parameters_file="$(arg visual_params)"
+    use_fake_hardware="false"
+    generate_ros2_control_tag="true"
+  >
+  <origin xyz="0 0 0" rpy="0 0 -${pi/4}" />
+  </xacro:ur_robot>
+
+  <!-- Left gripper, UR adapter, and realsense camera -->
+  <xacro:picknik_ur_attachments
+    parent="left_tool0"
+    prefix="left"
+    child="left_grasp_link"
+    has_tool_changer="$(arg has_tool_changer)"
+  />
+
+  <!-- lift_right -->
   <xacro:include filename="$(find clearpath_manipulators_description)/urdf/lift/ewellix.urdf.xacro"/>
-  <xacro:ewellix name="lift_1" parent_link="default_mount" ewellix_type="tlt_x25" port="/dev/clearpath/ewellix_right">
+  <xacro:ewellix name="lift_right" parent_link="default_mount" ewellix_type="tlt_x25" port="/dev/clearpath/ewellix_right">
     <origin xyz="0.0 -0.2 0.04" rpy="0.0 0.0 0.0"/>
   </xacro:ewellix>
 
+  <!-- ur5e_right -->
+  <xacro:ur_robot
+    name="right_arm"
+    tf_prefix="right_"
+    parent="right_arm_mount_plate_2"
+    joint_limits_parameters_file="$(arg joint_limit_params)"
+    kinematics_parameters_file="$(arg kinematics_params)"
+    physical_parameters_file="$(arg physical_params)"
+    visual_parameters_file="$(arg visual_params)"
+    use_fake_hardware="false"
+    generate_ros2_control_tag="true"
+  >
+  <origin xyz="0 0 0" rpy="0 0 -${3*pi/4}" />
+  </xacro:ur_robot>
 
-  <!-- Extras -->
+  <!-- right gripper, UR adapter, and realsense camera -->
+  <xacro:picknik_ur_attachments
+    parent="right_tool0"
+    prefix="right"
+    child="right_grasp_link"
+    has_tool_changer="$(arg has_tool_changer)"
+  />
 
-  <xacro:include filename="$(find pknk02_ridgeback_description)/urdf/pknk02_customization.urdf.xacro"/>
+  <!-- Base components: lift mounting rails, shelves, control boxes, monitors, mounting plates -->
+  <xacro:include filename="$(find dual_arm_mobile_hw)/description/base_components.urdf.xacro"/>
 
 </robot>

@@ -1,0 +1,9 @@
+[submodule "src/dependencies/picknik_accessories"]
+	path = src/dependencies/picknik_accessories
+	url = git@github.com:PickNikRobotics/picknik_accessories.git
+[submodule "src/dependencies/ewellix_lift"]
+	path = src/dependencies/ewellix_lift
+	url = https://github.com/clearpathrobotics/ewellix_lift.git
+[submodule "src/dependencies/serial"]
+	path = src/dependencies/serial
+	url = git@github.com:PickNikRobotics/serial.git
