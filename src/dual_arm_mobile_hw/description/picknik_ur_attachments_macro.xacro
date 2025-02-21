@@ -69,7 +69,8 @@
     <!-- gripper and UR adapter-->
     <xacro:ur_to_robotiq
       prefix="${prefix_}"
-      connected_to="${prefix_}realsense_camera_adapter_tool0"
+      parent="${prefix_}realsense_camera_adapter_tool0"
+      child="${prefix_}gripper_mount_link"
       rotation="0"
     />
 

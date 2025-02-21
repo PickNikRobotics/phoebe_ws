@@ -10,17 +10,69 @@
   <!-- Setup -->
   <!-- UR5e robot arm setup -->
   <xacro:include filename="$(find ur_description)/urdf/ur_macro.xacro"/>
+  <xacro:arg name="name" default="r100-0599"/>
+  <xacro:arg name="use_fake_hardware" default="false"/>
+  <xacro:arg name="use_pinch_links" default="true"/>
+  <xacro:arg name="has_tool_changer" default="false" />
+  <xacro:arg name="external_camera" default="false" />
+  <xacro:arg name="generate_ros2_control_tag" default="true" />
+  <xacro:arg name="headless_mode" default="true" />
+  <xacro:arg name="use_tool_communication" default="true" />
+  <xacro:arg name="left_robot_ip" default="192.168.131.4" />
+  <xacro:arg name="right_robot_ip" default="192.168.131.3" />
   <xacro:arg name="joint_limit_params" default="$(find ur_description)/config/ur5e/joint_limits.yaml"/>
   <xacro:arg name="kinematics_params" default="$(find ur_description)/config/ur5e/default_kinematics.yaml"/>
   <xacro:arg name="physical_params" default="$(find ur_description)/config/ur5e/physical_parameters.yaml"/>
+  <xacro:arg name="left_tool_voltage" default="0" />
+  <xacro:arg name="right_tool_voltage" default="24" />
+  <xacro:arg name="left_tool_device_name" default="/dev/ttyUSB0" />
+  <xacro:arg name="right_tool_device_name" default="/tmp/ttyUR" />
   <xacro:arg name="visual_params" default="$(find ur_description)/config/ur5e/visual_parameters.yaml"/>
+  <xacro:arg name="left_reverse_port" default="50001" />
+  <xacro:arg name="left_script_sender_port" default="50002" />
+  <xacro:arg name="left_trajectory_port" default="50003" />
+  <xacro:arg name="left_script_command_port" default="50004" />
+  <xacro:arg name="left_tool_tcp_port" default="54320" />
+  <xacro:arg name="right_reverse_port" default="50005" />
+  <xacro:arg name="right_script_sender_port" default="50006" />
+  <xacro:arg name="right_trajectory_port" default="50007" />
+  <xacro:arg name="right_script_command_port" default="50008" />
+  <xacro:arg name="right_tool_tcp_port" default="54321" />
 
   <!-- Robotiq 2F Gripper setup -->
   <xacro:include filename="$(find dual_arm_mobile_hw)/description/picknik_ur_attachments_macro.xacro"/>
-  <!-- TODO: need to figure out how this works for 2 arms, /tmp/ttyUR2 ? -->
-  <xacro:arg name="tool_device_name" default="/tmp/ttyUR"/>
-  <xacro:arg name="has_tool_changer" default="false"/>
-  <xacro:arg name="use_fake_hardware" default="false"/>
+  <!-- TODO: need to figure out how tool_device_name works for 2 arms, /tmp/ttyUR2 (this will be defined in the drivers_to_persist file) -->
+
+  <!-- Platform linear & yaw joints -->
+  <link name="world"/>
+  <link name="virtual_rail_link_1"/>
+  <joint name="linear_x_joint" type="prismatic">
+    <axis xyz="1 0 0"/>
+    <parent link="world" />
+    <child link="virtual_rail_link_1" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <limit effort="1000.0" lower="-100.0" upper="100.0" velocity="0.175" acceleration="10.0"/>
+    <dynamics damping="20.0" friction="500.0" />
+  </joint>
+
+  <link name="virtual_rail_link_2"/>
+  <joint name="linear_y_joint" type="prismatic">
+    <axis xyz="0 1 0"/>
+    <parent link="virtual_rail_link_1" />
+    <child link="virtual_rail_link_2" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <limit effort="1000.0" lower="-100.0" upper="100.0" velocity="0.175" acceleration="10.0"/>
+    <dynamics damping="20.0" friction="500.0" />
+  </joint>
+
+  <joint name="rotational_yaw_joint" type="continuous">
+    <axis xyz="0 0 1"/>
+    <parent link="virtual_rail_link_2"/>
+    <child link="base_link"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <limit effort="150.0" velocity="0.5235987755982988"/>
+    <dynamics damping="0" friction="0"/>
+  </joint>
 
   <!-- Platform -->
   <xacro:include filename="$(find clearpath_platform_description)/urdf/r100/r100.urdf.xacro"/>
@@ -53,19 +105,33 @@
     kinematics_parameters_file="$(arg kinematics_params)"
     physical_parameters_file="$(arg physical_params)"
     visual_parameters_file="$(arg visual_params)"
-    use_fake_hardware="false"
-    generate_ros2_control_tag="true"
+    use_fake_hardware="$(arg use_fake_hardware)"
+    headless_mode="$(arg headless_mode)"
+    use_tool_communication="$(arg use_tool_communication)"
+    robot_ip="$(arg left_robot_ip)"
+    generate_ros2_control_tag="$(arg generate_ros2_control_tag)"
+    tool_voltage="$(arg left_tool_voltage)"
+    tool_device_name="$(arg left_tool_device_name)"
+    script_filename="$(find ur_robot_driver)/resources/ros_control.urscript"
+    output_recipe_filename="$(find ur_robot_driver)/resources/rtde_output_recipe.txt"
+    input_recipe_filename="$(find ur_robot_driver)/resources/rtde_input_recipe.txt"
+    reverse_port="$(arg left_reverse_port)"
+    script_sender_port="$(arg left_script_sender_port)"
+    script_command_port="$(arg left_script_command_port)"
+    trajectory_port="$(arg left_trajectory_port)"
+    tool_tcp_port="$(arg left_tool_tcp_port)"
   >
   <origin xyz="0 0 0" rpy="0 0 -${pi/4}" />
   </xacro:ur_robot>
 
   <!-- Left gripper, UR adapter, and realsense camera -->
-  <xacro:picknik_ur_attachments
-    parent="left_tool0"
-    prefix="left"
-    child="left_grasp_link"
-    has_tool_changer="$(arg has_tool_changer)"
-  />
+<!--  <xacro:picknik_ur_attachments-->
+<!--    parent="left_tool0"-->
+<!--    prefix="left"-->
+<!--    child="left_grasp_link"-->
+<!--    has_tool_changer="$(arg has_tool_changer)"-->
+<!--  />-->
+  <xacro:include filename="$(find dual_arm_mobile_hw)/description/left_ur_attachment.xacro"/>
 
   <!-- lift_right -->
   <xacro:include filename="$(find clearpath_manipulators_description)/urdf/lift/ewellix.urdf.xacro"/>
@@ -82,19 +148,33 @@
     kinematics_parameters_file="$(arg kinematics_params)"
     physical_parameters_file="$(arg physical_params)"
     visual_parameters_file="$(arg visual_params)"
-    use_fake_hardware="false"
-    generate_ros2_control_tag="true"
+    use_fake_hardware="$(arg use_fake_hardware)"
+    headless_mode="$(arg headless_mode)"
+    use_tool_communication="$(arg use_tool_communication)"
+    robot_ip="$(arg right_robot_ip)"
+    generate_ros2_control_tag="$(arg generate_ros2_control_tag)"
+    tool_voltage="$(arg right_tool_voltage)"
+    tool_device_name="$(arg right_tool_device_name)"
+    script_filename="$(find ur_robot_driver)/resources/ros_control.urscript"
+    output_recipe_filename="$(find ur_robot_driver)/resources/rtde_output_recipe.txt"
+    input_recipe_filename="$(find ur_robot_driver)/resources/rtde_input_recipe.txt"
+    reverse_port="$(arg right_reverse_port)"
+    script_sender_port="$(arg right_script_sender_port)"
+    script_command_port="$(arg right_script_command_port)"
+    trajectory_port="$(arg right_trajectory_port)"
+    tool_tcp_port="$(arg right_tool_tcp_port)"
   >
   <origin xyz="0 0 0" rpy="0 0 -${3*pi/4}" />
   </xacro:ur_robot>
 
-  <!-- right gripper, UR adapter, and realsense camera -->
-  <xacro:picknik_ur_attachments
-    parent="right_tool0"
-    prefix="right"
-    child="right_grasp_link"
-    has_tool_changer="$(arg has_tool_changer)"
-  />
+  <!-- Right gripper, UR adapter, and realsense camera -->
+<!--  <xacro:picknik_ur_attachments-->
+<!--    parent="right_tool0"-->
+<!--    prefix="right"-->
+<!--    child="right_grasp_link"-->
+<!--    has_tool_changer="$(arg has_tool_changer)"-->
+<!--  />-->
+  <xacro:include filename="$(find dual_arm_mobile_hw)/description/right_ur_attachment.xacro"/>
 
   <!-- Base components: lift mounting rails, shelves, control boxes, monitors, mounting plates -->
   <xacro:include filename="$(find dual_arm_mobile_hw)/description/base_components.urdf.xacro"/>

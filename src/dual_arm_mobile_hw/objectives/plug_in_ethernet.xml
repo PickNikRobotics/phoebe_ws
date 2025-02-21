@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<root BTCPP_format="4" main_tree_to_execute="Plug In Ethernet">
+  <!--//////////-->
+  <BehaviorTree ID="Plug In Ethernet" _description="" _favorite="false" _subtreeOnly="false">
+    <Control ID="Sequence" name="TopLevelSequence">
+      <SubTree ID="Move to Waypoint" _collapsed="true" acceleration_scale_factor="1.0" controller_action_server="/joint_trajectory_controller/follow_joint_trajectory" controller_names="/joint_trajectory_controller" keep_orientation="false" keep_orientation_link_names="right_grasp_link" keep_orientation_tolerance="0.05" link_padding="0.0" velocity_scale_factor="1.0" joint_group_name="manipulator" waypoint_name="Prepare To Plug In Switch"/>
+      <SubTree ID="Move to Waypoint" _collapsed="true" acceleration_scale_factor="1.0" controller_action_server="/joint_trajectory_controller/follow_joint_trajectory" controller_names="/joint_trajectory_controller" keep_orientation="false" keep_orientation_link_names="right_grasp_link" keep_orientation_tolerance="0.05" link_padding="0.0" velocity_scale_factor="1.0" joint_group_name="manipulator" waypoint_name="Almost Plug In"/>
+      <SubTree ID="Move to Waypoint" _collapsed="true" acceleration_scale_factor="1.0" controller_action_server="/joint_trajectory_controller/follow_joint_trajectory" controller_names="/joint_trajectory_controller" keep_orientation="false" keep_orientation_link_names="right_grasp_link" keep_orientation_tolerance="0.05" link_padding="0.0" velocity_scale_factor="1.0" joint_group_name="manipulator" waypoint_name="Kind of Plug In"/>
+      <SubTree ID="Open Gripper" _collapsed="true"/>
+      <SubTree ID="Move to Waypoint" _collapsed="true" acceleration_scale_factor="1.0" controller_action_server="/joint_trajectory_controller/follow_joint_trajectory" controller_names="/joint_trajectory_controller" keep_orientation="false" keep_orientation_link_names="right_grasp_link" keep_orientation_tolerance="0.05" link_padding="0.0" velocity_scale_factor="1.0" joint_group_name="manipulator" waypoint_name="Prepare To Plug In Switch"/>
+    </Control>
+  </BehaviorTree>
+  <TreeNodesModel>
+    <SubTree ID="Plug In Ethernet"><MetadataFields>
+        <Metadata runnable="true"/>
+      </MetadataFields></SubTree>
+  </TreeNodesModel>
+</root>

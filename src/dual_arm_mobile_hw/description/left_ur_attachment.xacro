@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <joint name="left_realsense_camera_adapter_joint" type="fixed">
+    <!-- The parent link must be read from the robot model it is attached to. -->
+    <parent link="left_tool0"/>
+    <child link="left_realsense_camera_adapter_link"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </joint>
+  <link name="left_realsense_camera_adapter_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://picknik_accessories/descriptions/brackets/ur_realsense_camera_adapter/picknik_ur5_realsense_camera_adapter_rev2.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://picknik_accessories/descriptions/brackets/ur_realsense_camera_adapter/picknik_ur5_realsense_camera_adapter_rev2_collision.stl"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="left_realsense_camera_adapter_tool0"/>
+  <joint name="left_realsense_camera_adapter_tool0_joint" type="fixed">
+    <parent link="left_realsense_camera_adapter_link"/>
+    <child link="left_realsense_camera_adapter_tool0"/>
+    <origin rpy="0 0 0" xyz="0 0 0.007"/>
+  </joint>
+  <link name="left_d415_mount_link"/>
+  <joint name="left_d415_mount_joint" type="fixed">
+    <parent link="left_realsense_camera_adapter_link"/>
+    <child link="left_d415_mount_link"/>
+    <origin rpy="0 -1.4660765716752369 1.5707963267948966" xyz="0 -0.067 0.0171"/>
+  </joint>
+  <link name="left_l515_mount_link"/>
+  <joint name="left_l515_mount_joint" type="fixed">
+    <parent link="left_realsense_camera_adapter_link"/>
+    <child link="left_l515_mount_link"/>
+    <origin rpy="0 -1.4660765716752369 1.5707963267948966" xyz="0 -0.0406 0.0173"/>
+  </joint>
+  <!-- camera body, with origin at bottom screw mount -->
+  <joint name="left_wrist_mounted_camera_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="left_d415_mount_link"/>
+    <child link="left_wrist_mounted_camera_bottom_screw_frame"/>
+  </joint>
+  <link name="left_wrist_mounted_camera_bottom_screw_frame"/>
+  <joint name="left_wrist_mounted_camera_link_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0.02 0.0115"/>
+    <parent link="left_wrist_mounted_camera_bottom_screw_frame"/>
+    <child link="left_wrist_mounted_camera_link"/>
+  </joint>
+  <link name="left_wrist_mounted_camera_link">
+    <visual>
+      <origin rpy="1.5707963267948966 0 1.5707963267948966" xyz="0.00987 -0.02 0"/>
+      <geometry>
+        <mesh filename="package://realsense2_description/meshes/d415.stl"/>
+      </geometry>
+      <material name="rs_aluminum">
+        <color rgba="0.5 0.5 0.5 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 -0.02 0"/>
+      <geometry>
+        <box size="0.02005 0.099 0.023"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.072"/>
+      <!-- The following are not reliable values, and should not be used for modeling -->
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.003881243" ixy="0.0" ixz="0.0" iyy="0.000498940" iyz="0.0" izz="0.003879257"/>
+    </inertial>
+  </link>
+  <!-- camera depth joints and links -->
+  <joint name="left_wrist_mounted_camera_depth_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="left_wrist_mounted_camera_link"/>
+    <child link="left_wrist_mounted_camera_depth_frame"/>
+  </joint>
+  <link name="left_wrist_mounted_camera_depth_frame"/>
+  <joint name="left_wrist_mounted_camera_depth_optical_joint" type="fixed">
+    <origin rpy="-1.5707963267948966 0 -1.5707963267948966" xyz="0 0 0"/>
+    <parent link="left_wrist_mounted_camera_depth_frame"/>
+    <child link="left_wrist_mounted_camera_depth_optical_frame"/>
+  </joint>
+  <link name="left_wrist_mounted_camera_depth_optical_frame"/>
+  <!-- camera left IR joints and links -->
+  <joint name="left_wrist_mounted_camera_infra1_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0.0 0"/>
+    <parent link="left_wrist_mounted_camera_link"/>
+    <child link="left_wrist_mounted_camera_infra1_frame"/>
+  </joint>
+  <link name="left_wrist_mounted_camera_infra1_frame"/>
+  <joint name="left_wrist_mounted_camera_infra1_optical_joint" type="fixed">
+    <origin rpy="-1.5707963267948966 0 -1.5707963267948966" xyz="0 0 0"/>
+    <parent link="left_wrist_mounted_camera_infra1_frame"/>
+    <child link="left_wrist_mounted_camera_infra1_optical_frame"/>
+  </joint>
+  <link name="left_wrist_mounted_camera_infra1_optical_frame"/>
+  <!-- camera right IR joints and links -->
+  <joint name="left_wrist_mounted_camera_infra2_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 -0.055 0"/>
+    <parent link="left_wrist_mounted_camera_link"/>
+    <child link="left_wrist_mounted_camera_infra2_frame"/>
+  </joint>
+  <link name="left_wrist_mounted_camera_infra2_frame"/>
+  <joint name="left_wrist_mounted_camera_infra2_optical_joint" type="fixed">
+    <origin rpy="-1.5707963267948966 0 -1.5707963267948966" xyz="0 0 0"/>
+    <parent link="left_wrist_mounted_camera_infra2_frame"/>
+    <child link="left_wrist_mounted_camera_infra2_optical_frame"/>
+  </joint>
+  <link name="left_wrist_mounted_camera_infra2_optical_frame"/>
+  <!-- camera color joints and links -->
+  <joint name="left_wrist_mounted_camera_color_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0.015 0"/>
+    <parent link="left_wrist_mounted_camera_link"/>
+    <child link="left_wrist_mounted_camera_color_frame"/>
+  </joint>
+  <link name="left_wrist_mounted_camera_color_frame"/>
+  <joint name="left_wrist_mounted_camera_color_optical_joint" type="fixed">
+    <origin rpy="-1.5707963267948966 0 -1.5707963267948966" xyz="0 0 0"/>
+    <parent link="left_wrist_mounted_camera_color_frame"/>
+    <child link="left_wrist_mounted_camera_color_optical_frame"/>
+  </joint>
+  <link name="left_wrist_mounted_camera_color_optical_frame"/>
+  <gazebo reference="left_wrist_mounted_camera_color_frame">
+    <sensor name="left_wrist_mounted_camera_rgbd_sensor" type="rgbd_camera">
+      <camera>
+        <horizontal_fov>1.047</horizontal_fov>
+        <image>
+          <width>640</width>
+          <height>480</height>
+          <format>RGB_INT8</format>
+        </image>
+        <clip>
+          <near>0.1</near>
+          <far>5</far>
+        </clip>
+        <distortion>
+          <k1>0.0</k1>
+          <k2>0.0</k2>
+          <k3>0.0</k3>
+          <p1>0.0</p1>
+          <p2>0.0</p2>
+          <center>0.5 0.5</center>
+        </distortion>
+        <lens>
+          <intrinsics>
+            <fx>554.25469</fx>
+            <fy>554.25469</fy>
+            <cx>320.5</cx>
+            <cy>240.5</cy>
+            <s>0</s>
+          </intrinsics>
+          <!-- These need to match the intrinsics above or
+            Ignition will default to different default values -->
+          <projection>
+            <p_fx>554.25469</p_fx>
+            <p_fy>554.25469</p_fy>
+            <p_cx>320.5</p_cx>
+            <p_cy>240.5</p_cy>
+            <tx>0</tx>
+            <ty>0</ty>
+          </projection>
+        </lens>
+        <noise>
+          <type>gaussian</type>
+          <mean>0</mean>
+          <stddev>0.00</stddev>
+        </noise>
+        <depth_camera>
+          <clip>
+            <near>0.25</near>
+            <far>5</far>
+          </clip>
+        </depth_camera>
+        <optical_frame_id>left_wrist_mounted_camera_color_optical_frame</optical_frame_id>
+      </camera>
+      <ignition_frame_id>left_wrist_mounted_camera_color_frame</ignition_frame_id>
+      <always_on>1</always_on>
+      <update_rate>6</update_rate>
+      <visualize>false</visualize>
+      <topic>left_wrist_mounted_camera</topic>
+      <enable_metrics>false</enable_metrics>
+    </sensor>
+  </gazebo>
+  <joint name="left_ur_to_robotiq_joint" type="fixed">
+    <!-- The parent link must be read from the robot model it is attached to. -->
+    <parent link="left_realsense_camera_adapter_tool0"/>
+    <child link="left_ur_to_robotiq_link"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </joint>
+  <link name="left_ur_to_robotiq_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://robotiq_description/meshes/visual/2f_85/ur_to_robotiq_adapter.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://robotiq_description/meshes/collision/2f_85/ur_to_robotiq_adapter.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.01"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.000044" ixy="0.0" ixz="0.0" iyy="0.000027" iyz="0.0" izz="0.000027"/>
+    </inertial>
+  </link>
+  <joint name="left_gripper_side_joint" type="fixed">
+    <parent link="left_ur_to_robotiq_link"/>
+    <child link="left_gripper_mount_link"/>
+    <!-- <origin xyz="0 0 0.011" rpy="0 ${-pi/2} ${pi/2}"/> -->
+    <origin rpy="0 0 0" xyz="0 0 0.011"/>
+  </joint>
+  <link name="left_gripper_mount_link"/>
+  <ros2_control name="left_RobotiqGripperHardwareInterface" type="system">
+    <!-- Plugins -->
+    <hardware>
+      <!-- Set use_dummy to true to connect to a dummy driver for testing purposes. -->
+      <param name="use_dummy">false</param>
+      <plugin>robotiq_driver/RobotiqGripperHardwareInterface</plugin>
+      <param name="gripper_closed_position">0.7929</param>
+<!--      <param name="COM_port">/tmp/ttyUR</param>-->
+      <param name="COM_port">/dev/ttyUSB0</param>
+      <param name="gripper_speed_multiplier">1.0</param>
+      <param name="gripper_force_multiplier">0.5</param>
+    </hardware>
+    <!-- Joint interfaces -->
+    <!-- With Ignition or Hardware, they handle mimic joints, so we only need this command interface activated -->
+    <joint name="left_robotiq_85_left_knuckle_joint">
+      <command_interface name="position"/>
+      <state_interface name="position">
+        <param name="initial_value">0.7929</param>
+      </state_interface>
+      <state_interface name="velocity"/>
+    </joint>
+    <gpio name="reactivate_gripper">
+      <command_interface name="reactivate_gripper_cmd"/>
+      <command_interface name="reactivate_gripper_response"/>
+    </gpio>
+  </ros2_control>
+  <link name="left_robotiq_85_base_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://robotiq_description/meshes/visual/2f_85/robotiq_base.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://robotiq_description/meshes/collision/2f_85/robotiq_base.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0 2.274e-05 0.03232288"/>
+      <mass value="6.6320197e-01"/>
+      <inertia ixx="5.1617816e-04" ixy="2.936e-8" ixz="0.0" iyy="5.8802208e-04" iyz="-3.2296e-7" izz="3.9462776e-04"/>
+    </inertial>
+  </link>
+  <link name="left_robotiq_85_left_knuckle_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://robotiq_description/meshes/visual/2f_85/left_knuckle.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://robotiq_description/meshes/collision/2f_85/left_knuckle.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.01213197 0.0002 -0.00058647"/>
+      <mass value="1.384773208e-02"/>
+      <inertia ixx="3.5232e-7" ixy="0.0" ixz="1.1744e-7" iyy="2.31944e-6" iyz="0" izz="2.23136e-6"/>
+    </inertial>
+  </link>
+  <link name="left_robotiq_85_right_knuckle_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://robotiq_description/meshes/visual/2f_85/right_knuckle.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://robotiq_description/meshes/collision/2f_85/right_knuckle.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.01213197 0.0002 -0.00058647"/>
+      <mass value="1.384773208e-02"/>
+      <inertia ixx="3.5232e-7" ixy="0.0" ixz="-1.1744e-7" iyy="2.31944e-6" iyz="0.0" izz="2.23136e-6"/>
+    </inertial>
+  </link>
+  <link name="left_robotiq_85_left_finger_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://robotiq_description/meshes/visual/2f_85/left_finger.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://robotiq_description/meshes/collision/2f_85/left_finger.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.00346899 -0.00079447 0.01867121"/>
+      <mass value="4.260376752e-02"/>
+      <inertia ixx="1.385792000000000e-05" ixy="0.0" ixz="-2.17264e-06" iyy="1.183208e-05" iyz="0.0" izz="5.19672e-06"/>
+    </inertial>
+  </link>
+  <link name="left_robotiq_85_right_finger_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://robotiq_description/meshes/visual/2f_85/right_finger.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://robotiq_description/meshes/collision/2f_85/right_finger.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.00346899 -5.53e-06 0.01867121"/>
+      <mass value="4.260376752000000e-02"/>
+      <inertia ixx="1.385792e-05" ixy="0.0" ixz="2.17264e-06" iyy="1.183208e-05" iyz="0.0" izz="5.19672e-06"/>
+    </inertial>
+  </link>
+  <link name="left_robotiq_85_left_inner_knuckle_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://robotiq_description/meshes/visual/2f_85/left_inner_knuckle.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://robotiq_description/meshes/collision/2f_85/left_inner_knuckle.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.01897699 0.00015001 0.02247101"/>
+      <mass value="2.969376448e-02"/>
+      <inertia ixx="9.57136e-06" ixy="0.0" ixz="-3.93424e-06" iyy="8.69056e-06" iyz="0.0" izz="8.19144e-06"/>
+    </inertial>
+  </link>
+  <link name="left_robotiq_85_right_inner_knuckle_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://robotiq_description/meshes/visual/2f_85/right_inner_knuckle.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://robotiq_description/meshes/collision/2f_85/right_inner_knuckle.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.01926824 5.001e-05 0.02222178"/>
+      <mass value="2.969376448e-02"/>
+      <inertia ixx="9.42456e-06" ixy="0.0" ixz="3.9636e-06" iyy="8.69056e-06" iyz="0.0" izz="8.33824e-06"/>
+    </inertial>
+  </link>
+  <link name="left_robotiq_85_left_finger_tip_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://robotiq_description/meshes/visual/2f_85/left_finger_tip.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://robotiq_description/meshes/collision/2f_85/left_finger_tip.stl"/>
+      </geometry>
+      <surface>
+        <friction>
+          <ode>
+            <mu1>100000.0</mu1>
+            <mu2>100000.0</mu2>
+          </ode>
+        </friction>
+        <contact>
+          <ode>
+            <kp>1e+5</kp>
+            <kd>1</kd>
+            <soft_cfm>0</soft_cfm>
+            <soft_erp>0.2</soft_erp>
+            <minDepth>0.002</minDepth>
+            <maxVel>0</maxVel>
+          </ode>
+        </contact>
+      </surface>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.01456706 -0.0008 0.01649701"/>
+      <mass value="4.268588744e-02"/>
+      <inertia ixx="1.048152e-05" ixy="0.0" ixz="3.5232e-6" iyy="1.197888e-05" iyz="0.0" izz="4.22784e-06"/>
+    </inertial>
+  </link>
+  <link name="left_robotiq_85_right_finger_tip_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://robotiq_description/meshes/visual/2f_85/right_finger_tip.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://robotiq_description/meshes/collision/2f_85/right_finger_tip.stl"/>
+      </geometry>
+      <surface>
+        <friction>
+          <ode>
+            <mu1>100000.0</mu1>
+            <mu2>100000.0</mu2>
+          </ode>
+        </friction>
+        <contact>
+          <ode>
+            <kp>1e+5</kp>
+            <kd>1</kd>
+            <soft_cfm>0</soft_cfm>
+            <soft_erp>0.2</soft_erp>
+            <minDepth>0.002</minDepth>
+            <maxVel>0</maxVel>
+          </ode>
+        </contact>
+      </surface>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.01456706 5e-05 0.01649701"/>
+      <mass value="4.268588744e-02"/>
+      <inertia ixx="1.048152e-05" ixy="0.0" ixz="-3.5232e-06" iyy="1.197888e-05" iyz="0.0" izz="4.22784e-06"/>
+    </inertial>
+  </link>
+  <joint name="left_robotiq_85_base_joint" type="fixed">
+    <parent link="left_gripper_mount_link"/>
+    <child link="left_robotiq_85_base_link"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </joint>
+  <joint name="left_robotiq_85_left_knuckle_joint" type="revolute">
+    <parent link="left_robotiq_85_base_link"/>
+    <child link="left_robotiq_85_left_knuckle_link"/>
+    <axis xyz="0 -1 0"/>
+    <origin rpy="0 0 0" xyz="0.03060114 0.0 0.05490452"/>
+    <limit effort="50" lower="0.0" upper="0.8" velocity="0.5"/>
+  </joint>
+  <joint name="left_robotiq_85_right_knuckle_joint" type="revolute">
+    <parent link="left_robotiq_85_base_link"/>
+    <child link="left_robotiq_85_right_knuckle_link"/>
+    <axis xyz="0 -1 0"/>
+    <origin rpy="0 0 0" xyz="-0.03060114 0.0 0.05490452"/>
+    <limit effort="50" lower="-0.8" upper="0.0" velocity="0.5"/>
+    <mimic joint="left_robotiq_85_left_knuckle_joint" multiplier="-1"/>
+  </joint>
+  <joint name="left_robotiq_85_left_finger_joint" type="fixed">
+    <parent link="left_robotiq_85_left_knuckle_link"/>
+    <child link="left_robotiq_85_left_finger_link"/>
+    <origin rpy="0 0 0" xyz="0.03152616 0.0 -0.00376347"/>
+  </joint>
+  <joint name="left_robotiq_85_right_finger_joint" type="fixed">
+    <parent link="left_robotiq_85_right_knuckle_link"/>
+    <child link="left_robotiq_85_right_finger_link"/>
+    <origin rpy="0 0 0" xyz="-0.03152616 0.0 -0.00376347"/>
+  </joint>
+  <joint name="left_robotiq_85_left_inner_knuckle_joint" type="continuous">
+    <parent link="left_robotiq_85_base_link"/>
+    <child link="left_robotiq_85_left_inner_knuckle_link"/>
+    <axis xyz="0 -1 0"/>
+    <origin rpy="0 0 0" xyz="0.0127 0.0 0.06142"/>
+    <mimic joint="left_robotiq_85_left_knuckle_joint"/>
+  </joint>
+  <joint name="left_robotiq_85_right_inner_knuckle_joint" type="continuous">
+    <parent link="left_robotiq_85_base_link"/>
+    <child link="left_robotiq_85_right_inner_knuckle_link"/>
+    <axis xyz="0 -1 0"/>
+    <origin rpy="0 0 0" xyz="-0.0127 0.0 0.06142"/>
+    <mimic joint="left_robotiq_85_left_knuckle_joint" multiplier="-1"/>
+  </joint>
+  <joint name="left_robotiq_85_left_finger_tip_joint" type="continuous">
+    <parent link="left_robotiq_85_left_finger_link"/>
+    <child link="left_robotiq_85_left_finger_tip_link"/>
+    <axis xyz="0 -1 0"/>
+    <origin rpy="0 0 0" xyz="0.00563134 0.0 0.04718515"/>
+    <mimic joint="left_robotiq_85_left_knuckle_joint" multiplier="-1"/>
+  </joint>
+  <joint name="left_robotiq_85_right_finger_tip_joint" type="continuous">
+    <parent link="left_robotiq_85_right_finger_link"/>
+    <child link="left_robotiq_85_right_finger_tip_link"/>
+    <axis xyz="0 -1 0"/>
+    <origin rpy="0 0 0" xyz="-0.00563134 0.0 0.04718515"/>
+    <mimic joint="left_robotiq_85_left_knuckle_joint"/>
+  </joint>
+  <!-- This link aligns the axes of the grasp frame to our required convention for motion planning tasks. -->
+  <link name="left_grasp_link"/>
+  <joint name="left_grasp_link_joint" type="fixed">
+    <parent link="left_robotiq_85_base_link"/>
+    <child link="left_grasp_link"/>
+    <origin rpy="0.0 0.0 3.141592653589793" xyz="0.0 0.0 0.134"/>
+  </joint>
+</robot>

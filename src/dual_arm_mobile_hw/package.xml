@@ -11,14 +11,31 @@
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
-  <!-- Dependencies from description file -->
   <exec_depend>clearpath_control</exec_depend>
+  <exec_depend>clearpath_common</exec_depend>
+  <exec_depend>clearpath_diagnostics</exec_depend>
+  <exec_depend>clearpath_hardware_interfaces</exec_depend>
   <exec_depend>clearpath_manipulators_description</exec_depend>
+  <exec_depend>clearpath_mecanum_drive_controller</exec_depend>
   <exec_depend>clearpath_platform_description</exec_depend>
+  <exec_depend>clearpath_ros2_socketcan_interface</exec_depend>
   <exec_depend>clearpath_sensors_description</exec_depend>
+  <exec_depend>clearpath_sensors</exec_depend>
   <exec_depend>ewellix_description</exec_depend>
+  <exec_depend>micro_ros_agent</exec_depend>
+  <exec_depend>puma_motor_driver</exec_depend>
+  <exec_depend>ros2_socketcan</exec_depend>
+  <exec_depend>wireless_watcher</exec_depend>
+
+  <exec_depend>moveit_studio_ur_pstop_manager</exec_depend>
   <exec_depend>picknik_accessories</exec_depend>
+  <exec_depend>picknik_ur_base_config</exec_depend>
+
+  <exec_depend>robotiq_controllers</exec_depend>
+  <exec_depend>robotiq_description</exec_depend>
+  <exec_depend>robotiq_driver</exec_depend>
   <exec_depend>ur_description</exec_depend>
+  <exec_depend>ur_robot_driver</exec_depend>
 
   <export>
     <build_type>ament_cmake</build_type>

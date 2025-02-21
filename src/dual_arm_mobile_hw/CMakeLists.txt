@@ -5,9 +5,20 @@ find_package(ament_cmake REQUIRED)
 
 install(
   DIRECTORY
+    config
+    clearpath_config
     description
+    objectives
+    launch
+    waypoints
   DESTINATION
     share/${PROJECT_NAME}
+)
+
+install(PROGRAMS
+  scripts/odometry_joint_state_publisher.py
+  scripts/estop_publisher.py
+  DESTINATION lib/${PROJECT_NAME}
 )
 
 if(BUILD_TESTING)
