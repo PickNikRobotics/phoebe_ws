@@ -3,7 +3,9 @@
   <name>dual_arm_mobile_hw</name>
   <version>7.3.0</version>
 
-  <description>Hardware configuration package for PickNik's dual UR5e Ridgeback system.</description>
+  <description>
+    Hardware configuration package for PickNik's dual UR5e Ridgeback system.
+  </description>
 
   <maintainer email="david.yackzan@picknik.ai">David Yackzan</maintainer>
 

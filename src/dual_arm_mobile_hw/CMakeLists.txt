@@ -6,7 +6,6 @@ find_package(ament_cmake REQUIRED)
 install(
   DIRECTORY
     config
-    clearpath_config
     description
     objectives
     launch
@@ -17,7 +16,6 @@ install(
 
 install(PROGRAMS
   scripts/odometry_joint_state_publisher.py
-  scripts/estop_publisher.py
   DESTINATION lib/${PROJECT_NAME}
 )
 

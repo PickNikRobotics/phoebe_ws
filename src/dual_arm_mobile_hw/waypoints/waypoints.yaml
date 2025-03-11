@@ -4,282 +4,6 @@
   - left_gripper
   - left_manipulator
   - manipulator
-  - mobile_manipulator
-  - right_gripper
-  - right_manipulator
-  - world_actuator
-  joint_state:
-    effort: []
-    header:
-      frame_id: ''
-      stamp:
-        nanosec: 0
-        sec: 0
-    name:
-    - left_robotiq_85_left_knuckle_joint
-    - lift_left_upper_joint
-    - left_shoulder_pan_joint
-    - left_shoulder_lift_joint
-    - left_elbow_joint
-    - left_wrist_1_joint
-    - left_wrist_2_joint
-    - left_wrist_3_joint
-    - lift_right_upper_joint
-    - right_shoulder_pan_joint
-    - right_shoulder_lift_joint
-    - right_elbow_joint
-    - right_wrist_1_joint
-    - right_wrist_2_joint
-    - right_wrist_3_joint
-    - linear_x_joint
-    - linear_y_joint
-    - rotational_yaw_joint
-    - right_robotiq_85_left_knuckle_joint
-    position:
-    - 0
-    - 0.44624999165534973
-    - -2.4656978289233606
-    - -3.0902096233763636
-    - 1.6299784819232386
-    - -0.019323305492736864
-    - 2.3928370475769043
-    - 1.5708117485046387
-    - 0.3187499940395355
-    - 0.8308247923851013
-    - -3.400965829888815
-    - 1.6738317648517054
-    - -2.107447763482565
-    - -1.3919923941241663
-    - -0.025893513356344044
-    - 0
-    - 0
-    - 0
-    - 0
-    velocity: []
-  multi_dof_joint_state:
-    header:
-      frame_id: ''
-      stamp:
-        nanosec: 0
-        sec: 0
-    joint_names: []
-    transforms: []
-    twist: []
-    wrench: []
-  name: Look Both
-- description: ''
-  favorite: false
-  joint_group_names:
-  - left_gripper
-  - left_manipulator
-  - manipulator
-  - mobile_manipulator
-  - right_gripper
-  - right_manipulator
-  - world_actuator
-  joint_state:
-    effort: []
-    header:
-      frame_id: ''
-      stamp:
-        nanosec: 0
-        sec: 0
-    name:
-    - left_robotiq_85_left_knuckle_joint
-    - lift_left_upper_joint
-    - left_shoulder_pan_joint
-    - left_shoulder_lift_joint
-    - left_elbow_joint
-    - left_wrist_1_joint
-    - left_wrist_2_joint
-    - left_wrist_3_joint
-    - lift_right_upper_joint
-    - right_shoulder_pan_joint
-    - right_shoulder_lift_joint
-    - right_elbow_joint
-    - right_wrist_1_joint
-    - right_wrist_2_joint
-    - right_wrist_3_joint
-    - linear_x_joint
-    - linear_y_joint
-    - rotational_yaw_joint
-    - right_robotiq_85_left_knuckle_joint
-    position:
-    - 0
-    - 0.19499999284744263
-    - -2.465978447590963
-    - -3.0901524029173792
-    - 1.6301358381854456
-    - -0.01881761968646245
-    - 2.3930246829986572
-    - 1.5710904598236084
-    - 0.35749998688697815
-    - 0.7526508569717407
-    - -1.290156142120697
-    - -1.9800491333007812
-    - -0.7053373616984864
-    - 1.4480695724487305
-    - -0.02575856844057256
-    - 0
-    - 0
-    - 0
-    - 0
-    velocity: []
-  multi_dof_joint_state:
-    header:
-      frame_id: ''
-      stamp:
-        nanosec: 0
-        sec: 0
-    joint_names: []
-    transforms: []
-    twist: []
-    wrench: []
-  name: Look Left
-- description: ''
-  favorite: false
-  joint_group_names:
-  - left_gripper
-  - left_manipulator
-  - manipulator
-  - mobile_manipulator
-  - right_gripper
-  - right_manipulator
-  - world_actuator
-  joint_state:
-    effort: []
-    header:
-      frame_id: ''
-      stamp:
-        nanosec: 0
-        sec: 0
-    name:
-    - left_robotiq_85_left_knuckle_joint
-    - lift_left_upper_joint
-    - left_shoulder_pan_joint
-    - left_shoulder_lift_joint
-    - left_elbow_joint
-    - left_wrist_1_joint
-    - left_wrist_2_joint
-    - left_wrist_3_joint
-    - lift_right_upper_joint
-    - right_shoulder_pan_joint
-    - right_shoulder_lift_joint
-    - right_elbow_joint
-    - right_wrist_1_joint
-    - right_wrist_2_joint
-    - right_wrist_3_joint
-    - linear_x_joint
-    - linear_y_joint
-    - rotational_yaw_joint
-    - right_robotiq_85_left_knuckle_joint
-    position:
-    - 0
-    - 0.004999999888241291
-    - -1.0473702589618128
-    - -2.3257838688292445
-    - 0.2390969435321253
-    - -0.1402629178813477
-    - 1.8422925472259521
-    - 0.22094345092773438
-    - 0.005625000223517418
-    - 0.8305305242538452
-    - -0.9154609006694336
-    - -0.28261691331863403
-    - -2.760466238061422
-    - -1.4729211966144007
-    - -0.025824848805562794
-    - 0
-    - 0
-    - 0
-    - 0
-    velocity: []
-  multi_dof_joint_state:
-    header:
-      frame_id: ''
-      stamp:
-        nanosec: 0
-        sec: 0
-    joint_names: []
-    transforms: []
-    twist: []
-    wrench: []
-  name: Spread
-- description: ''
-  favorite: false
-  joint_group_names:
-  - left_gripper
-  - left_manipulator
-  - manipulator
-  - mobile_manipulator
-  - right_gripper
-  - right_manipulator
-  - world_actuator
-  joint_state:
-    effort: []
-    header:
-      frame_id: ''
-      stamp:
-        nanosec: 0
-        sec: 0
-    name:
-    - left_robotiq_85_left_knuckle_joint
-    - lift_left_upper_joint
-    - left_shoulder_pan_joint
-    - left_shoulder_lift_joint
-    - left_elbow_joint
-    - left_wrist_1_joint
-    - left_wrist_2_joint
-    - left_wrist_3_joint
-    - lift_right_upper_joint
-    - right_shoulder_pan_joint
-    - right_shoulder_lift_joint
-    - right_elbow_joint
-    - right_wrist_1_joint
-    - right_wrist_2_joint
-    - right_wrist_3_joint
-    - linear_x_joint
-    - linear_y_joint
-    - rotational_yaw_joint
-    - right_robotiq_85_left_knuckle_joint
-    position:
-    - 0
-    - 0.31937500834465027
-    - -2.5661760012256067
-    - -0.12492568910632329
-    - -1.6303329467773438
-    - -2.7901493511595667
-    - 0.8018758893013
-    - 1.1619552373886108
-    - 0.4481250047683716
-    - 0.8309774994850159
-    - -3.399022718469137
-    - 1.6711671988116663
-    - -2.1080972156920375
-    - -1.3886345068561
-    - -0.025860134755269826
-    - 0
-    - 0
-    - 0
-    - 0
-    velocity: []
-  multi_dof_joint_state:
-    header:
-      frame_id: ''
-      stamp:
-        nanosec: 0
-        sec: 0
-    joint_names: []
-    transforms: []
-    twist: []
-    wrench: []
-  name: Look Right
-- description: ''
-  favorite: false
-  joint_group_names:
-  - left_gripper
-  - left_manipulator
-  - manipulator
   - right_gripper
   - right_manipulator
   joint_state:
@@ -341,140 +65,10 @@
   - left_gripper
   - left_manipulator
   - manipulator
-  - right_gripper
-  - right_manipulator
-  joint_state:
-    effort: []
-    header:
-      frame_id: ''
-      stamp:
-        nanosec: 0
-        sec: 0
-    name:
-    - left_robotiq_85_left_knuckle_joint
-    - lift_left_upper_joint
-    - left_shoulder_pan_joint
-    - left_shoulder_lift_joint
-    - left_elbow_joint
-    - left_wrist_1_joint
-    - left_wrist_2_joint
-    - left_wrist_3_joint
-    - lift_right_upper_joint
-    - right_shoulder_pan_joint
-    - right_shoulder_lift_joint
-    - right_elbow_joint
-    - right_wrist_1_joint
-    - right_wrist_2_joint
-    - right_wrist_3_joint
-    - right_robotiq_85_left_knuckle_joint
-    position:
-    - 0.04890132158590308
-    - 0.32249999046325684
-    - -2.1046975294696253
-    - 0.4264698463627319
-    - -1.569954752922058
-    - -2.795225759545797
-    - 0.5832862854003906
-    - 1.0715107917785645
-    - 0.14124999940395355
-    - 0.7982266545295715
-    - -3.2354589901366175
-    - 1.3753188292132776
-    - -2.200121065179342
-    - -1.3522442022906702
-    - 0.011028731241822243
-    - 0.6811255506607929
-    velocity: []
-  multi_dof_joint_state:
-    header:
-      frame_id: ''
-      stamp:
-        nanosec: 0
-        sec: 0
-    joint_names: []
-    transforms: []
-    twist: []
-    wrench: []
-  name: Ready
-- description: ''
-  favorite: false
-  joint_group_names:
-  - left_gripper
-  - left_manipulator
-  - manipulator
   - mobile_manipulator
   - right_gripper
   - right_manipulator
-  - world_actuator
-  joint_state:
-    effort: []
-    header:
-      frame_id: ''
-      stamp:
-        nanosec: 0
-        sec: 0
-    name:
-    - left_robotiq_85_left_knuckle_joint
-    - lift_left_upper_joint
-    - left_shoulder_pan_joint
-    - left_shoulder_lift_joint
-    - left_elbow_joint
-    - left_wrist_1_joint
-    - left_wrist_2_joint
-    - left_wrist_3_joint
-    - lift_right_upper_joint
-    - right_shoulder_pan_joint
-    - right_shoulder_lift_joint
-    - right_elbow_joint
-    - right_wrist_1_joint
-    - right_wrist_2_joint
-    - right_wrist_3_joint
-    - linear_x_joint
-    - linear_y_joint
-    - rotational_yaw_joint
-    - right_robotiq_85_left_knuckle_joint
-    position:
-    - 0
-    - 0.07374999672174454
-    - -0.08369285265077764
-    - -0.7658812564662476
-    - 0.007248226796285451
-    - -0.046747998600341845
-    - -0.04322702089418584
-    - 0.42950883507728577
-    - 0.004999999888241291
-    - 0.02227267436683178
-    - -1.402520166044571
-    - -0.18215014040470123
-    - -0.07637257993731694
-    - -0.037038628255025685
-    - 0.005749745760113001
-    - 0
-    - 0
-    - 0
-    - 0.05938017621145374
-    velocity: []
-  multi_dof_joint_state:
-    header:
-      frame_id: ''
-      stamp:
-        nanosec: 0
-        sec: 0
-    joint_names: []
-    transforms: []
-    twist: []
-    wrench: []
-  name: Left Arm Rotated
-- description: ''
-  favorite: false
-  joint_group_names:
-  - left_gripper
-  - left_manipulator
-  - manipulator
-  - mobile_manipulator
-  - right_gripper
-  - right_manipulator
-  - world_actuator
+  - mobile_base
   joint_state:
     effort: []
     header:
@@ -569,19 +163,19 @@
     position:
     - 0
     - 0.39937499165534973
-    - -2.050307099019186
-    - 0.3622639614292602
-    - -1.5479938983917236
-    - -2.789809366265768
-    - 0.8018244504928589
-    - 1.1619380712509155
-    - 0.06312499940395355
-    - 0.8337880373001099
-    - -3.400200506249899
-    - 1.6657512823687952
-    - -2.116817136804098
-    - -1.3903492132769983
-    - -0.018552128468648732
+    - -2.05027944246401
+    - 0.3622625309177856
+    - -1.5479177236557007
+    - -2.7898527584471644
+    - 0.8018029928207397
+    - 1.162001371383667
+    - 0.0524999850988388
+    - 0.788665771484375
+    - -3.1999927959837855
+    - 1.6997197310077112
+    - -2.3571273289122523
+    - -1.3561046759234827
+    - 0.011527299880981445
     - 0.6881114537444935
     velocity: []
   multi_dof_joint_state:
@@ -594,7 +188,452 @@
     transforms: []
     twist: []
     wrench: []
-  name: Prepare To Plug In Switch
+  name: Kind of Plug In
+- description: ''
+  favorite: false
+  joint_group_names:
+  - left_gripper
+  - left_manipulator
+  - manipulator
+  - mobile_manipulator
+  - right_gripper
+  - right_manipulator
+  - mobile_base
+  joint_state:
+    effort: []
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    name:
+    - left_robotiq_85_left_knuckle_joint
+    - lift_left_upper_joint
+    - left_shoulder_pan_joint
+    - left_shoulder_lift_joint
+    - left_elbow_joint
+    - left_wrist_1_joint
+    - left_wrist_2_joint
+    - left_wrist_3_joint
+    - lift_right_upper_joint
+    - right_shoulder_pan_joint
+    - right_shoulder_lift_joint
+    - right_elbow_joint
+    - right_wrist_1_joint
+    - right_wrist_2_joint
+    - right_wrist_3_joint
+    - linear_x_joint
+    - linear_y_joint
+    - rotational_yaw_joint
+    - right_robotiq_85_left_knuckle_joint
+    position:
+    - 0
+    - 0.07374999672174454
+    - -0.08369285265077764
+    - -0.7658812564662476
+    - 0.007248226796285451
+    - -0.046747998600341845
+    - -0.04322702089418584
+    - 0.42950883507728577
+    - 0.004999999888241291
+    - 0.02227267436683178
+    - -1.402520166044571
+    - -0.18215014040470123
+    - -0.07637257993731694
+    - -0.037038628255025685
+    - 0.005749745760113001
+    - 0
+    - 0
+    - 0
+    - 0.05938017621145374
+    velocity: []
+  multi_dof_joint_state:
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    joint_names: []
+    transforms: []
+    twist: []
+    wrench: []
+  name: Left Arm Rotated
+- description: ''
+  favorite: false
+  joint_group_names:
+  - full_manipulator
+  joint_state:
+    effort: []
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    name:
+    - lift_left_upper_joint
+    - left_shoulder_pan_joint
+    - left_shoulder_lift_joint
+    - left_elbow_joint
+    - left_wrist_1_joint
+    - left_wrist_2_joint
+    - left_wrist_3_joint
+    - linear_x_joint
+    - linear_y_joint
+    - rotational_yaw_joint
+    position:
+    - 0.3218750059604645
+    - -2.5109224955188196
+    - -1.7922231159605921
+    - 2.1506293455706995
+    - -0.29100974023852544
+    - 1.5385586023330688
+    - 2.350510835647583
+    - 0.0
+    - 0.0
+    - 0.0
+    velocity: []
+  multi_dof_joint_state:
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    joint_names: []
+    transforms: []
+    twist: []
+    wrench: []
+  name: Look
+- description: ''
+  favorite: false
+  joint_group_names:
+  - left_gripper
+  - left_manipulator
+  - manipulator
+  - mobile_manipulator
+  - right_gripper
+  - right_manipulator
+  - mobile_base
+  joint_state:
+    effort: []
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    name:
+    - left_robotiq_85_left_knuckle_joint
+    - lift_left_upper_joint
+    - left_shoulder_pan_joint
+    - left_shoulder_lift_joint
+    - left_elbow_joint
+    - left_wrist_1_joint
+    - left_wrist_2_joint
+    - left_wrist_3_joint
+    - lift_right_upper_joint
+    - right_shoulder_pan_joint
+    - right_shoulder_lift_joint
+    - right_elbow_joint
+    - right_wrist_1_joint
+    - right_wrist_2_joint
+    - right_wrist_3_joint
+    - linear_x_joint
+    - linear_y_joint
+    - rotational_yaw_joint
+    - right_robotiq_85_left_knuckle_joint
+    position:
+    - 0
+    - 0.44624999165534973
+    - -2.4656978289233606
+    - -3.0902096233763636
+    - 1.6299784819232386
+    - -0.019323305492736864
+    - 2.3928370475769043
+    - 1.5708117485046387
+    - 0.3187499940395355
+    - 0.8308247923851013
+    - -3.400965829888815
+    - 1.6738317648517054
+    - -2.107447763482565
+    - -1.3919923941241663
+    - -0.025893513356344044
+    - 0
+    - 0
+    - 0
+    - 0
+    velocity: []
+  multi_dof_joint_state:
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    joint_names: []
+    transforms: []
+    twist: []
+    wrench: []
+  name: Look Both
+- description: ''
+  favorite: false
+  joint_group_names:
+  - left_gripper
+  - left_manipulator
+  - manipulator
+  - mobile_manipulator
+  - right_gripper
+  - right_manipulator
+  - mobile_base
+  joint_state:
+    effort: []
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    name:
+    - left_robotiq_85_left_knuckle_joint
+    - lift_left_upper_joint
+    - left_shoulder_pan_joint
+    - left_shoulder_lift_joint
+    - left_elbow_joint
+    - left_wrist_1_joint
+    - left_wrist_2_joint
+    - left_wrist_3_joint
+    - lift_right_upper_joint
+    - right_shoulder_pan_joint
+    - right_shoulder_lift_joint
+    - right_elbow_joint
+    - right_wrist_1_joint
+    - right_wrist_2_joint
+    - right_wrist_3_joint
+    - linear_x_joint
+    - linear_y_joint
+    - rotational_yaw_joint
+    - right_robotiq_85_left_knuckle_joint
+    position:
+    - 0
+    - 0.19499999284744263
+    - -2.465978447590963
+    - -3.0901524029173792
+    - 1.6301358381854456
+    - -0.01881761968646245
+    - 2.3930246829986572
+    - 1.5710904598236084
+    - 0.35749998688697815
+    - 0.7526508569717407
+    - -1.290156142120697
+    - -1.9800491333007812
+    - -0.7053373616984864
+    - 1.4480695724487305
+    - -0.02575856844057256
+    - 0
+    - 0
+    - 0
+    - 0
+    velocity: []
+  multi_dof_joint_state:
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    joint_names: []
+    transforms: []
+    twist: []
+    wrench: []
+  name: Look Left
+- description: ''
+  favorite: false
+  joint_group_names:
+  - left_gripper
+  - left_manipulator
+  - manipulator
+  - mobile_manipulator
+  - right_gripper
+  - right_manipulator
+  - mobile_base
+  joint_state:
+    effort: []
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    name:
+    - left_robotiq_85_left_knuckle_joint
+    - lift_left_upper_joint
+    - left_shoulder_pan_joint
+    - left_shoulder_lift_joint
+    - left_elbow_joint
+    - left_wrist_1_joint
+    - left_wrist_2_joint
+    - left_wrist_3_joint
+    - lift_right_upper_joint
+    - right_shoulder_pan_joint
+    - right_shoulder_lift_joint
+    - right_elbow_joint
+    - right_wrist_1_joint
+    - right_wrist_2_joint
+    - right_wrist_3_joint
+    - linear_x_joint
+    - linear_y_joint
+    - rotational_yaw_joint
+    - right_robotiq_85_left_knuckle_joint
+    position:
+    - 0
+    - 0.31937500834465027
+    - -2.5661760012256067
+    - -0.12492568910632329
+    - -1.6303329467773438
+    - -2.7901493511595667
+    - 0.8018758893013
+    - 1.1619552373886108
+    - 0.4481250047683716
+    - 0.8309774994850159
+    - -3.399022718469137
+    - 1.6711671988116663
+    - -2.1080972156920375
+    - -1.3886345068561
+    - -0.025860134755269826
+    - 0
+    - 0
+    - 0
+    - 0
+    velocity: []
+  multi_dof_joint_state:
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    joint_names: []
+    transforms: []
+    twist: []
+    wrench: []
+  name: Look Right
+- description: ''
+  favorite: false
+  joint_group_names:
+  - mobile_base
+  joint_state:
+    effort: []
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    name:
+    - linear_x_joint
+    - linear_y_joint
+    - rotational_yaw_joint
+    position:
+    - 0
+    - 0
+    - 0
+    velocity: []
+  multi_dof_joint_state:
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    joint_names: []
+    transforms: []
+    twist: []
+    wrench: []
+  name: Mobile Base Home
+- description: ''
+  favorite: false
+  joint_group_names:
+  - mobile_base
+  joint_state:
+    effort: []
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    name:
+    - linear_x_joint
+    - linear_y_joint
+    - rotational_yaw_joint
+    position:
+    - 0.1
+    - 0.2
+    - 0
+    velocity: []
+  multi_dof_joint_state:
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    joint_names: []
+    transforms: []
+    twist: []
+    wrench: []
+  name: Mobile Base Move
+- description: ''
+  favorite: false
+  joint_group_names:
+  - mobile_base
+  joint_state:
+    effort: []
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    name:
+    - linear_x_joint
+    - linear_y_joint
+    - rotational_yaw_joint
+    position:
+    - 0.2
+    - 0.2
+    - 1.5
+    velocity: []
+  multi_dof_joint_state:
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    joint_names: []
+    transforms: []
+    twist: []
+    wrench: []
+  name: Mobile Base Near
+- description: ''
+  favorite: false
+  joint_group_names:
+  - mobile_base
+  joint_state:
+    effort: []
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    name:
+    - linear_x_joint
+    - linear_y_joint
+    - rotational_yaw_joint
+    position:
+    - -0.2
+    - -0.2
+    - -0.75
+    velocity: []
+  multi_dof_joint_state:
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    joint_names: []
+    transforms: []
+    twist: []
+    wrench: []
+  name: Mobile Base Near 2
 - description: ''
   favorite: false
   joint_group_names:
@@ -630,19 +669,19 @@
     position:
     - 0
     - 0.39937499165534973
-    - -2.05027944246401
-    - 0.3622625309177856
-    - -1.5479177236557007
-    - -2.7898527584471644
-    - 0.8018029928207397
-    - 1.162001371383667
-    - 0.0524999850988388
-    - 0.788665771484375
-    - -3.1999927959837855
-    - 1.6997197310077112
-    - -2.3571273289122523
-    - -1.3561046759234827
-    - 0.011527299880981445
+    - -2.050307099019186
+    - 0.3622639614292602
+    - -1.5479938983917236
+    - -2.789809366265768
+    - 0.8018244504928589
+    - 1.1619380712509155
+    - 0.06312499940395355
+    - 0.8337880373001099
+    - -3.400200506249899
+    - 1.6657512823687952
+    - -2.116817136804098
+    - -1.3903492132769983
+    - -0.018552128468648732
     - 0.6881114537444935
     velocity: []
   multi_dof_joint_state:
@@ -655,4 +694,179 @@
     transforms: []
     twist: []
     wrench: []
-  name: Kind of Plug In
+  name: Prepare To Plug In Switch
+- description: ''
+  favorite: false
+  joint_group_names:
+  - full_manipulator
+  joint_state:
+    effort: []
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    name:
+    - lift_left_upper_joint
+    - left_shoulder_pan_joint
+    - left_shoulder_lift_joint
+    - left_elbow_joint
+    - left_wrist_1_joint
+    - left_wrist_2_joint
+    - left_wrist_3_joint
+    - linear_x_joint
+    - linear_y_joint
+    - rotational_yaw_joint
+    position:
+    - 0.3218750059604645
+    - -2.5108326117144983
+    - -0.44535215318713384
+    - 0.7016294638263147
+    - -0.2910291713527222
+    - 1.5384575128555298
+    - 2.350562572479248
+    - -0.3
+    - 0.0
+    - 0.0
+    velocity: []
+  multi_dof_joint_state:
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    joint_names: []
+    transforms: []
+    twist: []
+    wrench: []
+  name: Reach
+- description: ''
+  favorite: false
+  joint_group_names:
+  - left_gripper
+  - left_manipulator
+  - manipulator
+  - right_gripper
+  - right_manipulator
+  joint_state:
+    effort: []
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    name:
+    - left_robotiq_85_left_knuckle_joint
+    - lift_left_upper_joint
+    - left_shoulder_pan_joint
+    - left_shoulder_lift_joint
+    - left_elbow_joint
+    - left_wrist_1_joint
+    - left_wrist_2_joint
+    - left_wrist_3_joint
+    - lift_right_upper_joint
+    - right_shoulder_pan_joint
+    - right_shoulder_lift_joint
+    - right_elbow_joint
+    - right_wrist_1_joint
+    - right_wrist_2_joint
+    - right_wrist_3_joint
+    - right_robotiq_85_left_knuckle_joint
+    position:
+    - 0.04890132158590308
+    - 0.32249999046325684
+    - -2.1046975294696253
+    - 0.4264698463627319
+    - -1.569954752922058
+    - -2.795225759545797
+    - 0.5832862854003906
+    - 1.0715107917785645
+    - 0.14124999940395355
+    - 0.7982266545295715
+    - -3.2354589901366175
+    - 1.3753188292132776
+    - -2.200121065179342
+    - -1.3522442022906702
+    - 0.011028731241822243
+    - 0.6811255506607929
+    velocity: []
+  multi_dof_joint_state:
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    joint_names: []
+    transforms: []
+    twist: []
+    wrench: []
+  name: Ready
+- description: ''
+  favorite: false
+  joint_group_names:
+  - left_gripper
+  - left_manipulator
+  - manipulator
+  - mobile_manipulator
+  - right_gripper
+  - right_manipulator
+  - mobile_base
+  joint_state:
+    effort: []
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    name:
+    - left_robotiq_85_left_knuckle_joint
+    - lift_left_upper_joint
+    - left_shoulder_pan_joint
+    - left_shoulder_lift_joint
+    - left_elbow_joint
+    - left_wrist_1_joint
+    - left_wrist_2_joint
+    - left_wrist_3_joint
+    - lift_right_upper_joint
+    - right_shoulder_pan_joint
+    - right_shoulder_lift_joint
+    - right_elbow_joint
+    - right_wrist_1_joint
+    - right_wrist_2_joint
+    - right_wrist_3_joint
+    - linear_x_joint
+    - linear_y_joint
+    - rotational_yaw_joint
+    - right_robotiq_85_left_knuckle_joint
+    position:
+    - 0
+    - 0.004999999888241291
+    - -1.0473702589618128
+    - -2.3257838688292445
+    - 0.2390969435321253
+    - -0.1402629178813477
+    - 1.8422925472259521
+    - 0.22094345092773438
+    - 0.005625000223517418
+    - 0.8305305242538452
+    - -0.9154609006694336
+    - -0.28261691331863403
+    - -2.760466238061422
+    - -1.4729211966144007
+    - -0.025824848805562794
+    - 0
+    - 0
+    - 0
+    - 0
+    velocity: []
+  multi_dof_joint_state:
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    joint_names: []
+    transforms: []
+    twist: []
+    wrench: []
+  name: Spread

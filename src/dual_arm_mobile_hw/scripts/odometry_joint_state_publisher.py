@@ -117,7 +117,9 @@ class OdometryJointStateRepublisher(Node):
 def main(args=None):
     rclpy.init(args=args)
 
-    odometry_repub = OdometryJointStateRepublisher("/platform_velocity_controller/odom", "/joint_states")
+    odometry_repub = OdometryJointStateRepublisher(
+        "/r100_0599/platform/odom/filtered", "/joint_states"
+    )
 
     rclpy.spin(odometry_repub)
 

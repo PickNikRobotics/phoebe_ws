@@ -1,23 +1,77 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <root BTCPP_format="4" main_tree_to_execute="3 Waypoint Cycle">
   <!--//////////-->
-  <BehaviorTree ID="3 Waypoint Cycle" _description="" _favorite="false" _subtreeOnly="false">
+  <BehaviorTree ID="3 Waypoint Cycle" _description="" _favorite="false">
     <Control ID="Sequence" name="TopLevelSequence">
-      <SubTree ID="Move to Waypoint" _collapsed="true" acceleration_scale_factor="1.0" controller_action_server="/joint_trajectory_controller/follow_joint_trajectory" controller_names="/joint_trajectory_controller" joint_group_name="manipulator" keep_orientation="false" keep_orientation_link_names="grasp_link" keep_orientation_tolerance="0.05" link_padding="0.00" velocity_scale_factor="1.0" waypoint_name="Look Left"/>
+      <SubTree
+        ID="Move to Waypoint"
+        _collapsed="true"
+        acceleration_scale_factor="1.0"
+        controller_action_server="/joint_trajectory_controller/follow_joint_trajectory"
+        controller_names="/joint_trajectory_controller"
+        joint_group_name="manipulator"
+        keep_orientation="false"
+        keep_orientation_link_names="grasp_link"
+        keep_orientation_tolerance="0.05"
+        link_padding="0.00"
+        velocity_scale_factor="1.0"
+        waypoint_name="Look Left"
+      />
       <Decorator ID="Delay" delay_msec="1000">
-        <SubTree ID="Move to Waypoint" _collapsed="true" acceleration_scale_factor="1.0" controller_action_server="/joint_trajectory_controller/follow_joint_trajectory" controller_names="/joint_trajectory_controller" joint_group_name="manipulator" keep_orientation="false" keep_orientation_link_names="grasp_link" keep_orientation_tolerance="0.05" link_padding="0.00" velocity_scale_factor="1.0" waypoint_name="Spread"/>
+        <SubTree
+          ID="Move to Waypoint"
+          _collapsed="true"
+          acceleration_scale_factor="1.0"
+          controller_action_server="/joint_trajectory_controller/follow_joint_trajectory"
+          controller_names="/joint_trajectory_controller"
+          joint_group_name="manipulator"
+          keep_orientation="false"
+          keep_orientation_link_names="grasp_link"
+          keep_orientation_tolerance="0.05"
+          link_padding="0.00"
+          velocity_scale_factor="1.0"
+          waypoint_name="Spread"
+        />
       </Decorator>
       <Decorator ID="Delay" delay_msec="1000">
-        <SubTree ID="Move to Waypoint" _collapsed="true" acceleration_scale_factor="1.0" controller_action_server="/joint_trajectory_controller/follow_joint_trajectory" controller_names="/joint_trajectory_controller" joint_group_name="manipulator" keep_orientation="false" keep_orientation_link_names="grasp_link" keep_orientation_tolerance="0.05" link_padding="0.00" velocity_scale_factor="1.0" waypoint_name="Look Right"/>
+        <SubTree
+          ID="Move to Waypoint"
+          _collapsed="true"
+          acceleration_scale_factor="1.0"
+          controller_action_server="/joint_trajectory_controller/follow_joint_trajectory"
+          controller_names="/joint_trajectory_controller"
+          joint_group_name="manipulator"
+          keep_orientation="false"
+          keep_orientation_link_names="grasp_link"
+          keep_orientation_tolerance="0.05"
+          link_padding="0.00"
+          velocity_scale_factor="1.0"
+          waypoint_name="Look Right"
+        />
       </Decorator>
       <Decorator ID="Delay" delay_msec="1000">
-        <SubTree ID="Move to Waypoint" _collapsed="true" acceleration_scale_factor="1.0" controller_action_server="/joint_trajectory_controller/follow_joint_trajectory" controller_names="/joint_trajectory_controller" joint_group_name="manipulator" keep_orientation="false" keep_orientation_link_names="grasp_link" keep_orientation_tolerance="0.05" link_padding="0.00" velocity_scale_factor="1.0" waypoint_name="Look Left"/>
+        <SubTree
+          ID="Move to Waypoint"
+          _collapsed="true"
+          acceleration_scale_factor="1.0"
+          controller_action_server="/joint_trajectory_controller/follow_joint_trajectory"
+          controller_names="/joint_trajectory_controller"
+          joint_group_name="manipulator"
+          keep_orientation="false"
+          keep_orientation_link_names="grasp_link"
+          keep_orientation_tolerance="0.05"
+          link_padding="0.00"
+          velocity_scale_factor="1.0"
+          waypoint_name="Look Left"
+        />
       </Decorator>
     </Control>
   </BehaviorTree>
   <TreeNodesModel>
-    <SubTree ID="3 Waypoint Cycle"><MetadataFields>
-        <Metadata runnable="true"/>
-      </MetadataFields></SubTree>
+    <SubTree ID="3 Waypoint Cycle">
+      <MetadataFields>
+        <Metadata runnable="true" />
+      </MetadataFields>
+    </SubTree>
   </TreeNodesModel>
 </root>

@@ -83,15 +83,15 @@ ros2_control:
     - "joint_state_broadcaster"
     - "left_robotiq_gripper_controller"
     - "right_robotiq_gripper_controller"
-    - "joint_trajectory_controller"
     - "left_force_torque_sensor_broadcaster"
     - "right_force_torque_sensor_broadcaster"
-    - "platform_velocity_controller"
+    - "base_trajectory_admittance_controller"
   # Load but do not start these controllers so they can be activated later if needed.
   controllers_inactive_at_startup:
+    - "joint_trajectory_controller"
     - "servo_controller"
-    - "left_joint_trajectory_admittance_controller"
-    - "right_joint_trajectory_admittance_controller"
+    - "left_full_trajectory_admittance_controller"
+    - "right_full_trajectory_admittance_controller"
 
 objectives:
   # List of plugins for loading custom behaviors.

@@ -4,7 +4,7 @@
     A URDF file must exist for this robot as well, where the joints and the links that are referenced are defined
 -->
 <robot name="r100-0599">
-  <group name="world_actuator">
+  <group name="mobile_base">
     <joint name="linear_x_joint"/>
     <joint name="linear_y_joint"/>
     <joint name="rotational_yaw_joint"/>
@@ -19,8 +19,11 @@
     <group name="left_manipulator"/>
     <group name="right_manipulator"/>
   </group>
+  <group name="full_manipulator">
+    <chain base_link="world" tip_link="left_grasp_link"/>
+  </group>
   <group name="mobile_manipulator">
-    <group name="world_actuator"/>
+    <group name="mobile_base"/>
     <group name="left_manipulator"/>
     <group name="right_manipulator"/>
   </group>

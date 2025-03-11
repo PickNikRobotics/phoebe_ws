@@ -826,7 +826,9 @@
   <ros2_control name="lift_left_hardware" type="system">
     <hardware>
       <plugin>ewellix_driver/EwellixHardwareInterface</plugin>
-      <param name="port">/dev/clearpath/ewellix_left</param>
+      <!--<plugin>mock_components/GenericSystem</plugin>-->
+      <!--<param name="port">/dev/clearpath/ewellix_left</param>-->
+      <param name="port">/dev/ttyUSB1</param>
       <param name="baud">38400</param>
       <param name="timeout">1000</param>
       <param name="conversion">1600</param>
@@ -845,6 +847,7 @@
   <ros2_control name="left_arm" type="system">
     <hardware>
       <plugin>ur_robot_driver/URPositionHardwareInterface</plugin>
+      <!--<plugin>mock_components/GenericSystem</plugin>-->
       <param name="robot_ip">192.168.131.4</param>
       <param name="script_filename">/opt/ros/humble/share/ur_robot_driver/resources/ros_control.urscript</param>
       <param name="output_recipe_filename">/opt/ros/humble/share/ur_robot_driver/resources/rtde_output_recipe.txt</param>
@@ -1539,6 +1542,7 @@
       <!-- Set use_dummy to true to connect to a dummy driver for testing purposes. -->
       <param name="use_dummy">false</param>
       <plugin>robotiq_driver/RobotiqGripperHardwareInterface</plugin>
+      <!--<plugin>mock_components/GenericSystem</plugin>-->
       <param name="gripper_closed_position">0.7929</param>
       <!--      <param name="COM_port">/tmp/ttyUR</param>-->
       <param name="COM_port">/dev/ttyUSB0</param>
@@ -1954,7 +1958,9 @@
   <ros2_control name="lift_right_hardware" type="system">
     <hardware>
       <plugin>ewellix_driver/EwellixHardwareInterface</plugin>
-      <param name="port">/dev/clearpath/ewellix_right</param>
+      <!--<plugin>mock_components/GenericSystem</plugin>-->
+      <!--<param name="port">/dev/clearpath/ewellix_right</param>-->
+      <param name="port">/dev/ttyUSB2</param>
       <param name="baud">38400</param>
       <param name="timeout">1000</param>
       <param name="conversion">1600</param>
@@ -1973,6 +1979,7 @@
   <ros2_control name="right_arm" type="system">
     <hardware>
       <plugin>ur_robot_driver/URPositionHardwareInterface</plugin>
+      <!--<plugin>mock_components/GenericSystem</plugin>-->
       <param name="robot_ip">192.168.131.3</param>
       <param name="script_filename">/opt/ros/humble/share/ur_robot_driver/resources/ros_control.urscript</param>
       <param name="output_recipe_filename">/opt/ros/humble/share/ur_robot_driver/resources/rtde_output_recipe.txt</param>
@@ -2667,6 +2674,7 @@
       <!-- Set use_dummy to true to connect to a dummy driver for testing purposes. -->
       <param name="use_dummy">false</param>
       <plugin>robotiq_driver/RobotiqGripperHardwareInterface</plugin>
+      <!--<plugin>mock_components/GenericSystem</plugin>-->
       <param name="gripper_closed_position">0.7929</param>
       <param name="COM_port">/tmp/ttyUR</param>
       <param name="gripper_speed_multiplier">1.0</param>
@@ -3291,4 +3299,17 @@
     <child link="right_arm_mount_plate_2"/>
     <origin rpy="0.7853981633974483 0 3.141592653589793" xyz="0 0.01628 0.09117"/>
   </joint>
+  <ros2_control name="clearpath_controller_interface" type="system">
+    <hardware>
+      <plugin>clearpath_controller_interface/ClearpathControllerInterface</plugin>
+      <param name="odom_topic">/r100_0599/platform/odom/filtered</param>
+      <param name="cmd_vel_topic">/r100_0599/platform/cmd_vel_unstamped</param>
+      <param name="max_linear_velocity">0.2</param>
+      <param name="max_angular_velocity">0.2</param>
+      <param name="cmd_pub_rate">50</param>
+    </hardware>
+    <joint name="linear_x_joint"/>
+    <joint name="linear_y_joint"/>
+    <joint name="rotational_yaw_joint"/>
+  </ros2_control>
 </robot>
