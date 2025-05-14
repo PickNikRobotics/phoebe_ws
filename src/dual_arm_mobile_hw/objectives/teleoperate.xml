@@ -18,6 +18,7 @@
     <SubTree ID="Teleoperate">
       <MetadataFields>
         <Metadata subcategory="User Input" />
+        <Metadata runnable="true" />
       </MetadataFields>
     </SubTree>
   </TreeNodesModel>

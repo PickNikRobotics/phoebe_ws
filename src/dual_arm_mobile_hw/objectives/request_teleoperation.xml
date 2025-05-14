@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <root BTCPP_format="4" main_tree_to_execute="Request Teleoperation">
   <!--The integer value used here for teleoperation mode comes from the moveit_studio_sdk_msgs/TeleoperationMode ROS message.-->
   <BehaviorTree
@@ -7,8 +7,6 @@
     _favorite="false"
     _hardcoded="false"
     _subtreeOnly="true"
-    enable_user_interaction="false"
-    initial_teleop_mode="3"
   >
     <Control ID="Sequence">
       <Action ID="Script" code="teleop_mode := 0" />
@@ -19,6 +17,8 @@
           user_interaction_prompt="{user_interaction_prompt}"
           initial_teleop_mode="{initial_teleop_mode}"
           current_teleop_mode="{teleop_mode}"
+          planning_groups="{planning_groups}"
+          controllers="{controllers}"
         />
         <Decorator ID="KeepRunningUntilFailure">
           <Control ID="Sequence">
@@ -36,14 +36,14 @@
                   <Control ID="Sequence">
                     <Action
                       ID="RetrieveJointStateParameter"
-                      timeout_sec="2"
+                      timeout_sec="-1"
                       joint_state="{target_joint_state}"
                     />
                     <SubTree
                       ID="Interpolate to Joint State"
                       _collapsed="false"
                       target_joint_state="{target_joint_state}"
-                      controller_names="/joint_trajectory_controller /robotiq_gripper_controller"
+                      controller_names="/joint_trajectory_controller"
                     />
                     <Action
                       ID="PublishEmpty"
@@ -78,6 +78,7 @@
                       ID="Move to Pose"
                       _collapsed="false"
                       target_pose="{target_pose}"
+                      controller_names="/joint_trajectory_controller"
                     />
                     <Action
                       ID="PublishEmpty"
@@ -112,15 +113,6 @@
                       ID="Move to Joint State"
                       _collapsed="false"
                       target_joint_state="{target_joint_state}"
-                      acceleration_scale_factor="1.0"
-                      controller_action_server="/joint_trajectory_controller/follow_joint_trajectory"
-                      controller_names="joint_trajectory_controller"
-                      joint_group_name="manipulator"
-                      keep_orientation="false"
-                      keep_orientation_link_names="grasp_link"
-                      keep_orientation_tolerance="0.05"
-                      link_padding="0.00"
-                      velocity_scale_factor="1.0"
                     />
                     <Action
                       ID="PublishEmpty"
@@ -143,10 +135,23 @@
             </Decorator>
             <!--Cartesian and joint jogging-->
             <Control ID="Sequence" _while="teleop_mode == 2">
-              <Action
-                ID="TeleoperateTwist"
-                controller_name="servo_controller"
-              />
+              <Decorator ID="Repeat" num_cycles="-1">
+                <Control ID="Sequence">
+                  <Action
+                    ID="ActivateControllers"
+                    controller_names="{controllers}"
+                  />
+                  <Decorator ID="ForceSuccess">
+                    <Action
+                      ID="PoseJog"
+                      controller_names="{controllers}"
+                      link_padding="0.0"
+                      planning_group_names="{planning_groups}"
+                      stop_safety_factor="1.500000"
+                    />
+                  </Decorator>
+                </Control>
+              </Decorator>
             </Control>
             <Control ID="Sequence" _while="teleop_mode == 1">
               <Action
@@ -162,8 +167,8 @@
   <TreeNodesModel>
     <SubTree ID="Request Teleoperation">
       <input_port name="enable_user_interaction" default="false" />
-      <input_port name="initial_teleop_mode" default="3" />
       <input_port name="user_interaction_prompt" default="" />
+      <input_port name="initial_teleop_mode" default="3" />
       <MetadataFields>
         <Metadata subcategory="User Input" />
         <Metadata runnable="false" />

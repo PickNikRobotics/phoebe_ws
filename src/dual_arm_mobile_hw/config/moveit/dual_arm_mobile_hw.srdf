@@ -19,8 +19,11 @@
     <group name="left_manipulator"/>
     <group name="right_manipulator"/>
   </group>
-  <group name="full_manipulator">
+  <group name="left_mobile_manipulator">
     <chain base_link="world" tip_link="left_grasp_link"/>
+  </group>
+  <group name="right_mobile_manipulator">
+    <chain base_link="world" tip_link="right_grasp_link"/>
   </group>
   <group name="mobile_manipulator">
     <group name="mobile_base"/>

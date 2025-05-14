@@ -17,6 +17,7 @@
     <SubTree ID="Reset Planning Scene">
       <MetadataFields>
         <Metadata subcategory="Perception - Planning Scene" />
+        <Metadata runnable="true" />
       </MetadataFields>
     </SubTree>
   </TreeNodesModel>

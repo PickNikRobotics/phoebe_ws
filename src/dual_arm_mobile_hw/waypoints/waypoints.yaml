@@ -261,7 +261,7 @@
 - description: ''
   favorite: false
   joint_group_names:
-  - full_manipulator
+  - left_mobile_manipulator
   joint_state:
     effort: []
     header:
@@ -698,7 +698,7 @@
 - description: ''
   favorite: false
   joint_group_names:
-  - full_manipulator
+  - left_mobile_manipulator
   joint_state:
     effort: []
     header:

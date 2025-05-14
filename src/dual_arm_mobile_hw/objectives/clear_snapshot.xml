@@ -11,6 +11,7 @@
     <SubTree ID="Clear Snapshot">
       <MetadataFields>
         <Metadata subcategory="Perception - 3D Point Cloud" />
+        <Metadata runnable="true" />
       </MetadataFields>
     </SubTree>
   </TreeNodesModel>

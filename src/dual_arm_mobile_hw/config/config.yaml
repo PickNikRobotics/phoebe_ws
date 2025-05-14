@@ -42,12 +42,6 @@ moveit_params:
   ompl_planning:
     package: "dual_arm_mobile_hw"
     path: "config/moveit/ompl_planning.yaml"
-  stomp_planning:
-    package: "dual_arm_mobile_hw"
-    path: "config/moveit/stomp_planning.yaml"
-  pilz_planning:
-    package: "dual_arm_mobile_hw"
-    path: "config/moveit/pilz_industrial_motion_planner_planning.yaml"
   kinematics:
     package: "dual_arm_mobile_hw"
     path: "config/moveit/pose_ik_distance.yaml"
@@ -57,9 +51,9 @@ moveit_params:
   servo_kinematics:
     package: "dual_arm_mobile_hw"
     path: "config/moveit/pose_ik_speed.yaml"
-  pilz_cartesian_limits:
+  pose_jog:
     package: "dual_arm_mobile_hw"
-    path: "config/moveit/pilz_cartesian_limits.yaml"
+    path: "config/moveit/pose_jog.yaml"
 
   publish:
     planning_scene: True
@@ -92,6 +86,9 @@ ros2_control:
     - "servo_controller"
     - "left_full_trajectory_admittance_controller"
     - "right_full_trajectory_admittance_controller"
+    - "base_velocity_force_controller"
+    - "left_velocity_force_controller"
+    - "right_velocity_force_controller"
 
 objectives:
   # List of plugins for loading custom behaviors.

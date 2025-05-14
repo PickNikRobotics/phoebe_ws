@@ -6,7 +6,7 @@
       <Control ID="Sequence" name="">
         <Action
           ID="RetrieveWaypoint"
-          joint_group_name="full_manipulator"
+          joint_group_name="left_mobile_manipulator"
           waypoint_joint_state="{look_joint_state}"
           waypoint_name="Look"
         />
@@ -14,7 +14,7 @@
           ID="RetrieveWaypoint"
           waypoint_joint_state="{reach_joint_state}"
           waypoint_name="Reach"
-          joint_group_name="full_manipulator"
+          joint_group_name="left_mobile_manipulator"
         />
         <Action
           ID="SetAdmittanceParameters"
@@ -38,7 +38,7 @@
             keep_orientation_tolerance="0.1"
             link_padding="0.000000"
             max_iterations="5000"
-            planning_group_name="full_manipulator"
+            planning_group_name="left_mobile_manipulator"
             seed="0"
             trajectory_sampling_rate="100"
             velocity_scale_factor="0.2"
@@ -63,7 +63,7 @@
             keep_orientation_tolerance="0.1"
             link_padding="0.000000"
             max_iterations="5000"
-            planning_group_name="full_manipulator"
+            planning_group_name="left_mobile_manipulator"
             seed="0"
             trajectory_sampling_rate="100"
             velocity_scale_factor="0.2"
