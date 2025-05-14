@@ -51,7 +51,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
 
 # Add user to dialout group to enable comms with serial USB devices (gripper)
 # Add user to video group to enable comms with cameras
-RUN usermod -aG dialout,video,netdev ${USERNAME}
+RUN usermod -aG dialout,video ${USERNAME}
 
 # Copy apt source and add key for clearpath dependencies
 COPY clearpath_key.gpg /usr/share/keyrings/clearpath_key.gpg
@@ -67,7 +67,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     --mount=type=cache,target=/var/lib/apt,sharing=locked \
     . /opt/overlay_ws/install/setup.sh && \
     apt-get update && \
-    apt-get install ros-humble-ewellix-description ros-humble-clearpath-hardware-interfaces ros-humble-ewellix-driver ros-humble-micro-ros-agent ros-humble-clearpath-diagnostics ros-humble-clearpath-sensors ros-humble-clearpath-firmware can-utils lsof iproute2 bluez -y && \
+    apt-get install ros-humble-clearpath-manipulators-description ros-humble-clearpath-platform-description ros-humble-clearpath-sensors-description ros-humble-ewellix-description ros-humble-ewellix-driver ros-humble-clearpath-hardware-interfaces -y --no-install-recommends && \
     rosdep install -q -y \
       --from-paths src \
       --ignore-src
