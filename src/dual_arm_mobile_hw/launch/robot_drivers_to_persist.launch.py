@@ -136,19 +136,22 @@ def generate_launch_description():
         "right", right_robot_ip, controller_config
     )
 
+    odom_offset_node = Node(
+        package="dual_arm_mobile_hw",
+        executable="odom_offset_node.py",
+        name="odom_offset_node",
+        output="screen",
+        parameters=[
+            # Optionally set parameters here: {'odom_topic':
+            # '/odom'}, {'odom_offset_topic': '/odom_offset'}
+        ],
+    )
+
     launch_description = (
         [left_robot_ip_arg, right_robot_ip_arg]
         + left_ur_nodes_to_launch
         + right_ur_nodes_to_launch
+        + [odom_offset_node]
     )
-
-    # Publish odometry as joint state messages.
-    odom_to_joint_state_repub = Node(
-        package="dual_arm_mobile_hw",
-        executable="odometry_joint_state_publisher.py",
-        name="odometry_joint_state_publisher",
-        output="log",
-    )
-    launch_description.append(odom_to_joint_state_repub)
 
     return LaunchDescription(launch_description)

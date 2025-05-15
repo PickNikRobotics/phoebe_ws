@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<root BTCPP_format="4" main_tree_to_execute="Load Can Point Cloud">
+  <!--//////////-->
+  <BehaviorTree
+    ID="Load Can Point Cloud"
+    _description=""
+    _favorite="false"
+    color="255;0;0"
+    initial_pose="{initial_pose}"
+    can_cloud="{can_cloud}"
+  >
+    <Control ID="Sequence" name="TopLevelSequence">
+      <Action
+        ID="LoadPointCloudFromFile"
+        color="{color}"
+        package_name="dual_arm_mobile_hw"
+        file_path="assets/beer_can.pcd"
+        point_cloud="{can_cloud}"
+        frame_id="world"
+        num_sampled_points="10000"
+        scale="1.000000"
+      />
+      <Action
+        ID="TransformPointCloud"
+        input_cloud="{can_cloud}"
+        transform_pose="{initial_pose}"
+        output_cloud="{can_cloud}"
+      />
+    </Control>
+  </BehaviorTree>
+  <TreeNodesModel>
+    <SubTree ID="Load Can Point Cloud">
+      <input_port name="color" default="255;0;0" />
+      <input_port name="initial_pose" default="{initial_pose}" />
+      <output_port name="can_cloud" default="{can_cloud}" />
+      <MetadataFields>
+        <Metadata subcategory="Perception - 3D Point Cloud" />
+        <Metadata runnable="false" />
+      </MetadataFields>
+    </SubTree>
+  </TreeNodesModel>
+</root>

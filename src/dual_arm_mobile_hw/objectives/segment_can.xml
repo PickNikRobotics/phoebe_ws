@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root BTCPP_format="4" main_tree_to_execute="Segment Can">
+  <!--//////////-->
+  <BehaviorTree ID="Segment Can">
+    <Control ID="Sequence">
+      <Action
+        ID="GetImage"
+        message_out="{image}"
+        timeout_sec="5.000000"
+        topic_name="/camera/left_wrist_mounted_camera/color/image_raw"
+      />
+      <Action
+        ID="GetMasks2DFromTextQuery"
+        image="{image}"
+        masks2d="{masks2d}"
+        clipseg_model_path="models/clipseg.onnx"
+        clip_model_path="models/clip.onnx"
+        model_package="dual_arm_mobile_hw"
+        prompts="pink beer can"
+        threshold="0.75"
+        erosion_size="0"
+      />
+      <Action
+        ID="PublishMask2D"
+        image="{image}"
+        masks="{masks2d}"
+        masks_visualization_topic="/masks_visualization"
+        opacity="0.8"
+      />
+      <Decorator ID="Delay" delay_msec="300">
+        <Action
+          ID="SwitchUIPrimaryView"
+          primary_view_name="/masks_visualization"
+        />
+      </Decorator>
+      <Decorator
+        ID="ForEach"
+        index="{index}"
+        out="{mask2d}"
+        vector_in="{masks2d}"
+      >
+        <Control ID="Sequence">
+          <Action ID="GetCenterFromMask2D" center="{center}" mask="{mask2d}" />
+          <Action
+            ID="GetMasks2DFromPointQuery"
+            image="{image}"
+            pixel_coords="{center}"
+            masks2d="{masks2d_refined}"
+            decoder_model_path="models/decoder.onnx"
+            encoder_model_path="models/sam2_hiera_large_encoder.onnx"
+            model_package="lab_sim"
+          />
+          <Action
+            ID="PublishMask2D"
+            image="{image}"
+            masks="{masks2d_refined}"
+            masks_visualization_topic="/masks_visualization_refined"
+            opacity="0.8"
+            bounding_box_labels="Pink Beer Can"
+          />
+          <Decorator ID="Delay" delay_msec="1000">
+            <Action ID="AlwaysSuccess" />
+          </Decorator>
+        </Control>
+      </Decorator>
+    </Control>
+  </BehaviorTree>
+  <TreeNodesModel>
+    <SubTree ID="Segment Can">
+      <MetadataFields>
+        <Metadata runnable="true" />
+        <Metadata subcategory="Application - Basic Examples" />
+      </MetadataFields>
+    </SubTree>
+  </TreeNodesModel>
+</root>

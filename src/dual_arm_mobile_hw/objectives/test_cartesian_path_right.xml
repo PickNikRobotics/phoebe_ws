@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root BTCPP_format="4" main_tree_to_execute="Test Cartesian Path Right">
+  <!--//////////-->
+  <BehaviorTree
+    ID="Test Cartesian Path Right"
+    _description=""
+    _favorite="false"
+  >
+    <Control ID="Sequence" name="TopLevelSequence">
+      <Action
+        ID="SwitchController"
+        activate_asap="true"
+        controller_switch_action_name="/controller_manager/switch_controller"
+        strictness="1"
+        timeout="0.000000"
+        activate_controllers="right_joint_trajectory_controller"
+        deactivate_controllers="joint_trajectory_controller;right_full_trajectory_controller;servo_controller"
+      />
+      <Action
+        ID="CreateStampedPose"
+        reference_frame="right_grasp_link"
+        stamped_pose="{stamped_pose}"
+        position_xyz="-0.0;0.0;0.01"
+        orientation_xyzw="0.0;0.0;0.0;1.0"
+      />
+      <Action
+        ID="AddPoseStampedToVector"
+        input="{stamped_pose}"
+        vector="{pose_stamped_vector}"
+      />
+      <Action
+        ID="PlanCartesianPath"
+        acceleration_scale_factor="1.000000"
+        blending_radius="0.020000"
+        debug_solution="{debug_solution}"
+        ik_cartesian_space_density="0.010000"
+        ik_joint_space_density="0.100000"
+        joint_trajectory_msg="{joint_trajectory_msg}"
+        path="{pose_stamped_vector}"
+        planning_group_name="right_arm_only"
+        position_only="false"
+        trajectory_sampling_rate="100"
+        velocity_scale_factor="0.5"
+        tip_links="right_grasp_link"
+      />
+      <Action
+        ID="ExecuteFollowJointTrajectory"
+        execute_follow_joint_trajectory_action_name="/right_joint_trajectory_controller/follow_joint_trajectory"
+        goal_duration_tolerance="-1.000000"
+        goal_position_tolerance="0.000000"
+        goal_time_tolerance="0.000000"
+        joint_trajectory_msg="{joint_trajectory_msg}"
+      />
+    </Control>
+  </BehaviorTree>
+  <TreeNodesModel>
+    <SubTree ID="Test Cartesian Path Right">
+      <MetadataFields>
+        <Metadata runnable="true" />
+        <Metadata subcategory="Motion - Execute" />
+      </MetadataFields>
+    </SubTree>
+  </TreeNodesModel>
+</root>

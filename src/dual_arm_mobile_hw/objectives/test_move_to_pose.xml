@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root BTCPP_format="4" main_tree_to_execute="Test Move To Pose">
+  <!--//////////-->
+  <BehaviorTree ID="Test Move To Pose" _description="" _favorite="false">
+    <Control ID="Sequence" name="TopLevelSequence">
+      <Action
+        ID="SwitchController"
+        activate_asap="true"
+        controller_switch_action_name="/controller_manager/switch_controller"
+        strictness="1"
+        timeout="0.000000"
+        activate_controllers="right_full_trajectory_controller"
+        deactivate_controllers="joint_trajectory_controller"
+      />
+      <Action
+        ID="CreateStampedPose"
+        reference_frame="right_grasp_link"
+        stamped_pose="{stamped_pose}"
+        position_xyz="1.139;-0.145;0.819"
+        orientation_xyzw="0.98;-0.01;-0.185;0.074"
+      />
+      <SubTree
+        ID="Move to Pose Phoebe"
+        _collapsed="true"
+        controller_names="/right_full_trajectory_controller"
+        target_pose="{stamped_pose}"
+      />
+    </Control>
+  </BehaviorTree>
+  <TreeNodesModel>
+    <SubTree ID="Test Move To Pose">
+      <MetadataFields>
+        <Metadata runnable="true" />
+        <Metadata subcategory="Uncategorized" />
+      </MetadataFields>
+    </SubTree>
+  </TreeNodesModel>
+</root>

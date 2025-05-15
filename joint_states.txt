@@ -1,0 +1,102 @@
+header:
+  stamp:
+    sec: 1747356931
+    nanosec: 558803008
+  frame_id: ''
+name:
+- front_left_wheel_joint
+- rear_right_wheel_joint
+- linear_x_joint
+- linear_y_joint
+- lift_left_upper_joint
+- front_right_wheel_joint
+- left_shoulder_pan_joint
+- left_shoulder_lift_joint
+- right_wrist_2_joint
+- right_wrist_1_joint
+- lift_right_upper_joint
+- right_elbow_joint
+- right_robotiq_85_left_knuckle_joint
+- left_robotiq_85_left_knuckle_joint
+- right_shoulder_lift_joint
+- right_shoulder_pan_joint
+- rear_left_wheel_joint
+- right_wrist_3_joint
+- left_wrist_1_joint
+- rotational_yaw_joint
+- left_wrist_3_joint
+- left_wrist_2_joint
+- left_elbow_joint
+position:
+- 0.0
+- 0.0
+- 0.6476971132058407
+- -0.001571386860980766
+- 0.008124999701976776
+- 0.0
+- -1.870228115712301
+- -1.4110230517438431
+- 1.001222848892212
+- -1.4223180574229737
+- 0.009999999776482582
+- -1.7304258346557617
+- 0.0
+- 0.3283374449339207
+- -1.9842177830138148
+- -0.358527962361471
+- 0.0
+- 2.4425108432769775
+- -1.9603549442686976
+- -0.0012095371391467324
+- 2.212313175201416
+- 1.695909857749939
+- -1.2493199110031128
+velocity:
+- 0.0
+- 0.0
+- -2.956491304932342e-23
+- 1.7761280051777857e-24
+- 0.0
+- 0.0
+- 0.0
+- 0.0
+- -0.0
+- 0.0
+- 0.0
+- -0.0
+- 0.0
+- 0.0
+- 0.0
+- 0.0
+- 0.0
+- -0.0
+- 0.0
+- 2.375120783338065e-17
+- -0.0
+- -0.0
+- -0.0
+effort:
+- .nan
+- .nan
+- .nan
+- .nan
+- .nan
+- .nan
+- .nan
+- .nan
+- .nan
+- .nan
+- .nan
+- .nan
+- .nan
+- .nan
+- .nan
+- .nan
+- .nan
+- .nan
+- .nan
+- .nan
+- .nan
+- .nan
+- .nan
+---

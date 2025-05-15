@@ -5,8 +5,10 @@ find_package(ament_cmake REQUIRED)
 
 install(
   DIRECTORY
+    assets
     config
     description
+    models 
     objectives
     launch
     waypoints
@@ -14,8 +16,9 @@ install(
     share/${PROJECT_NAME}
 )
 
-install(PROGRAMS
-  scripts/odometry_joint_state_publisher.py
+install(
+  PROGRAMS
+    scripts/odom_offset_node.py
   DESTINATION lib/${PROJECT_NAME}
 )
 

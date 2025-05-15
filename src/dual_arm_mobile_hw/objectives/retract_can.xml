@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root BTCPP_format="4" main_tree_to_execute="Retract Can">
+  <!-- ////////// -->
+  <BehaviorTree ID="Retract Can" _description="">
+    <Control ID="Sequence">
+      <Action ID="ResetPoseStampedVector" vector="{pose_stamped_vector}" />
+      <Action
+        ID="CreateStampedPose"
+        reference_frame="left_grasp_link"
+        stamped_pose="{retract_drink}"
+        position_xyz="0;0.1;-0.2"
+      />
+      <Action
+        ID="AddPoseStampedToVector"
+        input="{retract_drink}"
+        vector="{pose_stamped_vector}"
+      />
+      <Action
+        ID="PlanCartesianPath"
+        acceleration_scale_factor="1.000000"
+        blending_radius="0.020000"
+        debug_solution="{debug_solution}"
+        ik_cartesian_space_density="0.010000"
+        ik_joint_space_density="0.100000"
+        joint_trajectory_msg="{joint_trajectory_msg}"
+        path="{pose_stamped_vector}"
+        planning_group_name="left_arm_only"
+        position_only="false"
+        trajectory_sampling_rate="100"
+        velocity_scale_factor="0.5"
+        tip_links="left_grasp_link"
+      />
+      <Action
+        ID="SwitchUIPrimaryView"
+        primary_view_name="/camera/scene_camera/color/image_raw"
+      />
+      <SubTree ID="Clear Snapshot" _collapsed="true" />
+      <Action
+        ID="ExecuteFollowJointTrajectory"
+        execute_follow_joint_trajectory_action_name="/left_joint_trajectory_controller/follow_joint_trajectory"
+        goal_duration_tolerance="-1.000000"
+        goal_position_tolerance="0.000000"
+        goal_time_tolerance="0.000000"
+        joint_trajectory_msg="{joint_trajectory_msg}"
+      />
+    </Control>
+  </BehaviorTree>
+  <TreeNodesModel>
+    <SubTree ID="Retract Can">
+      <MetadataFields>
+        <Metadata runnable="true" />
+        <Metadata subcategory="Demo Subtrees" />
+      </MetadataFields>
+    </SubTree>
+  </TreeNodesModel>
+</root>

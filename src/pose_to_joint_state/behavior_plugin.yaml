@@ -1,0 +1,4 @@
+objectives:
+  behavior_loader_plugins:
+    compute_target_joint_state:
+      - "pose_to_joint_state::PoseToJointStateBehaviorsLoader"

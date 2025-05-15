@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root
+  BTCPP_format="4"
+  main_tree_to_execute="Whole Body Planning - Fridge Demo ML"
+>
+  <!--//////////-->
+  <BehaviorTree
+    ID="Whole Body Planning - Fridge Demo ML"
+    _description=""
+    _favorite="false"
+  >
+    <Control ID="Sequence" name="TopLevelSequence">
+      <SubTree ID="Demo Initialization" _collapsed="true" />
+      <SubTree ID="Open Fridge Door" _collapsed="true" />
+      <SubTree ID="Segment Can" _collapsed="true" />
+      <SubTree ID="Grab Can" _collapsed="true" />
+      <SubTree ID="Retract Can" _collapsed="true" />
+      <SubTree ID="Close Fridge" _collapsed="true" />
+      <SubTree ID="Handoff" _collapsed="true" />
+      <SubTree ID="Demo Finish" _collapsed="true" />
+    </Control>
+  </BehaviorTree>
+  <TreeNodesModel>
+    <SubTree ID="Whole Body Planning - Fridge Demo ML">
+      <MetadataFields>
+        <Metadata runnable="true" />
+        <Metadata subcategory="Applications - Advanced" />
+      </MetadataFields>
+    </SubTree>
+  </TreeNodesModel>
+</root>

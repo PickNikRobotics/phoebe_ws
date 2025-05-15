@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root BTCPP_format="4" main_tree_to_execute="Grab Can">
+  <!--//////////-->
+  <BehaviorTree ID="Grab Can" _description="">
+    <Control ID="Sequence">
+      <SubTree
+        ID="Get Can Pose"
+        _collapsed="true"
+        can_grasp_pose="{can_grasp_pose}"
+      />
+      <Control ID="Sequence">
+        <Action
+          ID="SwitchController"
+          activate_asap="true"
+          controller_switch_action_name="/controller_manager/switch_controller"
+          strictness="1"
+          timeout="0.000000"
+          activate_controllers="left_joint_trajectory_controller"
+          deactivate_controllers="joint_trajectory_controller"
+        />
+        <Action
+          ID="TransformPose"
+          input_pose="{can_grasp_pose}"
+          output_pose="{can_grasp_pose}"
+          translation_xyz="0;0;0.02"
+        />
+        <Action
+          ID="AddPoseStampedToVector"
+          input="{can_grasp_pose}"
+          vector="{pose_stamped_vector}"
+        />
+        <Action
+          ID="PlanCartesianPath"
+          acceleration_scale_factor="1.000000"
+          blending_radius="0.020000"
+          debug_solution="{debug_solution}"
+          ik_cartesian_space_density="0.010000"
+          ik_joint_space_density="0.100000"
+          joint_trajectory_msg="{joint_trajectory_msg}"
+          path="{pose_stamped_vector}"
+          planning_group_name="left_arm_only"
+          position_only="false"
+          trajectory_sampling_rate="100"
+          velocity_scale_factor="0.5"
+          tip_links="left_grasp_link"
+        />
+        <Action
+          ID="SwitchUIPrimaryView"
+          primary_view_name="/camera/left_wrist_mounted_camera/color/image_raw"
+        />
+        <Action
+          ID="ExecuteFollowJointTrajectory"
+          execute_follow_joint_trajectory_action_name="/left_joint_trajectory_controller/follow_joint_trajectory"
+          goal_duration_tolerance="-1.000000"
+          goal_position_tolerance="0.000000"
+          goal_time_tolerance="0.000000"
+          joint_trajectory_msg="{joint_trajectory_msg}"
+        />
+        <SubTree ID="Close Left Gripper" _collapsed="true" />
+      </Control>
+    </Control>
+  </BehaviorTree>
+  <TreeNodesModel>
+    <SubTree ID="Grab Can">
+      <MetadataFields>
+        <Metadata runnable="true" />
+        <Metadata subcategory="Demo Subtrees" />
+      </MetadataFields>
+    </SubTree>
+  </TreeNodesModel>
+</root>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root BTCPP_format="4" main_tree_to_execute="Close Fridge">
+  <!-- ////////// -->
+  <BehaviorTree ID="Close Fridge">
+    <Control ID="Sequence">
+      <Action
+        ID="SwitchController"
+        activate_asap="true"
+        controller_switch_action_name="/controller_manager/switch_controller"
+        strictness="2"
+        timeout="0.000000"
+        deactivate_controllers="left_joint_trajectory_controller"
+        activate_controllers="joint_trajectory_controller"
+      />
+      <SubTree
+        ID="Move to Waypoint"
+        _collapsed="true"
+        acceleration_scale_factor="1.0"
+        controller_action_server="/joint_trajectory_controller/follow_joint_trajectory"
+        controller_names="/joint_trajectory_controller"
+        joint_group_name="manipulator"
+        keep_orientation="false"
+        keep_orientation_tolerance="0.05"
+        link_padding="0.01"
+        seed="0"
+        velocity_scale_factor="1.0"
+        waypoint_name="Away From Fridge"
+      />
+      <SubTree
+        ID="Move to Waypoint"
+        _collapsed="true"
+        acceleration_scale_factor="1.0"
+        controller_action_server="/joint_trajectory_controller/follow_joint_trajectory"
+        controller_names="/joint_trajectory_controller"
+        joint_group_name="manipulator"
+        keep_orientation="false"
+        keep_orientation_tolerance="0.05"
+        link_padding="0.01"
+        seed="0"
+        velocity_scale_factor="1.0"
+        waypoint_name="Pre Close Fridge"
+      />
+      <Action
+        ID="SwitchController"
+        activate_asap="true"
+        controller_switch_action_name="/controller_manager/switch_controller"
+        strictness="2"
+        timeout="0.000000"
+        activate_controllers="right_full_trajectory_controller"
+        deactivate_controllers="joint_trajectory_controller"
+      />
+      <Action ID="ResetPoseStampedVector" vector="{pose_stamped_vector}" />
+      <Action
+        ID="CreateStampedPose"
+        reference_frame="right_grasp_link"
+        stamped_pose="{left}"
+        position_xyz="0.0;-0.4;0.0"
+      />
+      <Action
+        ID="CreateStampedPose"
+        reference_frame="right_grasp_link"
+        stamped_pose="{in}"
+        position_xyz="0.17;-0.425;0.0"
+      />
+      <Action
+        ID="AddPoseStampedToVector"
+        input="{left}"
+        vector="{pose_stamped_vector}"
+      />
+      <Action
+        ID="AddPoseStampedToVector"
+        input="{in}"
+        vector="{pose_stamped_vector}"
+      />
+      <Action
+        ID="PlanCartesianPath"
+        acceleration_scale_factor="1.000000"
+        blending_radius="0.020000"
+        debug_solution="{debug_solution}"
+        ik_cartesian_space_density="0.010000"
+        ik_joint_space_density="0.100000"
+        joint_trajectory_msg="{joint_trajectory_msg}"
+        path="{pose_stamped_vector}"
+        position_only="false"
+        trajectory_sampling_rate="100"
+        velocity_scale_factor="0.75"
+        tip_links="right_grasp_link"
+        planning_group_name="right_mobile_manipulator"
+      />
+      <Action
+        ID="ExecuteFollowJointTrajectory"
+        execute_follow_joint_trajectory_action_name="/right_full_trajectory_controller/follow_joint_trajectory"
+        goal_duration_tolerance="-1.000000"
+        goal_position_tolerance="0.000000"
+        goal_time_tolerance="0.000000"
+        joint_trajectory_msg="{joint_trajectory_msg}"
+      />
+    </Control>
+  </BehaviorTree>
+  <TreeNodesModel>
+    <SubTree ID="Close Fridge">
+      <MetadataFields>
+        <Metadata runnable="false" />
+        <Metadata subcategory="Demo Subtrees" />
+      </MetadataFields>
+    </SubTree>
+  </TreeNodesModel>
+</root>

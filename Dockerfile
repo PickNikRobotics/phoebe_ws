@@ -70,7 +70,8 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     apt-get install ros-humble-clearpath-manipulators-description ros-humble-clearpath-platform-description ros-humble-clearpath-sensors-description ros-humble-ewellix-description ros-humble-ewellix-driver ros-humble-clearpath-hardware-interfaces -y --no-install-recommends && \
     rosdep install -q -y \
       --from-paths src \
-      --ignore-src
+      --ignore-src && \
+    pip install --no-cache-dir scipy==1.15.3
 
 # Set up colcon defaults for the new user
 USER ${USERNAME}

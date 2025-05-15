@@ -16,6 +16,7 @@
         link_padding="0.00"
         velocity_scale_factor="1.0"
         waypoint_name="Look Left"
+        seed="0"
       />
       <Decorator ID="Delay" delay_msec="1000">
         <SubTree
@@ -31,6 +32,7 @@
           link_padding="0.00"
           velocity_scale_factor="1.0"
           waypoint_name="Spread"
+          seed="0"
         />
       </Decorator>
       <Decorator ID="Delay" delay_msec="1000">
@@ -47,6 +49,7 @@
           link_padding="0.00"
           velocity_scale_factor="1.0"
           waypoint_name="Look Right"
+          seed="0"
         />
       </Decorator>
       <Decorator ID="Delay" delay_msec="1000">
@@ -63,6 +66,7 @@
           link_padding="0.00"
           velocity_scale_factor="1.0"
           waypoint_name="Look Left"
+          seed="0"
         />
       </Decorator>
     </Control>

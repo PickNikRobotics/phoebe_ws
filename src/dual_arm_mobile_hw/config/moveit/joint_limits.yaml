@@ -18,7 +18,7 @@ joint_limits:
     max_acceleration: 0.02
     max_effort: 150.0
     max_position: 5.0
-    max_velocity: 0.175
+    max_velocity: 0.2
     min_position: -5.0
   linear_y_joint:
     has_acceleration_limits: true
@@ -28,7 +28,7 @@ joint_limits:
     max_acceleration: 0.02
     max_effort: 150.0
     max_position: 5.0
-    max_velocity: 0.175
+    max_velocity: 0.2
     min_position: -5.0
   rotational_yaw_joint:
     has_acceleration_limits: true
@@ -37,7 +37,7 @@ joint_limits:
     has_velocity_limits: true
     max_acceleration: !degrees 20.0
     max_effort: 150.0
-    max_velocity: !degrees  30.0
+    max_velocity: 0.2
 
   lift_left_upper_joint:
     has_acceleration_limits: true
@@ -48,7 +48,7 @@ joint_limits:
     max_effort: 150.0
     max_position: 0.45
     max_velocity: 0.1
-    min_position: -0.1
+    min_position: 0.0
   left_shoulder_pan_joint:
     has_acceleration_limits: true
     has_effort_limits: true
@@ -134,7 +134,7 @@ joint_limits:
     max_effort: 150.0
     max_position: 0.45
     max_velocity: 0.1
-    min_position: -0.1
+    min_position: 0.0
   right_shoulder_pan_joint:
     has_acceleration_limits: true
     has_effort_limits: true

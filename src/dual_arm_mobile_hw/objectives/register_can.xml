@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root BTCPP_format="4" main_tree_to_execute="Register Can">
+  <!--//////////-->
+  <BehaviorTree
+    ID="Register Can"
+    _description=""
+    _favorite="true"
+    registered_pose="{registered_pose}"
+  >
+    <Control ID="Sequence" name="TopLevelSequence">
+      <Action
+        ID="SavePointCloudToFile"
+        file_path="/home/dwyackzan/moveit_pro_source/src/moveit_pro/moveit_studio_ws/dual_arm_mobile_ws/src/dual_arm_mobile_hw/assets/"
+        file_prefix="detected_can"
+        point_cloud="{detected_point_cloud}"
+      />
+      <Action
+        ID="SendPointCloudToUI"
+        point_cloud="{detected_point_cloud}"
+        pcd_topic="/pcd_pointcloud_captures"
+      />
+      <Action
+        ID="CreateStampedPose"
+        position_xyz="-0.08;0.0;0.35"
+        orientation_xyzw="0.000;0.000;0.0;1.0"
+        name="Initial Guess"
+        stamped_pose="{guess_pose}"
+        reference_frame="left_grasp_link"
+      />
+      <Action
+        ID="TransformPoseFrame"
+        input_pose="{guess_pose}"
+        output_pose="{guess_pose}"
+        target_frame_id="world"
+      />
+      <SubTree
+        ID="Load Can Point Cloud"
+        _collapsed="true"
+        color="0;0;255"
+        initial_pose="{guess_pose}"
+        can_cloud="{blue_can_cloud}"
+      />
+      <Action
+        ID="SendPointCloudToUI"
+        point_cloud="{blue_can_cloud}"
+        pcd_topic="/pcd_pointcloud_captures"
+      />
+      <Action
+        ID="RegisterPointClouds"
+        target_point_cloud="{detected_point_cloud}"
+        base_point_cloud="{blue_can_cloud}"
+        max_iterations="100"
+        target_pose_in_base_frame="{registered_to_guess_pose}"
+        max_correspondence_distance="0.5"
+      />
+      <Action
+        ID="TransformPoseWithPose"
+        input_pose="{guess_pose}"
+        transform_pose="{registered_to_guess_pose}"
+        output_pose="{registered_pose}"
+      />
+      <SubTree
+        ID="Load Can Point Cloud"
+        _collapsed="true"
+        color="0;255;0"
+        initial_pose="{registered_pose}"
+        can_cloud="{green_can_cloud}"
+      />
+      <Action ID="ClearSnapshot" />
+      <Action
+        ID="VisualizePose"
+        marker_lifetime="0.000000"
+        marker_name="registered_pose"
+        marker_size="0.100000"
+        pose="{registered_pose}"
+      />
+      <Action
+        ID="SendPointCloudToUI"
+        point_cloud="{green_can_cloud}"
+        pcd_topic="/pcd_pointcloud_captures"
+      />
+    </Control>
+  </BehaviorTree>
+  <TreeNodesModel>
+    <SubTree ID="Register Can">
+      <MetadataFields>
+        <Metadata subcategory="Perception - 3D Point Cloud" />
+        <Metadata runnable="false" />
+      </MetadataFields>
+      <input_port
+        name="detected_point_cloud"
+        default="{detected_point_cloud}"
+      />
+      <output_port name="registered_pose" default="{registered_pose}" />
+    </SubTree>
+  </TreeNodesModel>
+</root>
