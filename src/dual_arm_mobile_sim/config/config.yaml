@@ -1,9 +1,9 @@
 hardware:
-  simulated: false
+  simulated: true
 
   # If the MoveIt Pro Agent should launch the ros2 controller node.
   # [Optional, default=True]
-  launch_control_node: true
+  launch_control_node: True
 
   # If the MoveIt Pro Agent should launch the robot state publisher.
   # This should be false if you are launching the robot state publisher as part of drivers.
@@ -11,43 +11,41 @@ hardware:
   launch_robot_state_publisher: True
 
   robot_driver_persist_launch_file:
-    package: "dual_arm_mobile_hw"
-    path: "launch/robot_drivers_to_persist.launch.py"
+    package: "moveit_studio_agent"
+    path: "launch/blank.launch.py"
 
   robot_description:
     urdf:
-      package: "dual_arm_mobile_hw"
-      path: "description/dual_arm_mobile_hw.urdf.xacro"
+      package: "dual_arm_mobile_sim"
+      path: "description/dual_arm_mobile_sim.urdf.xacro"
     srdf:
-      package: "dual_arm_mobile_hw"
-      path: "config/moveit/dual_arm_mobile_hw.srdf"
-    urdf_params: []
+      package: "dual_arm_mobile_sim"
+      path: "config/moveit/dual_arm_mobile_sim.srdf"
+    urdf_params:
+      - mujoco_model: "description/dual_arm_scene.xml"
 
 moveit_params:
   joint_group_name: "manipulator"
   servo:
-    package: "dual_arm_mobile_hw"
+    package: "dual_arm_mobile_sim"
     path: "config/moveit/servo.yaml"
   joint_limits:
-    package: "dual_arm_mobile_hw"
+    package: "dual_arm_mobile_sim"
     path: "config/moveit/joint_limits.yaml"
   servo_joint_limits:
-    package: "dual_arm_mobile_hw"
+    package: "dual_arm_mobile_sim"
     path: "config/moveit/hard_joint_limits.yaml"
   kinematics:
-    package: "dual_arm_mobile_hw"
+    package: "dual_arm_mobile_sim"
     path: "config/moveit/pose_ik_distance.yaml"
-  sensors_3d:
-    package: "dual_arm_mobile_hw"
-    path: "config/moveit/sensors_3d.yaml"
   servo_kinematics:
-    package: "dual_arm_mobile_hw"
+    package: "dual_arm_mobile_sim"
     path: "config/moveit/pose_ik_speed.yaml"
   pose_jog:
-    package: "dual_arm_mobile_hw"
+    package: "dual_arm_mobile_sim"
     path: "config/moveit/pose_jog.yaml"
   ompl_planning:
-    package: "dual_arm_mobile_hw"
+    package: "dual_arm_mobile_sim"
     path: "config/moveit/ompl_planning.yaml"
 
   publish:
@@ -66,8 +64,8 @@ moveit_params:
 # [Required, if using ros2_control]
 ros2_control:
   config:
-    package: "dual_arm_mobile_hw"
-    path: "config/control/dual_arm_mobile.ros2_control.yaml"
+    package: "dual_arm_mobile_sim"
+    path: "config/control/dual_arm.ros2_control.yaml"
   controllers_active_at_startup:
     - "joint_state_broadcaster"
     - "left_robotiq_gripper_controller"
@@ -75,18 +73,13 @@ ros2_control:
     - "left_force_torque_sensor_broadcaster"
     - "right_force_torque_sensor_broadcaster"
     - "joint_trajectory_controller"
+    - "platform_velocity_controller"
   # Load but do not start these controllers so they can be activated later if needed.
   controllers_inactive_at_startup:
     - "servo_controller"
-    - "base_trajectory_controller"
-    - "left_full_trajectory_admittance_controller"
-    - "right_full_trajectory_admittance_controller"
     - "base_velocity_force_controller"
     - "left_velocity_force_controller"
     - "right_velocity_force_controller"
-    - "left_joint_trajectory_controller"
-    - "right_joint_trajectory_controller"
-    - "right_full_trajectory_controller"
 
 objectives:
   # List of plugins for loading custom behaviors.
@@ -113,11 +106,11 @@ objectives:
     perception_objectives:
       package_name: "moveit_pro_objectives"
       relative_path: "objectives/perception"
-    hw_objectives:
-      package_name: "dual_arm_mobile_hw"
+    sim_objectives:
+      package_name: "dual_arm_mobile_sim"
       relative_path: "objectives"
   # Specify the location of the saved waypoints file.
   # [Required]
   waypoints_file:
-    package_name: "dual_arm_mobile_hw"
+    package_name: "dual_arm_mobile_sim"
     relative_path: "waypoints/waypoints.yaml"

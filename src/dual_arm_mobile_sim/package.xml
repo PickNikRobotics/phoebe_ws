@@ -1,13 +1,15 @@
 <?xml version="1.0" ?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>dual_arm_mobile_hw</name>
+  <name>dual_arm_mobile_sim</name>
   <version>8.3.0</version>
 
   <description>
-    MoveIt Pro hardware configuration package for the dual UR5e + Ridgeback
+    MoveIt Pro simulation configuration package for the dual UR5e + Ridgeback
     system.
   </description>
 
+  <maintainer email="paul.gesel@picknik.ai">Paul Gesel</maintainer>
   <maintainer email="david.yackzan@picknik.ai">David Yackzan</maintainer>
 
   <license>Proprietary</license>
@@ -17,7 +19,6 @@
   <exec_depend>moveit_studio_agent</exec_depend>
 
   <exec_depend>clearpath_controller_interface</exec_depend>
-  <exec_depend>clearpath_hardware_interfaces</exec_depend>
   <exec_depend>clearpath_manipulators_description</exec_depend>
   <exec_depend>clearpath_platform_description</exec_depend>
   <exec_depend>clearpath_sensors_description</exec_depend>
@@ -29,6 +30,12 @@
   <exec_depend>robotiq_driver</exec_depend>
   <exec_depend>ur_description</exec_depend>
   <exec_depend>ur_robot_driver</exec_depend>
+
+  <!--  <exec_depend>realsense2_camera</exec_depend>-->
+  <!--  <exec_depend>realsense2_description</exec_depend>-->
+  <!--  <exec_depend>ridgeback_description</exec_depend>-->
+  <!--  <exec_depend>ur_description</exec_depend>-->
+  <!--  <exec_depend>ur_robot_driver</exec_depend>-->
 
   <export>
     <build_type>ament_cmake</build_type>

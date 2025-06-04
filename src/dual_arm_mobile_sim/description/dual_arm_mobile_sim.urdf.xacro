@@ -1,14 +1,7 @@
 <?xml version="1.0" ?>
 <robot name="r100-0599" xmlns:xacro="http://wiki.ros.org/xacro">
   <!-- Args that users may need to change. -->
-  <xacro:arg name="left_lift_comm_port" default="/dev/ttyUSB1"/>
-  <xacro:arg name="right_lift_comm_port" default="/dev/ttyUSB2"/>
-  <xacro:arg name="left_arm_ip" default="192.168.131.4"/>
-  <xacro:arg name="left_tool_device_name" default="/dev/ttyUSB0"/>
-  <xacro:arg name="right_arm_ip" default="192.168.131.3"/>
-  <xacro:arg name="right_tool_device_name" default="/tmp/ttyUR"/>
-  <xacro:arg name="left_gripper_comm_port" default="/dev/ttyUSB0"/>
-  <xacro:arg name="right_gripper_comm_port" default="/tmp/ttyUR"/>
+  <xacro:arg name="mujoco_model" default=""/>
 
   <!-- Mobile base joints -->
   <link name="world"/>
@@ -42,12 +35,12 @@
   <ros2_control name="clearpath_controller_interface" type="system">
     <hardware>
       <plugin>clearpath_controller_interface/ClearpathControllerInterface</plugin>
-      <param name="odom_topic">/r100_0599/platform/odom/offset</param>
-      <param name="cmd_vel_topic">/r100_0599/platform/cmd_vel_unstamped</param>
-      <param name="max_linear_velocity">1.0</param>
-      <param name="max_angular_velocity">1.0</param>
+      <param name="odom_topic">/platform_velocity_controller/odom</param>
+      <param name="cmd_vel_topic">/platform_velocity_controller/cmd_vel_unstamped</param>
+      <param name="max_linear_velocity">0.2</param>
+      <param name="max_angular_velocity">0.2</param>
       <param name="cmd_pub_rate">50</param>
-      <param name="active_on_startup">false</param>
+      <param name="active_on_startup">true</param>
     </hardware>
     <joint name="linear_x_joint"/>
     <joint name="linear_y_joint"/>
@@ -58,18 +51,17 @@
   <xacro:include filename="$(find dual_arm_mobile_description)/xacro/clearpath_r100.macro.xacro"/>
   <xacro:clearpath_r100
       parent_link="base_link"
-      generate_ros2_control_tag="true"
+      generate_ros2_control_tag="false"
   >
   </xacro:clearpath_r100>
 
   <!-- Lifts -->
-  <xacro:include filename="$(find dual_arm_mobile_description)/xacro/ewellix_tlt500.macro.xacro" />
+  <xacro:include filename="$(find dual_arm_mobile_description)/xacro/ewellix_tlt500.macro.xacro"/>
   <!-- Left lift -->
   <xacro:ewellix_tlt500
       parent_link="default_mount"
       prefix="lift_left_"
-      generate_ros2_control_tag="true"
-      lift_comm_port="$(arg left_lift_comm_port)"
+      generate_ros2_control_tag="false"
   >
     <origin rpy="0.0 0.0 0.0" xyz="0.0 0.2 0.04"/>
   </xacro:ewellix_tlt500>
@@ -77,41 +69,26 @@
   <xacro:ewellix_tlt500
       parent_link="default_mount"
       prefix="lift_right_"
-      generate_ros2_control_tag="true"
-      lift_comm_port="$(arg right_lift_comm_port)"
+      generate_ros2_control_tag="false"
   >
     <origin rpy="0.0 0.0 0.0" xyz="0.0 -0.2 0.04"/>
   </xacro:ewellix_tlt500>
 
   <!-- Arms -->
-  <xacro:include filename="$(find dual_arm_mobile_description)/xacro/ur5e.macro.xacro" />
+  <xacro:include filename="$(find dual_arm_mobile_description)/xacro/ur5e.macro.xacro"/>
   <!-- Left arm -->
   <xacro:ur5e
-    parent_link="left_arm_mount_plate_2"
-    prefix="left_"
-    generate_ros2_control_tag="true"
-    robot_ip="$(arg left_arm_ip)"
-    reverse_port="50001"
-    script_sender_port="50002"
-    script_command_port="50004"
-    trajectory_port="50003"
-    tool_device_name="$(arg left_tool_device_name)"
-    tool_tcp_port="54320"
-    >
+      parent_link="left_arm_mount_plate_2"
+      prefix="left_"
+      generate_ros2_control_tag="false"
+  >
     <origin rpy="0 0 -0.7853981633974483" xyz="0 0 0"/>
   </xacro:ur5e>
   <!-- Right arm -->
   <xacro:ur5e
       parent_link="right_arm_mount_plate_2"
       prefix="right_"
-      generate_ros2_control_tag="true"
-      robot_ip="$(arg right_arm_ip)"
-      reverse_port="50005"
-      script_sender_port="50006"
-      script_command_port="50008"
-      trajectory_port="50007"
-      tool_device_name="$(arg right_tool_device_name)"
-      tool_tcp_port="54321"
+      generate_ros2_control_tag="false"
   >
     <origin rpy="0 0 -2.356194490192345" xyz="0 0 0"/>
   </xacro:ur5e>
@@ -122,17 +99,29 @@
   <xacro:robotiq_2f85
       parent_link="left_realsense_camera_adapter_tool0"
       prefix="left_"
-      generate_ros2_control_tag="true"
-      gripper_comm_port="$(arg left_gripper_comm_port)"
+      generate_ros2_control_tag="false"
   >
   </xacro:robotiq_2f85>
   <!-- Right gripper -->
   <xacro:robotiq_2f85
       parent_link="right_realsense_camera_adapter_tool0"
       prefix="right_"
-      generate_ros2_control_tag="true"
-      gripper_comm_port="$(arg right_gripper_comm_port)"
+      generate_ros2_control_tag="false"
   >
   </xacro:robotiq_2f85>
 
+  <ros2_control name="ur_mujoco_control" type="system">
+    <hardware>
+      <plugin>picknik_mujoco_ros/MujocoSystem</plugin>
+      <param name="mujoco_model">$(arg mujoco_model)</param>
+      <param name="mujoco_model_package">dual_arm_mobile_sim</param>
+      <param name="render_publish_rate">60</param>
+      <param name="tf_publish_rate">60</param>
+      <param name="lidar_publish_rate">10</param>
+      <param name="ignore_joint_validation">linear_x_joint linear_y_joint rotational_yaw_joint</param>
+      <param name="publish_odom">true</param>
+      <param name="odom_child_frame">ridgeback_base_link</param>
+      <param name="odom_zero_z">true</param>
+    </hardware>
+  </ros2_control>
 </robot>

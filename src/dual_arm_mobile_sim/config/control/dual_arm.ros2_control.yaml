@@ -1,0 +1,515 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 600  # Hz
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+    platform_velocity_controller:
+      type: clearpath_mecanum_drive_controller/MecanumDriveController
+    joint_trajectory_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+    servo_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+    base_velocity_force_controller:
+      type: velocity_force_controller/VelocityForceController
+    left_velocity_force_controller:
+      type: velocity_force_controller/VelocityForceController
+    right_velocity_force_controller:
+      type: velocity_force_controller/VelocityForceController
+    left_force_torque_sensor_broadcaster:
+      type: force_torque_sensor_broadcaster/ForceTorqueSensorBroadcaster
+    right_force_torque_sensor_broadcaster:
+      type: force_torque_sensor_broadcaster/ForceTorqueSensorBroadcaster
+    left_robotiq_gripper_controller:
+      type: position_controllers/GripperActionController
+    right_robotiq_gripper_controller:
+      type: position_controllers/GripperActionController
+
+
+joint_state_broadcaster:
+  ros__parameters:
+    use_local_topics: false
+    joints:
+      - front_left_wheel_joint
+      - front_right_wheel_joint
+      - rear_left_wheel_joint
+      - rear_right_wheel_joint
+      - linear_x_joint
+      - linear_y_joint
+      - rotational_yaw_joint
+      - lift_left_upper_joint
+      - lift_right_upper_joint
+      - left_shoulder_pan_joint
+      - left_shoulder_lift_joint
+      - left_elbow_joint
+      - left_wrist_1_joint
+      - left_wrist_2_joint
+      - left_wrist_3_joint
+      - left_robotiq_85_left_knuckle_joint
+      - right_shoulder_pan_joint
+      - right_shoulder_lift_joint
+      - right_elbow_joint
+      - right_wrist_1_joint
+      - right_wrist_2_joint
+      - right_wrist_3_joint
+      - right_robotiq_85_left_knuckle_joint
+    interfaces:
+      - position
+      - velocity
+
+platform_velocity_controller:
+  ros__parameters:
+    use_sim_time: False
+    interface_name: velocity
+
+    command_joint_names: ["front_left_wheel_joint", "rear_left_wheel_joint", "rear_right_wheel_joint", "front_right_wheel_joint"]
+
+    front_left_wheel_command_joint_name: "front_left_wheel_joint"
+    front_right_wheel_command_joint_name: "front_right_wheel_joint"
+    rear_right_wheel_command_joint_name: "rear_right_wheel_joint"
+    rear_left_wheel_command_joint_name: "rear_left_wheel_joint"
+
+    kinematics.base_frame_offset: { x: 0.0, y: 0.0, theta: 0.0 }
+    kinematics.wheels_radius: 0.05
+    kinematics.sum_of_robot_center_projection_on_X_Y_axis: 0.4704
+    wheel_separation_multiplier: 1.0
+    wheel_radius_multiplier: 1.0
+
+    publish_rate: 50.0
+    reference_timeout: 0.1
+    use_stamped_vel: False
+
+    pose_covariance_diagonal: [0.001, 0.001, 1000000.0, 1000000.0, 1000000.0, 0.03]
+    twist_covariance_diagonal: [0.001, 0.001, 0.001, 1000000.0, 1000000.0, 0.03]
+
+    cmd_vel_timeout: 0.5
+
+    base_frame_id: "ridgeback_base_link"
+    odom_frame_id: "odom"
+    enable_odom_tf: true
+
+    # Velocity and acceleration limits
+    # Whenever a min_* is unspecified, default to -max_*
+    linear.x.has_velocity_limits: true
+    linear.x.has_acceleration_limits: true
+    linear.x.has_jerk_limits: false
+    linear.x.max_velocity: 1.3
+    linear.x.min_velocity: -1.3
+    linear.x.max_acceleration: 1.0
+    linear.x.min_acceleration: -1.0
+    linear.x.max_jerk: 0.0
+    linear.x.min_jerk: 0.0
+
+    linear.y.has_velocity_limits: true
+    linear.y.has_acceleration_limits: true
+    linear.y.has_jerk_limits: false
+    linear.y.max_velocity: 1.3
+    linear.y.min_velocity: -1.3
+    linear.y.max_acceleration: 1.0
+    linear.y.min_acceleration: -1.0
+    linear.y.max_jerk: 0.0
+    linear.y.min_jerk: 0.0
+
+    angular.z.has_velocity_limits: true
+    angular.z.has_acceleration_limits: true
+    angular.z.has_jerk_limits: false
+    angular.z.max_velocity: 4.0
+    angular.z.min_velocity: -4.0
+    angular.z.max_acceleration: 2.0
+    angular.z.min_acceleration: -2.0
+    angular.z.max_jerk: 0.0
+    angular.z.min_jerk: 0.0
+
+#joint_state_broadcaster:
+#  ros__parameters:
+#    use_local_topics: false
+#    joints:
+#      - left_ewellix_lift_top_joint
+#      - left_shoulder_pan_joint
+#      - left_shoulder_lift_joint
+#      - left_elbow_joint
+#      - left_wrist_1_joint
+#      - left_wrist_2_joint
+#      - left_wrist_3_joint
+#      - left_robotiq_85_left_knuckle_joint
+#      - right_ewellix_lift_top_joint
+#      - right_shoulder_pan_joint
+#      - right_shoulder_lift_joint
+#      - right_elbow_joint
+#      - right_wrist_1_joint
+#      - right_wrist_2_joint
+#      - right_wrist_3_joint
+#      - right_robotiq_85_left_knuckle_joint
+#      - linear_x_joint
+#      - linear_y_joint
+#      - rotational_yaw_joint
+#      - front_rocker
+#      - front_left_wheel
+#      - front_right_wheel
+#      - rear_left_wheel
+#      - rear_right_wheel
+#    interfaces:
+#      - position
+#      - velocity
+
+joint_trajectory_controller:
+  ros__parameters:
+    joints:
+      - linear_x_joint
+      - linear_y_joint
+      - rotational_yaw_joint
+      - lift_left_upper_joint
+      - left_shoulder_pan_joint
+      - left_shoulder_lift_joint
+      - left_elbow_joint
+      - left_wrist_1_joint
+      - left_wrist_2_joint
+      - left_wrist_3_joint
+      - lift_right_upper_joint
+      - right_shoulder_pan_joint
+      - right_shoulder_lift_joint
+      - right_elbow_joint
+      - right_wrist_1_joint
+      - right_wrist_2_joint
+      - right_wrist_3_joint
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+    command_joints:
+      - linear_x_joint
+      - linear_y_joint
+      - rotational_yaw_joint
+      - lift_left_upper_joint
+      - left_shoulder_pan_joint
+      - left_shoulder_lift_joint
+      - left_elbow_joint
+      - left_wrist_1_joint
+      - left_wrist_2_joint
+      - left_wrist_3_joint
+      - lift_right_upper_joint
+      - right_shoulder_pan_joint
+      - right_shoulder_lift_joint
+      - right_elbow_joint
+      - right_wrist_1_joint
+      - right_wrist_2_joint
+      - right_wrist_3_joint
+    state_publish_rate: 100.0
+    action_monitor_rate: 20.0
+    allow_partial_joints_goal: false
+
+servo_controller:
+  ros__parameters:
+    joints:
+      - linear_x_joint
+      - linear_y_joint
+      - rotational_yaw_joint
+      - lift_left_upper_joint
+      - lift_right_upper_joint
+      - left_shoulder_pan_joint
+      - left_shoulder_lift_joint
+      - left_elbow_joint
+      - left_wrist_1_joint
+      - left_wrist_2_joint
+      - left_wrist_3_joint
+      - right_shoulder_pan_joint
+      - right_shoulder_lift_joint
+      - right_elbow_joint
+      - right_wrist_1_joint
+      - right_wrist_2_joint
+      - right_wrist_3_joint
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+    command_joints:
+      - linear_x_joint
+      - linear_y_joint
+      - rotational_yaw_joint
+      - lift_left_upper_joint
+      - lift_right_upper_joint
+      - left_shoulder_pan_joint
+      - left_shoulder_lift_joint
+      - left_elbow_joint
+      - left_wrist_1_joint
+      - left_wrist_2_joint
+      - left_wrist_3_joint
+      - right_shoulder_pan_joint
+      - right_shoulder_lift_joint
+      - right_elbow_joint
+      - right_wrist_1_joint
+      - right_wrist_2_joint
+      - right_wrist_3_joint
+    state_publish_rate: 100.0
+    action_monitor_rate: 20.0
+    allow_partial_joints_goal: false
+
+base_velocity_force_controller:
+  ros__parameters:
+    # Joints that the controller will use.
+    # The joints must be in the same order as they appear in the kinematic chain.
+    joints:
+      - linear_x_joint
+      - linear_y_joint
+      - rotational_yaw_joint
+    # The joints that the controller will command.
+    # The 'platform' joints are renamed to match the joint names exposed by the 'platform_velocity_controller', which
+    # enables layered control of those joints.
+    command_joints:
+      - linear_x_joint
+      - linear_y_joint
+      - rotational_yaw_joint
+    # Command just position since the mobile base interface only supports position.
+    command_interfaces: ["position"]
+    # Base frame of the kinematic chain, for computation of arm kinematics.
+    base_frame: world
+    # The tip link of the kinematic chain, i.e. the frame that will be controlled.
+    ee_frame: base_link
+    # The frame where the force / torque sensor reading is given.
+    # (Needs to exist in the kinematic chain).
+    sensor_frame: base_link
+    # Maximum joint-space velocities.
+    max_joint_velocity:
+      - 1.0
+      - 1.0
+      - 1.0
+    # Maximum joint-space accelerations.
+    max_joint_acceleration:
+      - 2.0
+      - 2.0
+      - 2.0
+    # Maximum Cartesian-space velocities.
+    max_cartesian_velocity:
+      - 0.25
+      - 0.25
+      - 0.25
+      - 1.0
+      - 1.0
+      - 1.0
+    # Maximum Cartesian-space accelerations.
+    max_cartesian_acceleration:
+      - 2.0
+      - 2.0
+      - 2.0
+      - 4.0
+      - 4.0
+      - 4.0
+    # Rate in Hz at which the controller will publish the state.
+    state_publish_rate: 10
+    # Damping coefficient for the Jacobian damped least-squares inverse.
+    jacobian_damping: 0.002
+    # Timeout in seconds after which the controller will stop motion if no new commands are received.
+    command_timeout: 0.2
+    # Padding (in radians) to add to joint position limits as a safety margin.
+    joint_limit_position_tolerance: 0.02
+
+left_velocity_force_controller:
+  ros__parameters:
+    # Joints that the controller will use.
+    # The joints must be in the same order as they appear in the kinematic chain.
+    joints:
+      - linear_x_joint
+      - linear_y_joint
+      - rotational_yaw_joint
+      - lift_left_upper_joint
+      - left_shoulder_pan_joint
+      - left_shoulder_lift_joint
+      - left_elbow_joint
+      - left_wrist_1_joint
+      - left_wrist_2_joint
+      - left_wrist_3_joint
+    # The joints that the controller will command.
+    # The 'platform' joints are renamed to match the joint names exposed by the 'platform_velocity_controller', which
+    # enables layered control of those joints.
+    command_joints:
+      - linear_x_joint
+      - linear_y_joint
+      - rotational_yaw_joint
+      - lift_left_upper_joint
+      - left_shoulder_pan_joint
+      - left_shoulder_lift_joint
+      - left_elbow_joint
+      - left_wrist_1_joint
+      - left_wrist_2_joint
+      - left_wrist_3_joint
+    # Command just position since the mobile base and lift interfaces only support position.
+    command_interfaces: ["position"]
+    # Base frame of the kinematic chain, for computation of arm kinematics.
+    base_frame: world
+    # The tip link of the kinematic chain, i.e. the frame that will be controlled.
+    ee_frame: left_grasp_link
+    # The frame where the force / torque sensor reading is given.
+    # (Needs to exist in the kinematic chain).
+    sensor_frame: left_tool0
+    # Maximum joint-space velocities.
+    max_joint_velocity:
+      - 1.0
+      - 1.0
+      - 1.0
+      - 1.0
+      - 1.0
+      - 1.0
+      - 1.0
+      - 1.0
+      - 1.0
+      - 1.0
+    # Maximum joint-space accelerations.
+    max_joint_acceleration:
+      - 2.0
+      - 2.0
+      - 2.0
+      - 2.0
+      - 2.0
+      - 2.0
+      - 2.0
+      - 2.0
+      - 2.0
+      - 2.0
+    # Maximum Cartesian-space velocities.
+    max_cartesian_velocity:
+      - 0.25
+      - 0.25
+      - 0.25
+      - 1.0
+      - 1.0
+      - 1.0
+    # Maximum Cartesian-space accelerations.
+    max_cartesian_acceleration:
+      - 2.0
+      - 2.0
+      - 2.0
+      - 4.0
+      - 4.0
+      - 4.0
+    # Rate in Hz at which the controller will publish the state.
+    state_publish_rate: 10
+    # Damping coefficient for the Jacobian damped least-squares inverse.
+    jacobian_damping: 0.002
+    # Timeout in seconds after which the controller will stop motion if no new commands are received.
+    command_timeout: 0.2
+    # Padding (in radians) to add to joint position limits as a safety margin.
+    joint_limit_position_tolerance: 0.02
+
+right_velocity_force_controller:
+  ros__parameters:
+    # Joints that the controller will use.
+    # The joints must be in the same order as they appear in the kinematic chain.
+    joints:
+      - linear_x_joint
+      - linear_y_joint
+      - rotational_yaw_joint
+      - lift_right_upper_joint
+      - right_shoulder_pan_joint
+      - right_shoulder_lift_joint
+      - right_elbow_joint
+      - right_wrist_1_joint
+      - right_wrist_2_joint
+      - right_wrist_3_joint
+    # The joints that the controller will command.
+    # The 'platform' joints are renamed to match the joint names exposed by the 'platform_velocity_controller', which
+    # enables layered control of those joints.
+    command_joints:
+      - linear_x_joint
+      - linear_y_joint
+      - rotational_yaw_joint
+      - lift_right_upper_joint
+      - right_shoulder_pan_joint
+      - right_shoulder_lift_joint
+      - right_elbow_joint
+      - right_wrist_1_joint
+      - right_wrist_2_joint
+      - right_wrist_3_joint
+    # Command just position since the mobile base and lift interfaces only support position.
+    command_interfaces: ["position"]
+    # Base frame of the kinematic chain, for computation of arm kinematics.
+    base_frame: world
+    # The tip link of the kinematic chain, i.e. the frame that will be controlled.
+    ee_frame: right_grasp_link
+    # The frame where the force / torque sensor reading is given.
+    # (Needs to exist in the kinematic chain).
+    sensor_frame: right_tool0
+    # Maximum joint-space velocities.
+    max_joint_velocity:
+      - 1.0
+      - 1.0
+      - 1.0
+      - 1.0
+      - 1.0
+      - 1.0
+      - 1.0
+      - 1.0
+      - 1.0
+      - 1.0
+    # Maximum joint-space accelerations.
+    max_joint_acceleration:
+      - 2.0
+      - 2.0
+      - 2.0
+      - 2.0
+      - 2.0
+      - 2.0
+      - 2.0
+      - 2.0
+      - 2.0
+      - 2.0
+    # Maximum Cartesian-space velocities.
+    max_cartesian_velocity:
+      - 0.25
+      - 0.25
+      - 0.25
+      - 1.0
+      - 1.0
+      - 1.0
+    # Maximum Cartesian-space accelerations.
+    max_cartesian_acceleration:
+      - 2.0
+      - 2.0
+      - 2.0
+      - 4.0
+      - 4.0
+      - 4.0
+    # Rate in Hz at which the controller will publish the state.
+    state_publish_rate: 10
+    # Damping coefficient for the Jacobian damped least-squares inverse.
+    jacobian_damping: 0.002
+    # Timeout in seconds after which the controller will stop motion if no new commands are received.
+    command_timeout: 0.2
+    # Padding (in radians) to add to joint position limits as a safety margin.
+    joint_limit_position_tolerance: 0.02
+
+left_force_torque_sensor_broadcaster:
+  ros__parameters:
+    sensor_name: left_robotiq_ft_sensor
+    state_interface_names:
+      - force.x
+      - force.y
+      - force.z
+      - torque.x
+      - torque.y
+      - torque.z
+    frame_id: left_ft_frame
+
+right_force_torque_sensor_broadcaster:
+  ros__parameters:
+    sensor_name: right_robotiq_ft_sensor
+    state_interface_names:
+      - force.x
+      - force.y
+      - force.z
+      - torque.x
+      - torque.y
+      - torque.z
+    frame_id: right_ft_frame
+
+left_robotiq_gripper_controller:
+  ros__parameters:
+    default: true
+    joint: left_robotiq_85_left_knuckle_joint
+    allow_stalling: true
+
+right_robotiq_gripper_controller:
+  ros__parameters:
+    default: true
+    joint: right_robotiq_85_left_knuckle_joint
+    allow_stalling: true
