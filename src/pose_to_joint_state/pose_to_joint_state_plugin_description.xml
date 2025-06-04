@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<library path="pose_to_joint_state">
-  <class
-    type="pose_to_joint_state::PoseToJointStateBehaviorsLoader"
-    base_class_type="moveit_studio::behaviors::SharedResourcesNodeLoaderBase"
-  />
-</library>
