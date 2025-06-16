@@ -4,9 +4,6 @@
 [submodule "src/dependencies/ros2_robotiq_gripper"]
 	path = src/dependencies/ros2_robotiq_gripper
 	url = git@github.com:PickNikRobotics/ros2_robotiq_gripper.git
-[submodule "src/dependencies/moveit_pro_ur_configs"]
-	path = src/dependencies/moveit_pro_ur_configs
-	url = git@github.com:PickNikRobotics/moveit_pro_ur_configs.git
 [submodule "src/dependencies/clearpath_controller_interface"]
 	path = src/dependencies/clearpath_controller_interface
 	url = git@github.com:PickNikRobotics/clearpath_controller_interface.git
@@ -19,3 +16,6 @@
 [submodule "src/dependencies/serial"]
 	path = src/dependencies/serial
 	url = https://github.com/tylerjw/serial.git
+[submodule "src/dependencies/moveit_studio_ur_pstop_manager"]
+	path = src/dependencies/moveit_studio_ur_pstop_manager
+	url = git@github.com:PickNikRobotics/moveit_studio_ur_pstop_manager.git
