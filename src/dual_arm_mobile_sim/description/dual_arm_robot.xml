@@ -76,13 +76,7 @@
       <default class="size1">
         <general gainprm="500" biasprm="0 -500 -100" forcerange="-28 28" />
       </default>
-      <default class="visual">
-        <geom type="mesh" contype="0" conaffinity="0" group="2" rgba="0.75294 0.75294 0.75294 1"/>
-      </default>
-      <default class="mesh_collision">
-        <geom type="mesh" group="3"/>
-      </default>
-      <default class="collision">
+      <default class="capsule_collision">
         <geom type="capsule" group="3"/>
         <default class="eef_collision">
           <geom type="cylinder" />
@@ -221,21 +215,21 @@
         <!-- Left chain -->
         <body name="lift_left_plate_link" pos="0 0.2 0.3274" gravcomp="1">
           <geom class="visual" mesh="lift_plate"/>
-          <geom class="mesh_collision" mesh="lift_plate_collision"/>
+          <geom class="collision" mesh="lift_plate_collision"/>
           <body name="lift_left_base_link" pos="0 0.0 0.015" gravcomp="1">
             <geom class="visual" pos="0.0 0.0 -0.0151" mesh="lift_base"/>
-            <geom class="mesh_collision" pos="0.0 0.0 -0.0151" mesh="lift_base_collision"/>
-            <geom class="mesh_collision" pos="0.0 0.0 -0.0151" mesh="lift_base_collision2"/>
+            <geom class="collision" pos="0.0 0.0 -0.0151" mesh="lift_base_collision"/>
+            <geom class="collision" pos="0.0 0.0 -0.0151" mesh="lift_base_collision2"/>
             <body name="lift_left_lower_link" pos="0 0.0 0.0" gravcomp="1">
               <inertial pos="0 0 0.2415" mass="10" diaginertia="0.21276 0.21276 0.0367043"/>
               <joint name="lift_left_lower_joint" pos="0 0 0" axis="0 0 1" type="slide" range="0 0.25" />
               <geom class="visual" pos="0 0 -0.2721" mesh="lift_lower"/>
-              <geom class="mesh_collision" pos="0.0 0.0 -0.2721" mesh="lift_lower_collision"/>
+              <geom class="collision" pos="0.0 0.0 -0.2721" mesh="lift_lower_collision"/>
               <body name="lift_left_upper_link" pos="0 0.0 0.025" gravcomp="1">
                 <inertial pos="0 0 0.245" mass="10" diaginertia="0.213951 0.213951 0.027735"/>
                 <joint name="lift_left_upper_joint" pos="0 0 0" axis="0 0 1" type="slide" range="0 0.25"/>
                 <geom class="visual" pos="0 0 -0.5151" mesh="lift_upper"/>
-                <geom class="mesh_collision" pos="0.0 0.0 -0.5151" mesh="lift_upper_collision"/>
+                <geom class="collision" pos="0.0 0.0 -0.5151" mesh="lift_upper_collision"/>
                 <body name="left_arm_mount" pos="0.0 0.0 0.49" gravcomp="1">
                   <geom type="mesh" rgba="0.15 0.15 0.15 1" mesh="arm_mount_collision"/>
                   <!-- Left UR5E -->
@@ -249,7 +243,7 @@
                       <geom mesh="shoulder_0" material="urblue" class="visual" />
                       <geom mesh="shoulder_1" material="black" class="visual" />
                       <geom mesh="shoulder_2" material="jointgray" class="visual" />
-                      <geom class="collision" size="0.06 0.06" pos="0 0 -0.04" />
+                      <geom class="capsule_collision" size="0.06 0.06" pos="0 0 -0.04" />
                       <body name="left_upper_arm_link" gravcomp="1" pos="0 0.138 0" quat="1 0 1 0">
                         <inertial mass="8.393" pos="0 0 0.2125" diaginertia="0.133886 0.133886 0.0151074"/>
                         <joint name="left_shoulder_lift_joint" class="size3" />
@@ -257,8 +251,8 @@
                         <geom mesh="upperarm_1" material="black" class="visual" />
                         <geom mesh="upperarm_2" material="jointgray" class="visual" />
                         <geom mesh="upperarm_3" material="urblue" class="visual" />
-                        <geom class="collision" pos="0 -0.04 0" quat="1 1 0 0" size="0.06 0.06"/>
-                        <geom class="collision" size="0.05 0.2" pos="0 0 0.2" />
+                        <geom class="capsule_collision" pos="0 -0.04 0" quat="1 1 0 0" size="0.06 0.06"/>
+                        <geom class="capsule_collision" size="0.05 0.2" pos="0 0 0.2" />
                         <body name="left_forearm_link" gravcomp="1" pos="0 -0.131 0.425">
                           <inertial mass="2.275" pos="0 0 0.196" diaginertia="0.0311796 0.0311796 0.004095"/>
                           <joint name="left_elbow_joint" class="size3_limited" />
@@ -266,23 +260,23 @@
                           <geom mesh="forearm_1" material="linkgray" class="visual" />
                           <geom mesh="forearm_2" material="black" class="visual" />
                           <geom mesh="forearm_3" material="jointgray" class="visual" />
-                          <geom class="collision" pos="0 0.08 0" quat="1 1 0 0" size="0.055 0.06"/>
-                          <geom class="collision" size="0.038 0.19" pos="0 0 0.2" />
+                          <geom class="capsule_collision" pos="0 0.08 0" quat="1 1 0 0" size="0.055 0.06"/>
+                          <geom class="capsule_collision" size="0.038 0.19" pos="0 0 0.2" />
                           <body name="left_wrist_1_link" gravcomp="1" pos="0 0 0.392" quat="1 0 1 0">
                             <inertial mass="1.219" pos="0 0.127 0" diaginertia="0.0025599 0.0025599 0.0021942"/>
                             <joint name="left_wrist_1_joint" class="size1" />
                             <geom mesh="wrist1_0" material="black" class="visual" />
                             <geom mesh="wrist1_1" material="urblue" class="visual" />
                             <geom mesh="wrist1_2" material="jointgray" class="visual" />
-                            <geom class="collision" pos="0 0.05 0" quat="1 1 0 0" size="0.04 0.07"/>
+                            <geom class="capsule_collision" pos="0 0.05 0" quat="1 1 0 0" size="0.04 0.07"/>
                             <body name="left_wrist_2_link" gravcomp="1" pos="0 0.127 0">
                               <inertial mass="1.219" pos="0 0 0.1" diaginertia="0.0025599 0.0025599 0.0021942"/>
                               <joint name="left_wrist_2_joint" axis="0 0 1" class="size1"/>
                               <geom mesh="wrist2_0" material="black" class="visual"/>
                               <geom mesh="wrist2_1" material="urblue" class="visual"/>
                               <geom mesh="wrist2_2" material="jointgray" class="visual"/>
-                              <geom class="collision" size="0.04 0.06" pos="0 0 0.04"/>
-                              <geom class="collision" pos="0 0.02 0.1" quat="1 1 0 0" size="0.04 0.04"/>
+                              <geom class="capsule_collision" size="0.04 0.06" pos="0 0 0.04"/>
+                              <geom class="capsule_collision" pos="0 0.02 0.1" quat="1 1 0 0" size="0.04 0.04"/>
                               <body name="left_wrist_3_link" gravcomp="1" pos="0 0 0.1">
                                 <inertial mass="0.1889" pos="0 0.0771683 0" quat="1 0 0 1"
                                           diaginertia="0.000132134 9.90863e-05 9.90863e-05"/>
@@ -303,30 +297,30 @@
                                     <body name="left_robotiq_85_base_link" gravcomp="1" pos="0.0 0.1 0" quat="0.5 -0.5 0.5 0.5">
                                       <inertial mass="0.777441" pos="0 -2.70394e-05 0.0354675" quat="1 -0.00152849 0 0" diaginertia="0.000260285 0.000225381 0.000152708"/>
                                       <geom class="visual" mesh="robotiq_85_base" material="black"/>
-                                      <geom class="collision" mesh="robotiq_85_base"/>
+                                      <geom class="capsule_collision" mesh="robotiq_85_base"/>
                                       <site name="left_pinch" pos="0 0 0.145" type="sphere" group="5" rgba="0.9 0.9 0.9 1" size="0.005"/>
                                       <body name="left_robotiq_85_right_knuckle_link" gravcomp="1" pos="0 0.0306011 0.054904">
                                         <inertial mass="0.00899563" pos="2.96931e-12 0.0177547 0.00107314" quat="0.681301 0.732003 0 0" diaginertia="1.72352e-06 1.60906e-06 3.22006e-07"/>
                                         <joint name="left_robotiq_85_right_knuckle_joint" class="knuckle_link"/>
                                         <geom class="visual" mesh="robotiq_85_knuckle_link" material="gray"/>
-                                        <geom class="collision" mesh="robotiq_85_knuckle_link"/>
+                                        <geom class="capsule_collision" mesh="robotiq_85_knuckle_link"/>
                                         <body name="left_robotiq_85_right_finger_link" gravcomp="1" pos="0 0.0315 -0.0041">
                                           <inertial mass="0.0140974" pos="0 0.00301209 0.0232175" quat="0.705636 -0.0455904 0.0455904 0.705636" diaginertia="4.16206e-06 3.52216e-06 8.88131e-07"/>
                                           <joint name="left_robotiq_85_right_finger_joint" class="finger_link"/>
                                           <geom class="visual" mesh="robotiq_85_finger_link" material="black"/>
-                                          <geom class="collision" mesh="robotiq_85_finger_link"/>
+                                          <geom class="capsule_collision" mesh="robotiq_85_finger_link"/>
                                         </body>
                                       </body>
                                       <body name="left_robotiq_85_right_inner_knuckle_link" gravcomp="1" pos="0 0.0132 0.0609">
                                         <inertial mass="0.0221642" pos="-8.65005e-09 0.0181624 0.0212658" quat="0.663403 -0.244737 0.244737 0.663403" diaginertia="8.96853e-06 6.71733e-06 2.63931e-06"/>
                                         <joint name="left_robotiq_85_right_inner_knuckle_joint" class="inner_knuckle_link"/>
                                         <geom class="visual" mesh="robotiq_85_inner_knuckle_link" material="black"/>
-                                        <geom class="collision" mesh="robotiq_85_inner_knuckle_link"/>
+                                        <geom class="capsule_collision" mesh="robotiq_85_inner_knuckle_link"/>
                                         <body name="left_robotiq_85_right_finger_tip_link" gravcomp="1" pos="0 0.055 0.0375">
                                           <inertial mass="0.0125222" pos="0 -0.011046 0.0124786" quat="1 0.1664 0 0" diaginertia="2.67415e-06 2.4559e-06 6.02031e-07"/>
                                           <joint name="left_robotiq_85_right_finger_tip_joint" class="finger_tip_link"/>
                                           <geom class="visual" mesh="robotiq_85_finger_tip_link" material="black"/>
-                                          <geom class="collision" mesh="robotiq_85_finger_tip_link"/>
+                                          <geom class="capsule_collision" mesh="robotiq_85_finger_tip_link"/>
                                           <body name="left_right_pad" gravcomp="1" pos="0 -0.0189 0.01352">
                                             <geom class="pad_box1" name="left_right_pad1"/>
                                             <geom class="pad_box2" name="left_right_pad2"/>
@@ -342,24 +336,24 @@
                                         <inertial mass="0.00899563" pos="0 0.0177547 0.00107314" quat="0.681301 0.732003 0 0" diaginertia="1.72352e-06 1.60906e-06 3.22006e-07"/>
                                         <joint name="left_robotiq_85_left_knuckle_joint" class="knuckle_link"/>
                                         <geom class="visual" mesh="robotiq_85_knuckle_link" material="gray"/>
-                                        <geom class="collision" mesh="robotiq_85_knuckle_link"/>
+                                        <geom class="capsule_collision" mesh="robotiq_85_knuckle_link"/>
                                         <body name="left_robotiq_85_left_finger_link" gravcomp="1" pos="0 0.0315 -0.0041">
                                           <inertial mass="0.0140974" pos="0 0.00301209 0.0232175" quat="0.705636 -0.0455904 0.0455904 0.705636" diaginertia="4.16206e-06 3.52216e-06 8.88131e-07"/>
                                           <joint name="left_robotiq_85_left_finger_joint" class="finger_link"/>
                                           <geom class="visual" mesh="robotiq_85_finger_link" material="black"/>
-                                          <geom class="collision" mesh="robotiq_85_finger_link"/>
+                                          <geom class="capsule_collision" mesh="robotiq_85_finger_link"/>
                                         </body>
                                       </body>
                                       <body name="left_robotiq_85_left_inner_knuckle_link" gravcomp="1" pos="0 -0.0132 0.0609" quat="0 0 0 1">
                                         <inertial mass="0.0221642" pos="-8.65005e-09 0.0181624 0.0212658" quat="0.663403 -0.244737 0.244737 0.663403" diaginertia="8.96853e-06 6.71733e-06 2.63931e-06"/>
                                         <joint name="left_robotiq_85_left_inner_knuckle_joint" class="inner_knuckle_link"/>
                                         <geom class="visual" mesh="robotiq_85_inner_knuckle_link" material="black"/>
-                                        <geom class="collision" mesh="robotiq_85_inner_knuckle_link"/>
+                                        <geom class="capsule_collision" mesh="robotiq_85_inner_knuckle_link"/>
                                         <body name="left_robotiq_85_left_finger_tip_link" gravcomp="1" pos="0 0.055 0.0375">
                                           <inertial mass="0.0125222" pos="0 -0.011046 0.0124786" quat="1 0.1664 0 0" diaginertia="2.67415e-06 2.4559e-06 6.02031e-07"/>
                                           <joint name="left_robotiq_85_left_finger_tip_joint" class="finger_tip_link"/>
                                           <geom class="visual" mesh="robotiq_85_finger_tip_link" material="black"/>
-                                          <geom class="collision" mesh="robotiq_85_finger_tip_link"/>
+                                          <geom class="capsule_collision" mesh="robotiq_85_finger_tip_link"/>
                                           <body name="left_left_pad" gravcomp="1" pos="0 -0.0189 0.01352">
                                             <geom class="pad_box1" name="left_left_pad1"/>
                                             <geom class="pad_box2" name="left_left_pad2"/>
@@ -389,21 +383,21 @@
         <!-- Right chain -->
         <body name="lift_right_plate_link" pos="0 -0.2 0.3274" gravcomp="1">
           <geom class="visual" mesh="lift_plate"/>
-          <geom class="mesh_collision" mesh="lift_plate_collision"/>
+          <geom class="collision" mesh="lift_plate_collision"/>
           <body name="lift_right_base_link" pos="0 0.0 0.015" gravcomp="1">
             <geom class="visual" pos="0.0 0.0 -0.0151" mesh="lift_base"/>
-            <geom class="mesh_collision" pos="0.0 0.0 -0.0151" mesh="lift_base_collision"/>
-            <geom class="mesh_collision" pos="0.0 0.0 -0.0151" mesh="lift_base_collision2"/>
+            <geom class="collision" pos="0.0 0.0 -0.0151" mesh="lift_base_collision"/>
+            <geom class="collision" pos="0.0 0.0 -0.0151" mesh="lift_base_collision2"/>
             <body name="lift_right_lower_link" pos="0 0.0 0.0" gravcomp="1">
               <inertial pos="0 0 0.2415" mass="10" diaginertia="0.21276 0.21276 0.0367043"/>
               <joint name="lift_right_lower_joint" pos="0 0 0" axis="0 0 1" type="slide" range="0 0.25" />
               <geom class="visual" pos="0 0 -0.2721" mesh="lift_lower"/>
-              <geom class="mesh_collision" pos="0.0 0.0 -0.2721" mesh="lift_lower_collision"/>
+              <geom class="collision" pos="0.0 0.0 -0.2721" mesh="lift_lower_collision"/>
               <body name="lift_right_upper_link" pos="0 0.0 0.025" gravcomp="1">
                 <inertial pos="0 0 0.245" mass="10" diaginertia="0.213951 0.213951 0.027735"/>
                 <joint name="lift_right_upper_joint" pos="0 0 0" axis="0 0 1" type="slide" range="0 0.25"/>
                 <geom class="visual" pos="0 0 -0.5151" mesh="lift_upper"/>
-                <geom class="mesh_collision" pos="0.0 0.0 -0.5151" mesh="lift_upper_collision"/>
+                <geom class="collision" pos="0.0 0.0 -0.5151" mesh="lift_upper_collision"/>
                 <body name="right_arm_mount" pos="0.0 0.0 0.49" quat="0.0 0.0 0.0 1.0" gravcomp="1">
                   <geom type="mesh" rgba="0.15 0.15 0.15 1" mesh="arm_mount_collision"/>
                   <!-- Right UR5E -->
@@ -417,7 +411,7 @@
                       <geom mesh="shoulder_0" material="urblue" class="visual" />
                       <geom mesh="shoulder_1" material="black" class="visual" />
                       <geom mesh="shoulder_2" material="jointgray" class="visual" />
-                      <geom class="collision" size="0.06 0.06" pos="0 0 -0.04" />
+                      <geom class="capsule_collision" size="0.06 0.06" pos="0 0 -0.04" />
                       <body name="right_upper_arm_link" gravcomp="1" pos="0 0.138 0" quat="1 0 1 0">
                         <inertial mass="8.393" pos="0 0 0.2125" diaginertia="0.133886 0.133886 0.0151074"/>
                         <joint name="right_shoulder_lift_joint" class="size3" />
@@ -425,8 +419,8 @@
                         <geom mesh="upperarm_1" material="black" class="visual" />
                         <geom mesh="upperarm_2" material="jointgray" class="visual" />
                         <geom mesh="upperarm_3" material="urblue" class="visual" />
-                        <geom class="collision" pos="0 -0.04 0" quat="1 1 0 0" size="0.06 0.06"/>
-                        <geom class="collision" size="0.05 0.2" pos="0 0 0.2" />
+                        <geom class="capsule_collision" pos="0 -0.04 0" quat="1 1 0 0" size="0.06 0.06"/>
+                        <geom class="capsule_collision" size="0.05 0.2" pos="0 0 0.2" />
                         <body name="right_forearm_link" gravcomp="1" pos="0 -0.131 0.425">
                           <inertial mass="2.275" pos="0 0 0.196" diaginertia="0.0311796 0.0311796 0.004095"/>
                           <joint name="right_elbow_joint" class="size3_limited" />
@@ -434,23 +428,23 @@
                           <geom mesh="forearm_1" material="linkgray" class="visual" />
                           <geom mesh="forearm_2" material="black" class="visual" />
                           <geom mesh="forearm_3" material="jointgray" class="visual" />
-                          <geom class="collision" pos="0 0.08 0" quat="1 1 0 0" size="0.055 0.06"/>
-                          <geom class="collision" size="0.038 0.19" pos="0 0 0.2" />
+                          <geom class="capsule_collision" pos="0 0.08 0" quat="1 1 0 0" size="0.055 0.06"/>
+                          <geom class="capsule_collision" size="0.038 0.19" pos="0 0 0.2" />
                           <body name="right_wrist_1_link" gravcomp="1" pos="0 0 0.392" quat="1 0 1 0">
                             <inertial mass="1.219" pos="0 0.127 0" diaginertia="0.0025599 0.0025599 0.0021942"/>
                             <joint name="right_wrist_1_joint" class="size1" />
                             <geom mesh="wrist1_0" material="black" class="visual" />
                             <geom mesh="wrist1_1" material="urblue" class="visual" />
                             <geom mesh="wrist1_2" material="jointgray" class="visual" />
-                            <geom class="collision" pos="0 0.05 0" quat="1 1 0 0" size="0.04 0.07"/>
+                            <geom class="capsule_collision" pos="0 0.05 0" quat="1 1 0 0" size="0.04 0.07"/>
                             <body name="right_wrist_2_link" gravcomp="1" pos="0 0.127 0">
                               <inertial mass="1.219" pos="0 0 0.1" diaginertia="0.0025599 0.0025599 0.0021942"/>
                               <joint name="right_wrist_2_joint" axis="0 0 1" class="size1"/>
                               <geom mesh="wrist2_0" material="black" class="visual"/>
                               <geom mesh="wrist2_1" material="urblue" class="visual"/>
                               <geom mesh="wrist2_2" material="jointgray" class="visual"/>
-                              <geom class="collision" size="0.04 0.06" pos="0 0 0.04"/>
-                              <geom class="collision" pos="0 0.02 0.1" quat="1 1 0 0" size="0.04 0.04"/>
+                              <geom class="capsule_collision" size="0.04 0.06" pos="0 0 0.04"/>
+                              <geom class="capsule_collision" pos="0 0.02 0.1" quat="1 1 0 0" size="0.04 0.04"/>
                               <body name="right_wrist_3_link" gravcomp="1" pos="0 0 0.1">
                                 <inertial mass="0.1889" pos="0 0.0771683 0" quat="1 0 0 1"
                                           diaginertia="0.000132134 9.90863e-05 9.90863e-05"/>
@@ -471,30 +465,30 @@
                                     <body name="right_robotiq_85_base_link" gravcomp="1" pos="0.0 0.1 0" quat="0.5 -0.5 0.5 0.5">
                                       <inertial mass="0.777441" pos="0 -2.70394e-05 0.0354675" quat="1 -0.00152849 0 0" diaginertia="0.000260285 0.000225381 0.000152708"/>
                                       <geom class="visual" mesh="robotiq_85_base" material="black"/>
-                                      <geom class="collision" mesh="robotiq_85_base"/>
+                                      <geom class="capsule_collision" mesh="robotiq_85_base"/>
                                       <site name="right_pinch" pos="0 0 0.145" type="sphere" group="5" rgba="0.9 0.9 0.9 1" size="0.005"/>
                                       <body name="right_robotiq_85_right_knuckle_link" gravcomp="1" pos="0 0.0306011 0.054904">
                                         <inertial mass="0.00899563" pos="2.96931e-12 0.0177547 0.00107314" quat="0.681301 0.732003 0 0" diaginertia="1.72352e-06 1.60906e-06 3.22006e-07"/>
                                         <joint name="right_robotiq_85_right_knuckle_joint" class="knuckle_link"/>
                                         <geom class="visual" mesh="robotiq_85_knuckle_link" material="gray"/>
-                                        <geom class="collision" mesh="robotiq_85_knuckle_link"/>
+                                        <geom class="capsule_collision" mesh="robotiq_85_knuckle_link"/>
                                         <body name="right_robotiq_85_right_finger_link" gravcomp="1" pos="0 0.0315 -0.0041">
                                           <inertial mass="0.0140974" pos="0 0.00301209 0.0232175" quat="0.705636 -0.0455904 0.0455904 0.705636" diaginertia="4.16206e-06 3.52216e-06 8.88131e-07"/>
                                           <joint name="right_robotiq_85_right_finger_joint" class="finger_link"/>
                                           <geom class="visual" mesh="robotiq_85_finger_link" material="black"/>
-                                          <geom class="collision" mesh="robotiq_85_finger_link"/>
+                                          <geom class="capsule_collision" mesh="robotiq_85_finger_link"/>
                                         </body>
                                       </body>
                                       <body name="right_robotiq_85_right_inner_knuckle_link" gravcomp="1" pos="0 0.0132 0.0609">
                                         <inertial mass="0.0221642" pos="-8.65005e-09 0.0181624 0.0212658" quat="0.663403 -0.244737 0.244737 0.663403" diaginertia="8.96853e-06 6.71733e-06 2.63931e-06"/>
                                         <joint name="right_robotiq_85_right_inner_knuckle_joint" class="inner_knuckle_link"/>
                                         <geom class="visual" mesh="robotiq_85_inner_knuckle_link" material="black"/>
-                                        <geom class="collision" mesh="robotiq_85_inner_knuckle_link"/>
+                                        <geom class="capsule_collision" mesh="robotiq_85_inner_knuckle_link"/>
                                         <body name="right_robotiq_85_right_finger_tip_link" gravcomp="1" pos="0 0.055 0.0375">
                                           <inertial mass="0.0125222" pos="0 -0.011046 0.0124786" quat="1 0.1664 0 0" diaginertia="2.67415e-06 2.4559e-06 6.02031e-07"/>
                                           <joint name="right_robotiq_85_right_finger_tip_joint" class="finger_tip_link"/>
                                           <geom class="visual" mesh="robotiq_85_finger_tip_link" material="black"/>
-                                          <geom class="collision" mesh="robotiq_85_finger_tip_link"/>
+                                          <geom class="capsule_collision" mesh="robotiq_85_finger_tip_link"/>
                                           <body name="right_right_pad" gravcomp="1" pos="0 -0.0189 0.01352">
                                             <geom class="pad_box1" name="right_right_pad1"/>
                                             <geom class="pad_box2" name="right_right_pad2"/>
@@ -510,24 +504,24 @@
                                         <inertial mass="0.00899563" pos="0 0.0177547 0.00107314" quat="0.681301 0.732003 0 0" diaginertia="1.72352e-06 1.60906e-06 3.22006e-07"/>
                                         <joint name="right_robotiq_85_left_knuckle_joint" class="knuckle_link"/>
                                         <geom class="visual" mesh="robotiq_85_knuckle_link" material="gray"/>
-                                        <geom class="collision" mesh="robotiq_85_knuckle_link"/>
+                                        <geom class="capsule_collision" mesh="robotiq_85_knuckle_link"/>
                                         <body name="right_robotiq_85_left_finger_link" gravcomp="1" pos="0 0.0315 -0.0041">
                                           <inertial mass="0.0140974" pos="0 0.00301209 0.0232175" quat="0.705636 -0.0455904 0.0455904 0.705636" diaginertia="4.16206e-06 3.52216e-06 8.88131e-07"/>
                                           <joint name="right_robotiq_85_left_finger_joint" class="finger_link"/>
                                           <geom class="visual" mesh="robotiq_85_finger_link" material="black"/>
-                                          <geom class="collision" mesh="robotiq_85_finger_link"/>
+                                          <geom class="capsule_collision" mesh="robotiq_85_finger_link"/>
                                         </body>
                                       </body>
                                       <body name="right_robotiq_85_left_inner_knuckle_link" gravcomp="1" pos="0 -0.0132 0.0609" quat="0 0 0 1">
                                         <inertial mass="0.0221642" pos="-8.65005e-09 0.0181624 0.0212658" quat="0.663403 -0.244737 0.244737 0.663403" diaginertia="8.96853e-06 6.71733e-06 2.63931e-06"/>
                                         <joint name="right_robotiq_85_left_inner_knuckle_joint" class="inner_knuckle_link"/>
                                         <geom class="visual" mesh="robotiq_85_inner_knuckle_link" material="black"/>
-                                        <geom class="collision" mesh="robotiq_85_inner_knuckle_link"/>
+                                        <geom class="capsule_collision" mesh="robotiq_85_inner_knuckle_link"/>
                                         <body name="right_robotiq_85_left_finger_tip_link" gravcomp="1" pos="0 0.055 0.0375">
                                           <inertial mass="0.0125222" pos="0 -0.011046 0.0124786" quat="1 0.1664 0 0" diaginertia="2.67415e-06 2.4559e-06 6.02031e-07"/>
                                           <joint name="right_robotiq_85_left_finger_tip_joint" class="finger_tip_link"/>
                                           <geom class="visual" mesh="robotiq_85_finger_tip_link" material="black"/>
-                                          <geom class="collision" mesh="robotiq_85_finger_tip_link"/>
+                                          <geom class="capsule_collision" mesh="robotiq_85_finger_tip_link"/>
                                           <body name="right_left_pad" gravcomp="1" pos="0 -0.0189 0.01352">
                                             <geom class="pad_box1" name="right_left_pad1"/>
                                             <geom class="pad_box2" name="right_left_pad2"/>
