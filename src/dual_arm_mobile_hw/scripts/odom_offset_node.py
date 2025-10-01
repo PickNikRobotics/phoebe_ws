@@ -64,6 +64,7 @@ class OdomOffsetNode(Node):
         # Apply offset
         offset_msg = Odometry()
         offset_msg.header = msg.header
+        offset_msg.header.frame_id = "world"
         offset_msg.child_frame_id = msg.child_frame_id
 
         # Subtract the offset from the current pose
