@@ -91,7 +91,7 @@ def ur5e_nodes_to_launch(prefix, robot_ip_value, controller_config):
         tool_comms_launch = IncludeLaunchDescription(
             AnyLaunchDescriptionSource(
                 [
-                    FindPackageShare("picknik_ur_base_config"),
+                    FindPackageShare("dual_arm_mobile_hw"),
                     "/launch/ur_tool_comms.launch.xml",
                 ]
             ),
