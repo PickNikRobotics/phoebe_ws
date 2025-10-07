@@ -18,20 +18,20 @@ The admin password for both URs is `password`.
    communication with the on-board microcontroller. \
    NOTE: sometimes the microcontroller does not boot properly and the power button light will continue blinking blue
    indefinitely, if the light is still blinking after ~4 minutes, reboot the Clearpath using the power button.
-2. Once the power button is solid blue, the e-stop can be released. To do so, press the "START" button on the autec
-   wireless e-stop controller.
+2. Once the power button is solid blue, the E-stop can be released. To do so, press the "START" button on the Autec
+   wireless E-stop controller. NOTE: you may need to press the "START" button a few times.
 3. The light around the "E-STOP RESET" button on the Clearpath base should begin blinking red. Press it to release the
-   e-stop.
+   E-stop.
 4. At this point the Clearpath base can be teleoperated with the wireless PS4 controller. To move the base with the PS4
    controller, first connect the controller, then hold the L1 trigger and move the joysticks to teleop the Clearpath
    base.
 
 ## MoveIt Pro Startup
 
-1. Once the Clearpath base has been started and the e-stop has been released, power on the UR arms by pressing the
+1. Once the Clearpath base has been started and the E-stop has been released, power on the UR arms by pressing the
    "LEFT UR5" and "RIGHT UR5" buttons on on the platform behind the monitors. You should hear the fans briefly start up
    and then the Polyscope software should start booting on the monitors.
-2. Once the URs are booted, release their e-stop by pressing the red button in the bottom left corner of the monitor,
+2. Once the URs are booted, release their E-stop by pressing the red button in the bottom left corner of the monitor,
    then press "ON". You may be asked to verify the robot mounting position since they are mounted at angles. Once that
    is complete and the robot is in "idle", press "START". You should hear the brakes release.
 3. At this point all of the hardware is ready. SSH into the phoebe using
@@ -48,6 +48,11 @@ The admin password for both URs is `password`.
    interface is re-activated.
 
 ## Troubleshooting
+
+### Recovering from E-stop
+
+To recover from an E-stop, twist the red button on the Autec wireless E-stop controller until it pops up, and then 
+repeat steps 2-4 from the [Clearpath Base Startup section](#clearpath-base-startup).
 
 ### Ewellix lift drivers crash on startup
 
@@ -88,8 +93,33 @@ Sometimes the Ewellix lifts can get into a bad state and need to be reset. You w
 drivers-1       | [ros2_control_node-5] [FATAL] [1759338526.898258256] [EwellixHardwareInterface]: Position between drives too great. Only if synchronized parallel run is parameterized. Motion not started. If motion ins progress the motion is stopped (fast stop). Bit reset on next motion.              
 drivers-1       | [ros2_control_node-5] [FATAL] [1759338526.898284140] [EwellixHardwareInterface]: Try to move lift with remote. If not moving, reset lift by power-cycling and holding both UP and DOWN buttons for 5+ seconds.
 ```
-To reset the lifts, hold both the up and down button for 5 seconds until you hear the lift beep. Then move it all the way down until you hear it beep and then all the way up until you hear another beep.
+To reset one of the lifts, first find the gray lift controller that is attached by a wire to the lift you wish to reset.
+Next, hold both the up and down arrow buttons for 5 seconds until you hear the lift start beeping. Then release the
+buttons and press the down arrow button to move the lift all the way down until you hear it beep. Then release the down
+arrow button and press the up arrow button and then all the way up until you hear another beep. Once it reaches the top,
+it should have reset. You can move it around with the controller and make sure it is moving quicker than it was during
+the reset process to verify.
 
 ## Other Notes
 
-For the final demo, we will probably just want to disable the lifts. Their motion is not smooth or aligned with the rest of the system and they probably cause more problems than they are worth with all their failure modes.
+For the final demo, we will probably just want to disable the lifts. Their motion is not smooth or aligned with the rest
+of the system and they probably cause more problems than they are worth with all their failure modes.
+To disable the lifts the following steps will need to be taken:
+- In the ewellix_tlt500.macro.xacro file, change the
+  [lower_joint](https://github.com/PickNikRobotics/dual_arm_mobile_ws/blob/b1a4c8641fb5436d8143ee6ca906dca3acb48e5e/src/dual_arm_mobile_description/xacro/ewellix_tlt500.macro.xacro#L95-L103)
+  and
+  [upper_joint](https://github.com/PickNikRobotics/dual_arm_mobile_ws/blob/b1a4c8641fb5436d8143ee6ca906dca3acb48e5e/src/dual_arm_mobile_description/xacro/ewellix_tlt500.macro.xacro#L129-L136)
+  to fixed joints by removing their axis, limit, and dynamics tags.
+- Remove references to `lift_left_upper_joint` and `lift_right_upper_joint` in the
+  [ros2_control.yaml file](https://github.com/PickNikRobotics/dual_arm_mobile_ws/blob/main/src/dual_arm_mobile_hw/config/control/dual_arm_mobile.ros2_control.yaml),
+  (and probably the joint_limits files as well).
+- Remove 2 of the values in the
+  [joint_limit_margins](https://github.com/PickNikRobotics/dual_arm_mobile_ws/blob/b1a4c8641fb5436d8143ee6ca906dca3acb48e5e/src/dual_arm_mobile_hw/config/moveit/servo.yaml#L51)
+  list in servo.yaml.
+
+NOTE: removing these joints will invalidate all of the waypoints in
+[waypoints.yaml](https://github.com/PickNikRobotics/dual_arm_mobile_ws/blob/main/src/dual_arm_mobile_hw/waypoints/waypoints.yaml).
+You can either manually remove the positions in each waypoint that were for the lifts or re-create the waypoints from
+scratch.
+
+I'm not sure if these capture every change that will be needed, but this list is a good place to start.
