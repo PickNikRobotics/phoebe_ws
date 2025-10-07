@@ -102,6 +102,8 @@ the reset process to verify.
 
 ## Other Notes
 
+### Disabling the lifts
+
 For the final demo, we will probably just want to disable the lifts. Their motion is not smooth or aligned with the rest
 of the system and they probably cause more problems than they are worth with all their failure modes.
 To disable the lifts the following steps will need to be taken:
@@ -117,9 +119,25 @@ To disable the lifts the following steps will need to be taken:
   [joint_limit_margins](https://github.com/PickNikRobotics/dual_arm_mobile_ws/blob/b1a4c8641fb5436d8143ee6ca906dca3acb48e5e/src/dual_arm_mobile_hw/config/moveit/servo.yaml#L51)
   list in servo.yaml.
 
-NOTE: removing these joints will invalidate all of the waypoints in
+NOTE: removing these joints will invalidate all the waypoints in
 [waypoints.yaml](https://github.com/PickNikRobotics/dual_arm_mobile_ws/blob/main/src/dual_arm_mobile_hw/waypoints/waypoints.yaml).
 You can either manually remove the positions in each waypoint that were for the lifts or re-create the waypoints from
 scratch.
 
 I'm not sure if these capture every change that will be needed, but this list is a good place to start.
+
+### Clearpath systemd details
+
+When powered on, the Clearpath will start a few systemd services for control of the mobile base and communication with
+the on-board micro control unit (MCU) that communicates with the E-stop.
+The following services are all WantedBy the `phoebe-robot.target` systemd service:
+- `phoebe-platform.service`: starts ROS processes for control and odometry of the mobile base.
+- `phoebe-microcontroller.service`: starts ROS processes for publishing topics from the data communicated from the MCU.
+- `phoebe-vcan.service`: starts VCAN communication processes for communication with the lifts.
+
+Other useful details:
+- The unit files for these systemd services can be found in the `/lib/systemd/system` directory on the Clearpath PC.
+- To check the status of the relevant services you can run `systemctl list-dependencies phoebe-robot.target`.
+- To get more status details and a journal snippet for a service, you can run `systemctl status <service_name>`.
+- To follow the journal output for a service unit, you can run `journalctl -fu <service_name>`
+- To change the state of a service, you can run `sudo systemctl start|stop|restart <service_name>`
