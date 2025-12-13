@@ -110,6 +110,20 @@
   >
   </xacro:robotiq_2f85>
 
+  <!-- <link name="mobile_base_ee_link"/>
+  <joint name="mobile_base_ee_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.0 0.0 0.5"/>
+    <parent link="chassis_link"/>
+    <child link="mobile_base_ee_link"/>
+  </joint>
+
+  <link name="mobile_base_ee_child_link"/>
+  <joint name="mobile_base_ee_child_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+    <parent link="mobile_base_ee_link"/>
+    <child link="mobile_base_ee_child_link"/>
+  </joint> -->
+
   <ros2_control name="ur_mujoco_control" type="system">
     <hardware>
       <plugin>picknik_mujoco_ros/MujocoSystem</plugin>

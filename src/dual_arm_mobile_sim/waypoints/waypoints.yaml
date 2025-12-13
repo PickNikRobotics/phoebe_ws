@@ -1,13 +1,11 @@
 - description: ''
   favorite: false
   joint_group_names:
-  - left_arm_only
   - left_gripper
   - left_manipulator
   - left_mobile_manipulator
   - manipulator
   - mobile_base
-  - right_arm_only
   - right_gripper
   - right_manipulator
   - right_mobile_manipulator
