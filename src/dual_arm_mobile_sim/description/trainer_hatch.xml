@@ -99,6 +99,7 @@
       </body>
     </body>
     <body name="bench_lid" pos="-2.10085 1.0516 0.5244" quat="-0.706686 0 0 0.707527">
+      <site name="bench_lid_site"/>
       <joint name="bench_lid_joint" pos="0 0 0" axis="0 -1 0" range="0 1.65806" actuatorfrcrange="-10 10"/>
       <geom size="0.3015 0.46 0.01625" pos="0.309 0.46 0.025" type="box" rgba="0 0 1 1"/>
     </body>
