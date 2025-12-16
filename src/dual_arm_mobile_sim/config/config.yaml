@@ -83,6 +83,8 @@ ros2_control:
     - "right_velocity_force_controller"
     - "base_left_velocity_force_controller"
     - "base_right_velocity_force_controller"
+    # - "left_lift_velocity_force_controller"
+    # - "right_lift_velocity_force_controller"
 
 objectives:
   # List of plugins for loading custom behaviors.
