@@ -10,7 +10,9 @@
   </default>
 
   <include file="dual_arm_robot.xml" />
-  <include file="trainer_hatch.xml" />
+  <include file="trainer.xml" />
+  <!-- <include file="hatch.xml" /> -->
+  <include file="bottle.xml" />
   <statistic center="0.3 0 0.4" extent="0.8" />
 
   <visual>
