@@ -77,6 +77,8 @@ ros2_control:
   # Load but do not start these controllers so they can be activated later if needed.
   controllers_inactive_at_startup:
     - "servo_controller"
+    - "left_manipulator_joint_trajectory_controller"
+    - "right_manipulator_joint_trajectory_controller"
     - "lift_joint_trajectory_controller"
     - "base_velocity_force_controller"
     - "left_velocity_force_controller"

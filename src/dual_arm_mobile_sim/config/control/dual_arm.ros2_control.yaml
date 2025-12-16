@@ -7,6 +7,10 @@ controller_manager:
       type: clearpath_mecanum_drive_controller/MecanumDriveController
     joint_trajectory_controller:
       type: joint_trajectory_controller/JointTrajectoryController
+    left_manipulator_joint_trajectory_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+    right_manipulator_joint_trajectory_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
     servo_controller:
       type: joint_trajectory_controller/JointTrajectoryController
     lift_joint_trajectory_controller:
@@ -177,6 +181,60 @@ joint_trajectory_controller:
     # Need partial joint trajectories for IMarker planning group selection support
     allow_partial_joints_goal: true
 
+left_manipulator_joint_trajectory_controller:
+  ros__parameters:
+    joints:
+      - left_shoulder_pan_joint
+      - left_shoulder_lift_joint
+      - left_elbow_joint
+      - left_wrist_1_joint
+      - left_wrist_2_joint
+      - left_wrist_3_joint
+
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+    command_joints:
+      - left_shoulder_pan_joint
+      - left_shoulder_lift_joint
+      - left_elbow_joint
+      - left_wrist_1_joint
+      - left_wrist_2_joint
+      - left_wrist_3_joint
+
+    state_publish_rate: 100.0
+    action_monitor_rate: 20.0
+    # Need partial joint trajectories for IMarker planning group selection support
+    allow_partial_joints_goal: true
+right_manipulator_joint_trajectory_controller:
+  ros__parameters:
+    joints:
+      - right_shoulder_pan_joint
+      - right_shoulder_lift_joint
+      - right_elbow_joint
+      - right_wrist_1_joint
+      - right_wrist_2_joint
+      - right_wrist_3_joint
+
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+    command_joints:
+      - right_shoulder_pan_joint
+      - right_shoulder_lift_joint
+      - right_elbow_joint
+      - right_wrist_1_joint
+      - right_wrist_2_joint
+      - right_wrist_3_joint
+
+    state_publish_rate: 100.0
+    action_monitor_rate: 20.0
+    # Need partial joint trajectories for IMarker planning group selection support
+    allow_partial_joints_goal: true
 servo_controller:
   ros__parameters:
     joints:

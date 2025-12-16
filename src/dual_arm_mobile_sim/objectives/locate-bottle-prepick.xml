@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root BTCPP_format="4" main_tree_to_execute="locate-bottle-prepick">
+  <BehaviorTree ID="locate-bottle-prepick" _description="" _favorite="false">
+    <Control ID="Sequence" name="TopLevelSequence">
+      <Action
+        ID="CreateStampedPose"
+        reference_frame="bottle_neck_grasp"
+        stamped_pose="{prepick-pose}"
+        name="create-prepick-pose"
+      />
+      <SubTree
+        ID="Move to Pose"
+        _collapsed="true"
+        controller_names="left_manipulator_joint_trajectory_controller;left_robotiq_gripper_controller"
+        ik_frame="left_grasp_link"
+        link_padding="0.01"
+        planning_group_name="left_manipulator"
+        require_user_approval="true"
+        target_pose="{prepick-pose}"
+        velocity_scale_factor="1.0"
+        name="move-to-prepick"
+      />
+    </Control>
+  </BehaviorTree>
+  <TreeNodesModel>
+    <SubTree ID="locate-bottle-prepick" />
+  </TreeNodesModel>
+</root>
