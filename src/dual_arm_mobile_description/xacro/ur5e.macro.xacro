@@ -11,6 +11,8 @@
     trajectory_port:='50003'
     tool_device_name:='/dev/ttyUSB0'
     tool_tcp_port:='54320'
+    kinematics_hash:=''
+
     *origin
     ">
     <xacro:if value="${generate_ros2_control_tag}">
@@ -32,7 +34,7 @@
           <param name="servoj_gain">2000</param>
           <param name="servoj_lookahead_time">0.03</param>
           <param name="use_tool_communication">True</param>
-          <param name="kinematics/hash">calib_12788084448423163542</param>
+          <param name="kinematics/hash">${kinematics_hash}</param>
           <param name="tool_voltage">24</param>
           <param name="tool_parity">0</param>
           <param name="tool_baud_rate">115200</param>
