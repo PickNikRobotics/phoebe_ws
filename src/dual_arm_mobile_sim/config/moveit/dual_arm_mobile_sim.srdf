@@ -13,6 +13,14 @@
     <!-- Does not include lift due to driver reliability issues -->
     <chain base_link="right_base_link" tip_link="right_grasp_link"/>
   </group>
+  <group name="left_arm_only">
+    <!-- Alias for left_manipulator for compatibility with waypoints -->
+    <chain base_link="left_base_link" tip_link="left_grasp_link"/>
+  </group>
+  <group name="right_arm_only">
+    <!-- Alias for right_manipulator for compatibility with waypoints -->
+    <chain base_link="right_base_link" tip_link="right_grasp_link"/>
+  </group>
   <group name="manipulator">
     <!-- world is not included with the 'chain' spec -->
     <chain base_link="world" tip_link="right_grasp_link"/>

@@ -1,4 +1,4 @@
-based_on: dual_arm_mobile_sim
+based_on_package: dual_arm_mobile_sim
 
 hardware:
   simulated: false
