@@ -141,3 +141,13 @@ Other useful details:
 - To get more status details and a journal snippet for a service, you can run `systemctl status <service_name>`.
 - To follow the journal output for a service unit, you can run `journalctl -fu <service_name>`
 - To change the state of a service, you can run `sudo systemctl start|stop|restart <service_name>`
+
+### DISPLAY Error after running PRO
+
+After running `moveit-pro run` if you get an error for env var DISPLAY not found, then run the following commands
+
+```bash
+unset MUJOCO_GL
+export DISPLAY=:99
+Xvfb :99 -screen 0 1024x768x24 &
+```
