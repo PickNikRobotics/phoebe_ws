@@ -68,3 +68,76 @@
     twist: []
     wrench: []
   name: Look at Trainer
+- description: ''
+  favorite: false
+  joint_group_names:
+  - left_gripper
+  - left_lift
+  - left_manipulator
+  - left_mobile_manipulator
+  - manipulator
+  - mobile_base
+  - right_gripper
+  - right_lift
+  - right_manipulator
+  - right_mobile_manipulator
+  - z_mobile_base_ee_group
+  joint_state:
+    effort: []
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    name:
+    - left_robotiq_85_left_knuckle_joint
+    - left_shoulder_pan_joint
+    - left_shoulder_lift_joint
+    - left_elbow_joint
+    - left_wrist_1_joint
+    - left_wrist_2_joint
+    - left_wrist_3_joint
+    - linear_x_joint
+    - linear_y_joint
+    - rotational_yaw_joint
+    - lift_left_upper_joint
+    - lift_right_upper_joint
+    - right_shoulder_pan_joint
+    - right_shoulder_lift_joint
+    - right_elbow_joint
+    - right_wrist_1_joint
+    - right_wrist_2_joint
+    - right_wrist_3_joint
+    - right_robotiq_85_left_knuckle_joint
+    position:
+    - 0.06392418118919363
+    - -0.12302975401349715
+    - -1.3458706564399034
+    - 2.3701563820322047
+    - -2.624163387203129
+    - -0.8786267474550592
+    - 5.519974466260264
+    - 0.0005802553836415622
+    - 2.500242475699796e-05
+    - -4.4681110910855276e-05
+    - 0.00032253632976384866
+    - 7.65364466557059e-06
+    - 0.00012995180548733019
+    - -1.0627268750120145e-05
+    - -7.185020109101158e-07
+    - 1.339227816486712e-05
+    - -9.07900558034628e-06
+    - 1.0864672126603296e-07
+    - 0.15209607891511812
+    velocity: []
+  multi_dof_joint_state:
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    joint_names: []
+    transforms: []
+    twist: []
+    wrench: []
+  name: lookattable-left
