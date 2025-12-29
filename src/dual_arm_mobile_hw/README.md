@@ -113,7 +113,7 @@ To disable the lifts the following steps will need to be taken:
   [upper_joint](https://github.com/PickNikRobotics/dual_arm_mobile_ws/blob/b1a4c8641fb5436d8143ee6ca906dca3acb48e5e/src/dual_arm_mobile_description/xacro/ewellix_tlt500.macro.xacro#L129-L136)
   to fixed joints by removing their axis, limit, and dynamics tags.
 - Remove references to `lift_left_upper_joint` and `lift_right_upper_joint` in the
-  [ros2_control.yaml file](https://github.com/PickNikRobotics/dual_arm_mobile_ws/blob/main/src/dual_arm_mobile_hw/config/control/dual_arm_mobile.ros2_control.yaml),
+  [ros2_control.yaml file](https://github.com/PickNikRobotics/dual_arm_mobile_ws/blob/main/src/dual_arm_mobile_sim/config/control/dual_arm.ros2_control.yaml),
   (and probably the joint_limits files as well).
 - Remove 2 of the values in the
   [joint_limit_margins](https://github.com/PickNikRobotics/dual_arm_mobile_ws/blob/b1a4c8641fb5436d8143ee6ca906dca3acb48e5e/src/dual_arm_mobile_hw/config/moveit/servo.yaml#L51)
