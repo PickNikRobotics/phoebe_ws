@@ -2,7 +2,8 @@
   <compiler angle="radian" meshdir="assets"/>
 
   <asset>
-    <mesh name="cylinder" file="trainer_hatch/collision/cylinder_mockup_full_length.stl" scale="0.001 0.001 0.001"/>
+    <!-- <mesh name="cylinder" file="trainer_hatch/collision/cylinder_mockup_full_length.stl" scale="0.001 0.001 0.001"/> -->
+    <mesh name="cylinder" file="bottle.obj" scale="2 2 3"/>
   </asset>
 
   <worldbody>
