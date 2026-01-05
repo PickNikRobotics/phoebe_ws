@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root BTCPP_format="4" main_tree_to_execute="ML Register Bottle">
+  <BehaviorTree ID="ML Register Bottle" _description="" _favorite="true">
+    <Control ID="Sequence" _collapsed="true">
+      <Decorator ID="Repeat" num_cycles="1">
+        <Control ID="Sequence" name="TopLevelSequence" _collapsed="true">
+          <Action
+            ID="SwitchController"
+            activate_asap="true"
+            automatic_deactivation="true"
+            controller_list_action_name="/controller_manager/list_controllers"
+            controller_switch_action_name="/controller_manager/switch_controller"
+            strictness="1"
+            timeout="-1.000000"
+            deactivate_controllers="joint_trajectory_controller"
+          />
+          <SubTree ID="Open Left Gripper" _collapsed="true" />
+          <SubTree ID="Open Right Gripper" _collapsed="true" />
+          <SubTree
+            ID="Move to Waypoint"
+            _collapsed="true"
+            acceleration_scale_factor="1.0"
+            controller_action_server="/left_manipulator_joint_trajectory_controller/follow_joint_trajectory"
+            controller_names="left_manipulator_joint_trajectory_controller"
+            joint_group_name="left_manipulator"
+            keep_orientation="false"
+            keep_orientation_tolerance="0.05"
+            link_padding="0.01"
+            seed="0"
+            velocity_scale_factor="1.0"
+            waypoint_name="side look at table"
+          />
+          <SubTree
+            ID="Move to Waypoint"
+            _collapsed="true"
+            acceleration_scale_factor="1.0"
+            controller_action_server="/right_manipulator_joint_trajectory_controller/follow_joint_trajectory"
+            controller_names="right_manipulator_joint_trajectory_controller"
+            joint_group_name="right_manipulator"
+            keep_orientation="false"
+            keep_orientation_tolerance="0.05"
+            link_padding="0.01"
+            seed="0"
+            velocity_scale_factor="1.0"
+            waypoint_name="side look at table"
+          />
+          <Action ID="ClearSnapshot" />
+          <SubTree ID="Take Wrist Camera Snapshot" _collapsed="true" />
+          <Action
+            ID="SwitchUIPrimaryView"
+            primary_view_name="/masks_visualization"
+          />
+          <Action
+            ID="CreateStampedPose"
+            reference_frame="world"
+            stamped_pose="{bottle_init_pose}"
+            orientation_xyzw="0;0;0;1"
+            position_xyz="1.16;0.43;1.12"
+          />
+          <SubTree ID="LocateBottleOnTable" _collapsed="true" />
+          <Action
+            ID="TransformPoseWithPose"
+            input_pose="{bottle_init_pose}"
+            output_pose="{bottle_in_world_pose}"
+            transform_pose="{bottle_icp_transform}"
+          />
+          <SubTree ID="GetLeftRightPickPoseFromBottlePose" _collapsed="true" />
+          <Action
+            ID="BreakpointSubscriber"
+            breakpoint_topic="/moveit_pro_breakpoint"
+          />
+          <Control ID="Sequence" _collapsed="true">
+            <SubTree
+              ID="Move to Pose"
+              controller_names="left_manipulator_joint_trajectory_controller;left_robotiq_gripper_controller"
+              ik_frame="left_grasp_link"
+              link_padding="0.01"
+              planning_group_name="left_manipulator"
+              require_user_approval="false"
+              velocity_scale_factor="1.0"
+              name="move-to-prepick"
+              _collapsed="true"
+              target_pose="{bottle_bottom_aligned_left_pose}"
+            />
+            <SubTree
+              ID="Move to Pose"
+              controller_names="right_manipulator_joint_trajectory_controller;right_robotiq_gripper_controller"
+              ik_frame="right_grasp_link"
+              link_padding="0.01"
+              planning_group_name="right_manipulator"
+              require_user_approval="false"
+              velocity_scale_factor="1.0"
+              name="move-to-prepick"
+              _collapsed="true"
+              target_pose="{bottle_bottom_aligned_right_pose}"
+            />
+            <Action
+              ID="CreateStampedPose"
+              stamped_pose="{left-pick-pose}"
+              name="create-prepick-pose"
+              reference_frame="world"
+              position_xyz="0;0;0.1"
+            />
+            <Action
+              ID="TransformPose"
+              input_pose="{bottle_bottom_aligned_left_pose}"
+              output_pose="{left-pick-pose}"
+              translation_xyz="0;0;0.12"
+              quaternion_xyzw="0;0;0;0"
+            />
+            <SubTree
+              ID="Move to Pose"
+              controller_names="left_manipulator_joint_trajectory_controller;left_robotiq_gripper_controller"
+              ik_frame="left_grasp_link"
+              link_padding="0.01"
+              planning_group_name="left_manipulator"
+              require_user_approval="false"
+              target_pose="{left-pick-pose}"
+              velocity_scale_factor="1.0"
+              name="move-to-prepick"
+              _collapsed="true"
+            />
+            <Action
+              ID="CreateStampedPose"
+              stamped_pose="{right-pick-pose}"
+              name="create-prepick-pose"
+              reference_frame="world"
+              position_xyz="0;0;0.1"
+            />
+            <Action
+              ID="TransformPose"
+              input_pose="{bottle_bottom_aligned_right_pose}"
+              output_pose="{right-pick-pose}"
+              translation_xyz="0;0;0.12"
+              quaternion_xyzw="0;0;0;0"
+            />
+            <SubTree
+              ID="Move to Pose"
+              controller_names="right_manipulator_joint_trajectory_controller;right_robotiq_gripper_controller"
+              ik_frame="right_grasp_link"
+              link_padding="0.01"
+              planning_group_name="right_manipulator"
+              require_user_approval="false"
+              velocity_scale_factor="1.0"
+              name="move-to-prepick"
+              _collapsed="true"
+              target_pose="{right-pick-pose}"
+            />
+            <SubTree ID="Close Left Gripper" _collapsed="true" />
+            <SubTree ID="Close Right Gripper" _collapsed="true" />
+            <Control ID="Sequence" _skipIf="true">
+              <Action
+                ID="AddPoseStampedToVector"
+                vector="{left_pose_stamped_vector}"
+                input="{bottle_bottom_aligned_left_pose}"
+              />
+              <Action
+                ID="AddPoseStampedToVector"
+                vector="{left_pose_stamped_vector}"
+                input="{left-pick-pose}"
+              />
+              <Action
+                ID="PlanCartesianPath"
+                joint_trajectory_msg="{left_joint_trajectory_msg}"
+                path="{left_pose_stamped_vector}"
+                planning_group_name="left_manipulator"
+                position_only="false"
+              />
+              <Action
+                ID="ExecuteFollowJointTrajectory"
+                execute_follow_joint_trajectory_action_name="/left_manipulator_joint_trajectory_controller/follow_joint_trajectory"
+                joint_trajectory_msg="{left_joint_trajectory_msg}"
+              />
+            </Control>
+          </Control>
+          <Action
+            ID="BreakpointSubscriber"
+            breakpoint_topic="/moveit_pro_breakpoint"
+            _skipIf="true"
+          />
+          <Action
+            ID="SwitchController"
+            activate_asap="true"
+            automatic_deactivation="true"
+            controller_list_action_name="/controller_manager/list_controllers"
+            controller_switch_action_name="/controller_manager/switch_controller"
+            strictness="1"
+            timeout="-1.000000"
+            activate_controllers="joint_trajectory_controller"
+          />
+          <Action
+            ID="CreateStampedPose"
+            reference_frame="left_grasp_link"
+            stamped_pose="{flip_stamped_pose}"
+            position_xyz="0;0.25;0"
+            orientation_xyzw="0.0;0.0;0.707;0.707"
+          />
+          <SubTree
+            ID="Multi-tip Path Move With Pose"
+            _collapsed="true"
+            stamped_pose="{flip_stamped_pose}"
+          />
+          <Action
+            ID="CreateStampedPose"
+            reference_frame="left_grasp_link"
+            stamped_pose="{flip_stamped_pose}"
+            position_xyz="0;-0.2;0"
+            orientation_xyzw="0.0;0.0;0.0;1.0"
+          />
+          <SubTree
+            ID="Multi-tip Path Move With Pose"
+            _collapsed="true"
+            stamped_pose="{flip_stamped_pose}"
+          />
+          <Action
+            ID="BreakpointSubscriber"
+            breakpoint_topic="/moveit_pro_breakpoint"
+            _skipIf="true"
+          />
+          <Action ID="WaitForDuration" delay_duration="1.000000" />
+          <SubTree ID="Open Left Gripper" _collapsed="true" />
+          <SubTree ID="Open Right Gripper" _collapsed="true" />
+        </Control>
+      </Decorator>
+    </Control>
+  </BehaviorTree>
+  <TreeNodesModel>
+    <SubTree ID="ML Register Bottle" />
+  </TreeNodesModel>
+</root>
