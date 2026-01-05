@@ -4,7 +4,11 @@
 
 ### SSH
 
-`sshpass -p clearpath ssh -Y administrator@cpr-r100-0599.local`
+Remote into the Clearpath PC with agent and X11 forwarding:
+
+`ssh -AY administrator@cpr-r100-0599.local`
+
+The admin password for both URs is `password`.
 
 ### Teach pendants
 
@@ -12,28 +16,31 @@ The admin password for both URs is `password`.
 
 ## Clearpath Base Startup
 
-1. To turn the Phoebe robot on, press the power button on the Clearpath base. You should hear the fans turn on and the
-   power button should start blinking blue. After 2-3 minutes, the power button light should stop blinking and show
-   solid blue, this means the Clearpath platform systemd services started successfully and were able to establish
-   communication with the on-board microcontroller. \
+1. To turn the Phoebe robot on, press the power button on the Clearpath base.
+   You should hear the fans turn on and the power button should start blinking blue.
+   After 2-3 minutes, the power button light should stop blinking and show solid blue, this means the Clearpath platform systemd services started and were to establish communication with the on-board microcontroller.
+   
    NOTE: sometimes the microcontroller does not boot properly and the power button light will continue blinking blue
    indefinitely, if the light is still blinking after ~4 minutes, reboot the Clearpath using the power button.
-2. Once the power button is solid blue, the E-stop can be released. To do so, press the "START" button on the Autec
-   wireless E-stop controller. NOTE: you may need to press the "START" button a few times.
-3. The light around the "E-STOP RESET" button on the Clearpath base should begin blinking red. Press it to release the
-   E-stop.
-4. At this point the Clearpath base can be teleoperated with the wireless PS4 controller. To move the base with the PS4
-   controller, first connect the controller, then hold the L1 trigger and move the joysticks to teleop the Clearpath
-   base.
+2. Once the power button is solid blue, the Autec E-stop can be released.
+   To do so, press the black "START" button on the side of the yellow Autec wireless E-stop controller.
+   
+   NOTE: you may need to press the "START" button a few times.
+3. The light around the Clearpath "E-STOP RESET" button on the Clearpath base should begin blinking red.
+   Press it to release the Clearpath wired E-stop.
+   The button light should turn off.
+   The horizontal line lights around the base of the Clearpath should still be solid red at this point.
+4. At this point the Clearpath base can be teleoperated with the wireless PS4 controller.
+   To move the base with the PS4 controller, first connect the controller, then hold the L1 trigger and move the joysticks to teleop the Clearpath base.
 
 ## MoveIt Pro Startup
 
-1. Once the Clearpath base has been started and the E-stop has been released, power on the UR arms by pressing the
-   "LEFT UR5" and "RIGHT UR5" buttons on on the platform behind the monitors. You should hear the fans briefly start up
-   and then the Polyscope software should start booting on the monitors.
-2. Once the URs are booted, release their E-stop by pressing the red button in the bottom left corner of the monitor,
-   then press "ON". You may be asked to verify the robot mounting position since they are mounted at angles. Once that
-   is complete and the robot is in "idle", press "START". You should hear the brakes release.
+1. Once the Clearpath base has been started and the E-stop has been released, power on the UR arms by pressing the "LEFT UR5" and "RIGHT UR5" buttons on on the platform behind the monitors.
+   You should hear the fans briefly start up and then the Polyscope software should start booting on the monitors.
+2. Once the URs are booted, enable and release their E-stop by pressing the red "Power off" button in the bottom left corner of the monitor, then press "ON".
+   You may be asked to verify the robot mounting position since they are mounted at angles by viewing a 3D visualization, checking a checkbox, and pressing a "Robot Position Verified" button.
+   Once that is complete and the robot is in "Idle" plus "Robot Active", press "START".
+   You should hear the brakes release.
 3. At this point all of the hardware is ready. SSH into the phoebe using
    `sshpass -p clearpath ssh -Y administrator@cpr-r100-0599.local`.
 4. In the ssh shell, build and run MoveIt Pro with `moveit_pro build/run`. \
@@ -113,7 +120,7 @@ To disable the lifts the following steps will need to be taken:
   [upper_joint](https://github.com/PickNikRobotics/dual_arm_mobile_ws/blob/b1a4c8641fb5436d8143ee6ca906dca3acb48e5e/src/dual_arm_mobile_description/xacro/ewellix_tlt500.macro.xacro#L129-L136)
   to fixed joints by removing their axis, limit, and dynamics tags.
 - Remove references to `lift_left_upper_joint` and `lift_right_upper_joint` in the
-  [ros2_control.yaml file](https://github.com/PickNikRobotics/dual_arm_mobile_ws/blob/main/src/dual_arm_mobile_hw/config/control/dual_arm_mobile.ros2_control.yaml),
+  [ros2_control.yaml file](https://github.com/PickNikRobotics/dual_arm_mobile_ws/blob/main/src/dual_arm_mobile_sim/config/control/dual_arm.ros2_control.yaml),
   (and probably the joint_limits files as well).
 - Remove 2 of the values in the
   [joint_limit_margins](https://github.com/PickNikRobotics/dual_arm_mobile_ws/blob/b1a4c8641fb5436d8143ee6ca906dca3acb48e5e/src/dual_arm_mobile_hw/config/moveit/servo.yaml#L51)
@@ -141,3 +148,13 @@ Other useful details:
 - To get more status details and a journal snippet for a service, you can run `systemctl status <service_name>`.
 - To follow the journal output for a service unit, you can run `journalctl -fu <service_name>`
 - To change the state of a service, you can run `sudo systemctl start|stop|restart <service_name>`
+
+### DISPLAY Error after running PRO
+
+After running `moveit-pro run` if you get an error for env var DISPLAY not found, then run the following commands
+
+```bash
+unset MUJOCO_GL
+export DISPLAY=:99
+Xvfb :99 -screen 0 1024x768x24 &
+```

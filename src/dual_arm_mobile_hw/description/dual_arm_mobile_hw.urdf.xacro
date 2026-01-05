@@ -1,14 +1,18 @@
 <?xml version="1.0" ?>
-<robot name="r100-0599" xmlns:xacro="http://wiki.ros.org/xacro">
+<robot name="phoebe" xmlns:xacro="http://wiki.ros.org/xacro">
   <!-- Args that users may need to change. -->
   <xacro:arg name="left_lift_comm_port" default="/dev/ttyUSB1"/>
   <xacro:arg name="right_lift_comm_port" default="/dev/ttyUSB2"/>
+  <xacro:arg name="use_fake_lift_hardware" default="true"/>
   <xacro:arg name="left_arm_ip" default="192.168.131.4"/>
   <xacro:arg name="left_tool_device_name" default="/dev/ttyUSB0"/>
   <xacro:arg name="right_arm_ip" default="192.168.131.3"/>
   <xacro:arg name="right_tool_device_name" default="/tmp/ttyUR"/>
   <xacro:arg name="left_gripper_comm_port" default="/dev/ttyUSB0"/>
   <xacro:arg name="right_gripper_comm_port" default="/tmp/ttyUR"/>
+  <xacro:arg name="left_arm_kinematics_hash" default="calib_10848939019749023817"/>
+  <xacro:arg name="right_arm_kinematics_hash" default="calib_5972249097379105770"/>
+
 
   <!-- Mobile base joints -->
   <link name="world"/>
@@ -70,6 +74,7 @@
       prefix="lift_left_"
       generate_ros2_control_tag="true"
       lift_comm_port="$(arg left_lift_comm_port)"
+      use_fake_lift_hardware="$(arg use_fake_lift_hardware)"
   >
     <origin rpy="0.0 0.0 0.0" xyz="0.0 0.2 0.04"/>
   </xacro:ewellix_tlt500>
@@ -79,6 +84,7 @@
       prefix="lift_right_"
       generate_ros2_control_tag="true"
       lift_comm_port="$(arg right_lift_comm_port)"
+      use_fake_lift_hardware="$(arg use_fake_lift_hardware)"
   >
     <origin rpy="0.0 0.0 0.0" xyz="0.0 -0.2 0.04"/>
   </xacro:ewellix_tlt500>
@@ -97,6 +103,7 @@
     trajectory_port="50003"
     tool_device_name="$(arg left_tool_device_name)"
     tool_tcp_port="54320"
+    kinematics_hash="$(arg left_arm_kinematics_hash)"
     >
     <origin rpy="0 0 -0.7853981633974483" xyz="0 0 0"/>
   </xacro:ur5e>
@@ -112,6 +119,7 @@
       trajectory_port="50007"
       tool_device_name="$(arg right_tool_device_name)"
       tool_tcp_port="54321"
+      kinematics_hash="$(arg right_arm_kinematics_hash)"
   >
     <origin rpy="0 0 -2.356194490192345" xyz="0 0 0"/>
   </xacro:ur5e>

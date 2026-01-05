@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<root BTCPP_format="4" main_tree_to_execute="Close Gripper">
+<root BTCPP_format="4" main_tree_to_execute="Close Left Gripper">
   <BehaviorTree
-    ID="Close Gripper"
-    _description="Close the gripper"
-    _favorite="true"
+    ID="Close Left Gripper"
+    _description="Close the left gripper"
+    _favorite="false"
   >
     <Control ID="Sequence" name="root">
       <Action
@@ -15,10 +15,13 @@
     </Control>
   </BehaviorTree>
   <TreeNodesModel>
-    <SubTree ID="Close Gripper">
+    <SubTree ID="Close Left Gripper">
       <MetadataFields>
         <Metadata subcategory="Grasping" />
         <Metadata runnable="true" />
+      </MetadataFields>
+      <MetadataFields>
+        <Metadata subcategory="Grasping" />
       </MetadataFields>
     </SubTree>
   </TreeNodesModel>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root BTCPP_format="4" main_tree_to_execute="Reset Simulation to Keyframe">
+  <!--//////////-->
+  <BehaviorTree
+    ID="Reset Simulation to Keyframe"
+    _description=""
+    _favorite="false"
+  >
+    <Control ID="Sequence" name="TopLevelSequence">
+      <Action
+        ID="GetTextFromUser"
+        text_output="{text_output}"
+        default_values="bottle-drop"
+        prompts="What keyframe name should we reset to?"
+      />
+      <Decorator
+        ID="ForEach"
+        index="{index}"
+        out="{out}"
+        vector_in="{text_output}"
+      >
+        <Action ID="AlwaysSuccess" />
+      </Decorator>
+      <Action
+        ID="ResetMujocoKeyframe"
+        response_timeout="10.000000"
+        wait_for_server_available_timeout="3.000000"
+        keyframe_name="{out}"
+      />
+    </Control>
+  </BehaviorTree>
+  <TreeNodesModel>
+    <SubTree ID="Reset Simulation to Keyframe">
+      <MetadataFields>
+        <Metadata runnable="true" />
+        <Metadata subcategory="User Input" />
+      </MetadataFields>
+    </SubTree>
+  </TreeNodesModel>
+</root>

@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<robot name="r100-0599" xmlns:xacro="http://wiki.ros.org/xacro">
+<robot name="phoebe" xmlns:xacro="http://wiki.ros.org/xacro">
   <!-- Args that users may need to change. -->
   <xacro:arg name="mujoco_model" default=""/>
 
@@ -110,11 +110,26 @@
   >
   </xacro:robotiq_2f85>
 
+  <!-- <link name="mobile_base_ee_link"/>
+  <joint name="mobile_base_ee_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.0 0.0 0.5"/>
+    <parent link="chassis_link"/>
+    <child link="mobile_base_ee_link"/>
+  </joint>
+
+  <link name="mobile_base_ee_child_link"/>
+  <joint name="mobile_base_ee_child_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+    <parent link="mobile_base_ee_link"/>
+    <child link="mobile_base_ee_child_link"/>
+  </joint> -->
+
   <ros2_control name="ur_mujoco_control" type="system">
     <hardware>
       <plugin>picknik_mujoco_ros/MujocoSystem</plugin>
       <param name="mujoco_model">$(arg mujoco_model)</param>
       <param name="mujoco_model_package">dual_arm_mobile_sim</param>
+      <param name="mujoco_viewer">true</param>
       <param name="render_publish_rate">60</param>
       <param name="tf_publish_rate">60</param>
       <param name="lidar_publish_rate">10</param>

@@ -62,7 +62,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
 # Install additional dependencies
 # You can also add any necessary apt-get install, pip install, etc. commands at this point.
 # NOTE: The /opt/overlay_ws folder contains MoveIt Pro binary packages and the source file.
-# hadolint ignore=SC1091
+# hadolint ignore=SC1091,DL3008
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     --mount=type=cache,target=/var/lib/apt,sharing=locked \
     . /opt/overlay_ws/install/setup.sh && \

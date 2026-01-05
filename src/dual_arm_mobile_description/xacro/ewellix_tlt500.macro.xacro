@@ -5,6 +5,7 @@
     prefix:=''
     generate_ros2_control_tag:='false'
     lift_comm_port:='/dev/ttyUSB1'
+    use_fake_lift_hardware:=false
     *origin
     ">
     <link name="${prefix}plate_link">
@@ -144,13 +145,20 @@
     <xacro:if value="${generate_ros2_control_tag}">
       <ros2_control name="${prefix}hardware" type="system">
         <hardware>
-          <plugin>ewellix_driver/EwellixHardwareInterface</plugin>
-          <param name="port">${lift_comm_port}</param>
-          <param name="baud">38400</param>
-          <param name="timeout">1000</param>
-          <param name="conversion">1600</param>
-          <param name="rated_effort">2000</param>
-          <param name="tolerance">0.005</param>
+          <xacro:if value="${use_fake_lift_hardware}">
+            <plugin>mock_components/GenericSystem</plugin>
+            <param name="state_following_offset">0.0</param>
+            <param name="calculate_dynamics">true</param>
+          </xacro:if>
+          <xacro:unless value="${use_fake_lift_hardware}">
+            <plugin>ewellix_driver/EwellixHardwareInterface</plugin>
+            <param name="port">${lift_comm_port}</param>
+            <param name="baud">38400</param>
+            <param name="timeout">1000</param>
+            <param name="conversion">1600</param>
+            <param name="rated_effort">2000</param>
+            <param name="tolerance">0.005</param>
+          </xacro:unless>
         </hardware>
         <joint name="${prefix}upper_joint">
           <command_interface name="position"/>
