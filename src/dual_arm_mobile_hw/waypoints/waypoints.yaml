@@ -1,0 +1,884 @@
+- description: ''
+  favorite: false
+  joint_group_names:
+  - left_arm_only
+  - left_gripper
+  - left_manipulator
+  - left_mobile_manipulator
+  - manipulator
+  - mobile_base
+  - right_arm_only
+  - right_gripper
+  - right_manipulator
+  - right_mobile_manipulator
+  joint_state:
+    effort: []
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    name:
+    - left_shoulder_pan_joint
+    - left_shoulder_lift_joint
+    - left_elbow_joint
+    - left_wrist_1_joint
+    - left_wrist_2_joint
+    - left_wrist_3_joint
+    - left_robotiq_85_left_knuckle_joint
+    - lift_left_upper_joint
+    - linear_x_joint
+    - linear_y_joint
+    - rotational_yaw_joint
+    - lift_right_upper_joint
+    - right_shoulder_pan_joint
+    - right_shoulder_lift_joint
+    - right_elbow_joint
+    - right_wrist_1_joint
+    - right_wrist_2_joint
+    - right_wrist_3_joint
+    - right_robotiq_85_left_knuckle_joint
+    position:
+    - -1.8702195326434534
+    - -1.4110140663436432
+    - -1.2493515014648438
+    - -1.9603311024107875
+    - 1.6959558725357056
+    - 2.2123708724975586
+    - 0
+    - 0.004999999888241291
+    - 0.6513762482651326
+    - 0.05
+    - -0.0016704611653470816
+    - 0.009999999776482582
+    - -0.3584821859942835
+    - -1.984133859673971
+    - -1.730688214302063
+    - -1.422333226805069
+    - 1.001200795173645
+    - 2.442519426345825
+    - 0
+    velocity: []
+  multi_dof_joint_state:
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    joint_names: []
+    transforms: []
+    twist: []
+    wrench: []
+  name: Away From Fridge
+- description: ''
+  favorite: false
+  joint_group_names:
+  - manipulator
+  joint_state:
+    effort: []
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    name:
+    - lift_left_upper_joint
+    - left_shoulder_pan_joint
+    - left_shoulder_lift_joint
+    - left_elbow_joint
+    - left_wrist_1_joint
+    - left_wrist_2_joint
+    - left_wrist_3_joint
+    - linear_x_joint
+    - linear_y_joint
+    - rotational_yaw_joint
+    - lift_right_upper_joint
+    - right_shoulder_pan_joint
+    - right_shoulder_lift_joint
+    - right_elbow_joint
+    - right_wrist_1_joint
+    - right_wrist_2_joint
+    - right_wrist_3_joint
+    position:
+    - 0.004999999888241291
+    - -1.8373153845416468
+    - -2.8060461483397425
+    - -0.7613516449928284
+    - -0.6025195878795166
+    - 0.6589529514312744
+    - 1.5183082818984985
+    - 1.005
+    - 0.125
+    - 0
+    - 0.005625000223517418
+    - -0.37460357347597295
+    - -2.6098529301085414
+    - -1.423447608947754
+    - -1.534021982257702
+    - 0.9967405796051025
+    - 2.4310171604156494
+    velocity: []
+  multi_dof_joint_state:
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    joint_names: []
+    transforms: []
+    twist: []
+    wrench: []
+  name: Contact Fridge
+- description: ''
+  favorite: false
+  joint_group_names:
+  - left_arm_only
+  - left_gripper
+  - left_manipulator
+  - left_mobile_manipulator
+  - manipulator
+  - mobile_base
+  - right_arm_only
+  - right_gripper
+  - right_manipulator
+  - right_mobile_manipulator
+  joint_state:
+    effort: []
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    name:
+    - left_shoulder_pan_joint
+    - left_shoulder_lift_joint
+    - left_elbow_joint
+    - left_wrist_1_joint
+    - left_wrist_2_joint
+    - left_wrist_3_joint
+    - left_robotiq_85_left_knuckle_joint
+    - lift_left_upper_joint
+    - linear_x_joint
+    - linear_y_joint
+    - rotational_yaw_joint
+    - lift_right_upper_joint
+    - right_shoulder_pan_joint
+    - right_shoulder_lift_joint
+    - right_elbow_joint
+    - right_wrist_1_joint
+    - right_wrist_2_joint
+    - right_wrist_3_joint
+    - right_robotiq_85_left_knuckle_joint
+    position:
+    - -2.3671191374408167
+    - -2.11871399501943
+    - -1.5438812971115112
+    - 0.755122109050415
+    - 1.6897639036178589
+    - 0.8290848731994629
+    - 0.04890132158590308
+    - 0.005625000223517418
+    - 0.8219670888109157
+    - 0.940730109390374
+    - 1.5507819689971445
+    - 0.04125000163912773
+    - -0.20301753679384404
+    - -2.6476999721922816
+    - -0.9516140818595886
+    - 0.3425070482441406
+    - 1.2243297100067139
+    - -0.7048895994769495
+    - 0.04890132158590308
+    velocity: []
+  multi_dof_joint_state:
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    joint_names: []
+    transforms: []
+    twist: []
+    wrench: []
+  name: Final Waypoint
+- description: ''
+  favorite: false
+  joint_group_names:
+  - left_arm_only
+  - left_gripper
+  - left_manipulator
+  - left_mobile_manipulator
+  - manipulator
+  - mobile_base
+  - right_arm_only
+  - right_gripper
+  - right_manipulator
+  - right_mobile_manipulator
+  joint_state:
+    effort: []
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    name:
+    - left_shoulder_pan_joint
+    - left_shoulder_lift_joint
+    - left_elbow_joint
+    - left_wrist_1_joint
+    - left_wrist_2_joint
+    - left_wrist_3_joint
+    - left_robotiq_85_left_knuckle_joint
+    - lift_left_upper_joint
+    - linear_x_joint
+    - linear_y_joint
+    - rotational_yaw_joint
+    - lift_right_upper_joint
+    - right_shoulder_pan_joint
+    - right_shoulder_lift_joint
+    - right_elbow_joint
+    - right_wrist_1_joint
+    - right_wrist_2_joint
+    - right_wrist_3_joint
+    - right_robotiq_85_left_knuckle_joint
+    position:
+    - -2.477340284978048
+    - -1.9561687908568324
+    - -1.7982174158096313
+    - -0.9543576401523133
+    - 1.7259124517440796
+    - 1.5995804071426392
+    - 0
+    - 0.005625000223517418
+    - 0.8280337423589968
+    - 0.3153992701544781
+    - 1.325117556118217
+    - 0.03999999910593033
+    - -0.3107417265521448
+    - -2.855476041833395
+    - -1.7121007442474365
+    - 0.4412764745899658
+    - 2.2451040744781494
+    - -0.9524787108050745
+    - 0
+    velocity: []
+  multi_dof_joint_state:
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    joint_names: []
+    transforms: []
+    twist: []
+    wrench: []
+  name: Handoff
+- description: ''
+  favorite: false
+  joint_group_names:
+  - manipulator
+  joint_state:
+    effort: []
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    name:
+    - lift_left_upper_joint
+    - left_shoulder_pan_joint
+    - left_shoulder_lift_joint
+    - left_elbow_joint
+    - left_wrist_1_joint
+    - left_wrist_2_joint
+    - left_wrist_3_joint
+    - linear_x_joint
+    - linear_y_joint
+    - rotational_yaw_joint
+    - lift_right_upper_joint
+    - right_shoulder_pan_joint
+    - right_shoulder_lift_joint
+    - right_elbow_joint
+    - right_wrist_1_joint
+    - right_wrist_2_joint
+    - right_wrist_3_joint
+    position:
+    - 0.09437499940395355
+    - -1.8375733534442347
+    - -1.589053293267721
+    - -1.234797716140747
+    - -1.2441282135299225
+    - 1.262725591659546
+    - 1.3718101978302002
+    - 0
+    - 0
+    - 0
+    - 0.09000000357627869
+    - -0.4141891638385218
+    - -2.2102743587889613
+    - -0.9667487144470215
+    - -0.7950576108745118
+    - 0.8214001655578613
+    - -0.3326786200152796
+    velocity: []
+  multi_dof_joint_state:
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    joint_names: []
+    transforms: []
+    twist: []
+    wrench: []
+  name: Home
+- description: ''
+  favorite: false
+  joint_group_names:
+  - left_arm_only
+  - left_gripper
+  - left_manipulator
+  - left_mobile_manipulator
+  - manipulator
+  - mobile_base
+  - right_arm_only
+  - right_gripper
+  - right_manipulator
+  - right_mobile_manipulator
+  joint_state:
+    effort: []
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    name:
+    - left_shoulder_pan_joint
+    - left_shoulder_lift_joint
+    - left_elbow_joint
+    - left_wrist_1_joint
+    - left_wrist_2_joint
+    - left_wrist_3_joint
+    - left_robotiq_85_left_knuckle_joint
+    - lift_left_upper_joint
+    - linear_x_joint
+    - linear_y_joint
+    - rotational_yaw_joint
+    - lift_right_upper_joint
+    - right_shoulder_pan_joint
+    - right_shoulder_lift_joint
+    - right_elbow_joint
+    - right_wrist_1_joint
+    - right_wrist_2_joint
+    - right_wrist_3_joint
+    - right_robotiq_85_left_knuckle_joint
+    position:
+    - 0.48806628584861755
+    - -2.7385808430113734
+    - -1.0879281759262085
+    - -0.7341673535159607
+    - 0.7470062375068665
+    - 1.364161491394043
+    - 0
+    - 0.005625000223517418
+    - -3.5533437459926926e-05
+    - -0.0001009276927741512
+    - 0.00029325682741276757
+    - 0.08749999850988388
+    - -0.41786080995668584
+    - -2.2119227848448695
+    - -0.9701027870178223
+    - -0.8011953991702576
+    - 0.821988582611084
+    - -0.33691293398012334
+    - 0
+    velocity: []
+  multi_dof_joint_state:
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    joint_names: []
+    transforms: []
+    twist: []
+    wrench: []
+  name: Look at Tag
+- description: ''
+  favorite: false
+  joint_group_names:
+  - left_arm_only
+  - left_gripper
+  - left_manipulator
+  - left_mobile_manipulator
+  - manipulator
+  - mobile_base
+  - right_arm_only
+  - right_gripper
+  - right_manipulator
+  - right_mobile_manipulator
+  joint_state:
+    effort: []
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    name:
+    - left_shoulder_pan_joint
+    - left_shoulder_lift_joint
+    - left_elbow_joint
+    - left_wrist_1_joint
+    - left_wrist_2_joint
+    - left_wrist_3_joint
+    - left_robotiq_85_left_knuckle_joint
+    - lift_left_upper_joint
+    - linear_x_joint
+    - linear_y_joint
+    - rotational_yaw_joint
+    - lift_right_upper_joint
+    - right_shoulder_pan_joint
+    - right_shoulder_lift_joint
+    - right_elbow_joint
+    - right_wrist_1_joint
+    - right_wrist_2_joint
+    - right_wrist_3_joint
+    - right_robotiq_85_left_knuckle_joint
+    position:
+    - -2.4773317019092005
+    - -1.9561735592284144
+    - -1.79816472530365
+    - -0.9543249172023316
+    - 1.7258992195129395
+    - 1.5995924472808838
+    - 0.04890132158590308
+    - 0.005625000223517418
+    - 0.827948831232201
+    - 0.3161842828148396
+    - 1.3250486579415437
+    - 0.04125000163912773
+    - -0.4709814230548304
+    - -2.614084383050436
+    - -1.9373719692230225
+    - 0.30452363073315425
+    - 2.325880765914917
+    - -1.136313263569967
+    - 0.04890132158590308
+    velocity: []
+  multi_dof_joint_state:
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    joint_names: []
+    transforms: []
+    twist: []
+    wrench: []
+  name: Near Handoff
+- description: ''
+  favorite: false
+  joint_group_names:
+  - manipulator
+  joint_state:
+    effort: []
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    name:
+    - linear_x_joint
+    - linear_y_joint
+    - rotational_yaw_joint
+    - lift_left_upper_joint
+    - left_shoulder_pan_joint
+    - left_shoulder_lift_joint
+    - left_elbow_joint
+    - left_wrist_1_joint
+    - left_wrist_2_joint
+    - left_wrist_3_joint
+    - lift_right_upper_joint
+    - right_shoulder_pan_joint
+    - right_shoulder_lift_joint
+    - right_elbow_joint
+    - right_wrist_1_joint
+    - right_wrist_2_joint
+    - right_wrist_3_joint
+    position:
+    - 0.6264505333494549
+    - 0.04982298635871135
+    - -0.2769466551995082
+    - 0.0062500000931322575
+    - -1.7581880728351038
+    - -2.7800938091673792
+    - -1.2227963209152222
+    - -1.0153695505908509
+    - 0.815617024898529
+    - 2.217643976211548
+    - 0.008750000037252903
+    - -0.3745458761798304
+    - -2.6098395786681117
+    - -1.4233077764511108
+    - -1.534077712600567
+    - 0.9967479109764099
+    - 2.431083917617798
+    velocity: []
+  multi_dof_joint_state:
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    joint_names: []
+    transforms: []
+    twist: []
+    wrench: []
+  name: Post Contact Fridge
+- description: ''
+  favorite: false
+  joint_group_names:
+  - left_arm_only
+  - left_gripper
+  - left_manipulator
+  - left_mobile_manipulator
+  - manipulator
+  - mobile_base
+  - right_arm_only
+  - right_gripper
+  - right_manipulator
+  - right_mobile_manipulator
+  joint_state:
+    effort: []
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    name:
+    - left_shoulder_pan_joint
+    - left_shoulder_lift_joint
+    - left_elbow_joint
+    - left_wrist_1_joint
+    - left_wrist_2_joint
+    - left_wrist_3_joint
+    - left_robotiq_85_left_knuckle_joint
+    - lift_left_upper_joint
+    - linear_x_joint
+    - linear_y_joint
+    - rotational_yaw_joint
+    - lift_right_upper_joint
+    - right_shoulder_pan_joint
+    - right_shoulder_lift_joint
+    - right_elbow_joint
+    - right_wrist_1_joint
+    - right_wrist_2_joint
+    - right_wrist_3_joint
+    - right_robotiq_85_left_knuckle_joint
+    position:
+    - -2.4052234331714075
+    - -1.872145792047018
+    - -1.7509746551513672
+    - -1.0745131236365815
+    - 1.7252631187438965
+    - 1.6725599765777588
+    - 0.04890132158590308
+    - 0.005625000223517418
+    - 0.8277656631554058
+    - 0.31618982016356323
+    - 1.3254054675565892
+    - 0.04125000163912773
+    - -0.6368625799762171
+    - -2.3714996776976527
+    - -2.059370517730713
+    - 0.029456897372863722
+    - 2.3889894485473633
+    - -1.3537738958941858
+    - 0.04890132158590308
+    velocity: []
+  multi_dof_joint_state:
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    joint_names: []
+    transforms: []
+    twist: []
+    wrench: []
+  name: Post Handoff
+- description: ''
+  favorite: false
+  joint_group_names:
+  - left_arm_only
+  - left_gripper
+  - left_manipulator
+  - left_mobile_manipulator
+  - manipulator
+  - mobile_base
+  - right_arm_only
+  - right_gripper
+  - right_manipulator
+  - right_mobile_manipulator
+  joint_state:
+    effort: []
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    name:
+    - left_shoulder_pan_joint
+    - left_shoulder_lift_joint
+    - left_elbow_joint
+    - left_wrist_1_joint
+    - left_wrist_2_joint
+    - left_wrist_3_joint
+    - left_robotiq_85_left_knuckle_joint
+    - lift_left_upper_joint
+    - linear_x_joint
+    - linear_y_joint
+    - rotational_yaw_joint
+    - lift_right_upper_joint
+    - right_shoulder_pan_joint
+    - right_shoulder_lift_joint
+    - right_elbow_joint
+    - right_wrist_1_joint
+    - right_wrist_2_joint
+    - right_wrist_3_joint
+    - right_robotiq_85_left_knuckle_joint
+    position:
+    - -1.8702767531024378
+    - -1.4110382956317444
+    - -1.2493259906768799
+    - -1.9603387318053187
+    - 1.696008563041687
+    - 2.2123961448669434
+    - 0.3108726872246696
+    - 0.007499999832361937
+    - 0.6513890309020682
+    - 0.04992163700256663
+    - -0.002697926816855213
+    - 0.004999999888241291
+    - -0.9566057364093226
+    - -2.274290700952047
+    - -1.671515703201294
+    - -0.744350330238678
+    - 0.874992847442627
+    - 1.710315465927124
+    - 0
+    velocity: []
+  multi_dof_joint_state:
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    joint_names: []
+    transforms: []
+    twist: []
+    wrench: []
+  name: Pre Close Fridge
+- description: ''
+  favorite: false
+  joint_group_names:
+  - manipulator
+  joint_state:
+    effort: []
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    name:
+    - lift_left_upper_joint
+    - left_shoulder_pan_joint
+    - left_shoulder_lift_joint
+    - left_elbow_joint
+    - left_wrist_1_joint
+    - left_wrist_2_joint
+    - left_wrist_3_joint
+    - linear_x_joint
+    - linear_y_joint
+    - rotational_yaw_joint
+    - lift_right_upper_joint
+    - right_shoulder_pan_joint
+    - right_shoulder_lift_joint
+    - right_elbow_joint
+    - right_wrist_1_joint
+    - right_wrist_2_joint
+    - right_wrist_3_joint
+    position:
+    - 0.004999999888241291
+    - -1.8373153845416468
+    - -2.8060461483397425
+    - -0.7613516449928284
+    - -0.6025195878795166
+    - 0.6589529514312744
+    - 1.5183082818984985
+    - 1.005
+    - 0.125
+    - 0
+    - 0.005625000223517418
+    - -0.41437274614443
+    - -2.591
+    - -0.5184
+    - -1.688279768029684
+    - 1.0313299894332886
+    - 2.400271415710449
+    velocity: []
+  multi_dof_joint_state:
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    joint_names: []
+    transforms: []
+    twist: []
+    wrench: []
+  name: Pre Contact Fridge
+- description: ''
+  favorite: false
+  joint_group_names:
+  - left_arm_only
+  - left_gripper
+  - left_manipulator
+  - left_mobile_manipulator
+  - manipulator
+  - mobile_base
+  - right_arm_only
+  - right_gripper
+  - right_manipulator
+  - right_mobile_manipulator
+  joint_state:
+    effort: []
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    name:
+    - left_shoulder_pan_joint
+    - left_shoulder_lift_joint
+    - left_elbow_joint
+    - left_wrist_1_joint
+    - left_wrist_2_joint
+    - left_wrist_3_joint
+    - left_robotiq_85_left_knuckle_joint
+    - lift_left_upper_joint
+    - linear_x_joint
+    - linear_y_joint
+    - rotational_yaw_joint
+    - lift_right_upper_joint
+    - right_shoulder_pan_joint
+    - right_shoulder_lift_joint
+    - right_elbow_joint
+    - right_wrist_1_joint
+    - right_wrist_2_joint
+    - right_wrist_3_joint
+    - right_robotiq_85_left_knuckle_joint
+    position:
+    - -1.8703721205340784
+    - -1.410952554350235
+    - -1.2492631673812866
+    - -1.9602381191649378
+    - 1.6960415840148926
+    - 2.2123396396636963
+    - 0.04890132158590308
+    - 0.005625000223517418
+    - 0.8279531878696601
+    - 0.3154232334761903
+    - 0.9704496162876537
+    - 0.04125000163912773
+    - -0.8600295225726526
+    - -2.178618093530172
+    - -2.2347068786621094
+    - -0.3420265477946778
+    - 0.8874453902244568
+    - 1.9479261636734009
+    - 0
+    velocity: []
+  multi_dof_joint_state:
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    joint_names: []
+    transforms: []
+    twist: []
+    wrench: []
+  name: Pre Handoff
+- description: ''
+  favorite: false
+  joint_group_names:
+  - left_arm_only
+  - left_gripper
+  - left_manipulator
+  - left_mobile_manipulator
+  - manipulator
+  - mobile_base
+  - right_arm_only
+  - right_gripper
+  - right_manipulator
+  - right_mobile_manipulator
+  joint_state:
+    effort: []
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    name:
+    - left_shoulder_pan_joint
+    - left_shoulder_lift_joint
+    - left_elbow_joint
+    - left_wrist_1_joint
+    - left_wrist_2_joint
+    - left_wrist_3_joint
+    - left_robotiq_85_left_knuckle_joint
+    - lift_left_upper_joint
+    - linear_x_joint
+    - linear_y_joint
+    - rotational_yaw_joint
+    - lift_right_upper_joint
+    - right_shoulder_pan_joint
+    - right_shoulder_lift_joint
+    - right_elbow_joint
+    - right_wrist_1_joint
+    - right_wrist_2_joint
+    - right_wrist_3_joint
+    - right_robotiq_85_left_knuckle_joint
+    position:
+    - -2.4682844320880335
+    - -1.9565907917418421
+    - -1.8061952590942383
+    - -0.961491124039032
+    - 1.728286623954773
+    - 1.5953466892242432
+    - 0
+    - 0.14249999821186066
+    - 1.0471362807877722
+    - 0.46753551234768476
+    - 1.5816359664426225
+    - 0.041875001043081284
+    - -0.2535608450519007
+    - -2.6815177402892054
+    - -1.0083260536193848
+    - 0.43495432912792964
+    - 1.2746257781982422
+    - -0.7110441366778772
+    - 0
+    velocity: []
+  multi_dof_joint_state:
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    joint_names: []
+    transforms: []
+    twist: []
+    wrench: []
+  name: Right Arm Final Positions

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root BTCPP_format="4" main_tree_to_execute="Mobile Base Waypoint">
+  <!--//////////-->
+  <BehaviorTree ID="Mobile Base Waypoint" _description="" _favorite="false">
+    <Control ID="Sequence" name="TopLevelSequence">
+      <Action
+        ID="RetrieveWaypoint"
+        joint_group_name="mobile_base"
+        waypoint_joint_state="{target_joint_state}"
+        waypoint_name="Mobile Base Near 2"
+      />
+      <Action
+        ID="ActivateControllers"
+        controller_names="/base_trajectory_admittance_controller"
+      />
+      <Action
+        ID="PlanToJointGoal"
+        acceleration_scale_factor="1.000000"
+        joint_goal="{target_joint_state}"
+        joint_trajectory_msg="{joint_trajectory_msg}"
+        keep_orientation="false"
+        keep_orientation_link_names="grasp_link"
+        keep_orientation_tolerance="0.1"
+        link_padding="0.000000"
+        max_iterations="5000"
+        planning_group_name="mobile_base"
+        seed="0"
+        trajectory_sampling_rate="100"
+        velocity_scale_factor="0.2"
+      />
+      <Action
+        ID="SetAdmittanceParameters"
+        admittance_parameters_msg="{admittance_parameters_msg}"
+        config_file_name="admittance_parameters_no_admittance.yaml"
+      />
+      <Action
+        ID="ExecuteTrajectoryWithAdmittance"
+        absolute_force_torque_threshold="45;45;45;10;10;10"
+        admittance_parameters_msg="{admittance_parameters_msg}"
+        goal_duration_tolerance="-1.000000"
+        goal_position_tolerance="0.001000"
+        joint_trajectory_msg="{joint_trajectory_msg}"
+        path_position_tolerance="10"
+        controller_action_name="/base_trajectory_admittance_controller/follow_joint_trajectory"
+      />
+    </Control>
+  </BehaviorTree>
+  <TreeNodesModel>
+    <SubTree ID="Mobile Base Waypoint">
+      <MetadataFields>
+        <Metadata runnable="true" />
+        <Metadata subcategory="Motion - Execute" />
+      </MetadataFields>
+    </SubTree>
+  </TreeNodesModel>
+</root>

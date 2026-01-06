@@ -1,0 +1,128 @@
+hardware:
+  simulated: true
+
+  # If the MoveIt Pro Agent should launch the ros2 controller node.
+  # [Optional, default=True]
+  launch_control_node: True
+
+  # If the MoveIt Pro Agent should launch the robot state publisher.
+  # This should be false if you are launching the robot state publisher as part of drivers.
+  # [Optional, default=True]
+  launch_robot_state_publisher: True
+
+  robot_driver_persist_launch_file:
+    package: "moveit_studio_agent"
+    path: "launch/blank.launch.py"
+
+  robot_description:
+    urdf:
+      package: "dual_arm_mobile_sim"
+      path: "description/dual_arm_mobile_sim.urdf.xacro"
+    srdf:
+      package: "dual_arm_mobile_sim"
+      path: "config/moveit/dual_arm_mobile_sim.srdf"
+    urdf_params:
+      - mujoco_model: "description/dual_arm_scene.xml"
+
+moveit_params:
+  joint_group_name: "manipulator"
+  servo:
+    package: "dual_arm_mobile_sim"
+    path: "config/moveit/servo.yaml"
+  joint_limits:
+    package: "dual_arm_mobile_sim"
+    path: "config/moveit/joint_limits.yaml"
+  servo_joint_limits:
+    package: "dual_arm_mobile_sim"
+    path: "config/moveit/hard_joint_limits.yaml"
+  kinematics:
+    package: "dual_arm_mobile_sim"
+    path: "config/moveit/pose_ik_distance.yaml"
+  servo_kinematics:
+    package: "dual_arm_mobile_sim"
+    path: "config/moveit/pose_ik_speed.yaml"
+  pose_jog:
+    package: "dual_arm_mobile_sim"
+    path: "config/moveit/pose_jog.yaml"
+  ompl_planning:
+    package: "dual_arm_mobile_sim"
+    path: "config/moveit/ompl_planning.yaml"
+
+  publish:
+    planning_scene: True
+    geometry_updates: True
+    state_updates: True
+    transforms_updates: True
+
+  trajectory_execution:
+    manage_controllers: True
+    allowed_execution_duration_scaling: 2.0
+    allowed_goal_duration_margin: 5.0
+    allowed_start_tolerance: 0.01
+
+# Configuration for launching ros2_control processes.
+# [Required, if using ros2_control]
+ros2_control:
+  config:
+    package: "dual_arm_mobile_sim"
+    path: "config/control/dual_arm.ros2_control.yaml"
+  controllers_active_at_startup:
+    - "joint_state_broadcaster"
+    - "left_robotiq_gripper_controller"
+    - "right_robotiq_gripper_controller"
+    - "left_force_torque_sensor_broadcaster"
+    - "right_force_torque_sensor_broadcaster"
+    - "joint_trajectory_controller"
+    - "platform_velocity_controller"
+  # Load but do not start these controllers so they can be activated later if needed.
+  controllers_inactive_at_startup:
+    - "servo_controller"
+    - "left_manipulator_joint_trajectory_controller"
+    - "right_manipulator_joint_trajectory_controller"
+    - "lift_joint_trajectory_controller"
+    - "base_velocity_force_controller"
+    - "left_velocity_force_controller"
+    - "right_velocity_force_controller"
+    - "base_left_velocity_force_controller"
+    - "base_right_velocity_force_controller"
+
+objectives:
+  # List of plugins for loading custom behaviors.
+  # [Required]
+  behavior_loader_plugins:
+    # This plugin will load the core MoveIt Pro Behaviors.
+    # Add additional plugin loaders as needed.
+    core:
+      - "moveit_studio::behaviors::CoreBehaviorsLoader"
+      - "moveit_studio::behaviors::MTCCoreBehaviorsLoader"
+      - "moveit_studio::behaviors::NavBehaviorsLoader"
+      - "moveit_studio::behaviors::ServoBehaviorsLoader"
+      - "moveit_studio::behaviors::VisionBehaviorsLoader"
+      - "moveit_studio::behaviors::ConverterBehaviorsLoader"
+      - "moveit_studio::behaviors::MujocoBehaviorsLoader"
+  # Specify source folder for objectives
+  # [Required]
+  objective_library_paths:
+    core_objectives:
+      package_name: "moveit_pro_objectives"
+      relative_path: "objectives/core"
+    motion_objectives:
+      package_name: "moveit_pro_objectives"
+      relative_path: "objectives/motion"
+    perception_objectives:
+      package_name: "moveit_pro_objectives"
+      relative_path: "objectives/perception"
+    mujoco_objectives:
+      package_name: "moveit_pro_objectives"
+      relative_path: "objectives/mujoco"
+    visualization_objectives:
+      package_name: "moveit_pro_objectives"
+      relative_path: "objectives/visualization"
+    sim_objectives:
+      package_name: "dual_arm_mobile_sim"
+      relative_path: "objectives"
+  # Specify the location of the saved waypoints file.
+  # [Required]
+  waypoints_file:
+    package_name: "dual_arm_mobile_sim"
+    relative_path: "waypoints/waypoints.yaml"

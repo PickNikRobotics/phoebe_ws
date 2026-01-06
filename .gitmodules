@@ -1,0 +1,18 @@
+[submodule "src/dependencies/picknik_accessories"]
+	path = src/dependencies/picknik_accessories
+	url = git@github.com:PickNikRobotics/picknik_accessories.git
+[submodule "src/dependencies/ros2_robotiq_gripper"]
+	path = src/dependencies/ros2_robotiq_gripper
+	url = git@github.com:PickNikRobotics/ros2_robotiq_gripper.git
+[submodule "src/dependencies/clearpath_controller_interface"]
+	path = src/dependencies/clearpath_controller_interface
+	url = git@github.com:PickNikRobotics/clearpath_controller_interface.git
+[submodule "src/dependencies/ewellix_lift"]
+	path = src/dependencies/ewellix_lift
+	url = https://github.com/clearpathrobotics/ewellix_lift.git
+[submodule "src/dependencies/clearpath_common"]
+	path = src/dependencies/clearpath_common
+	url = git@github.com:clearpathrobotics/clearpath_common.git
+[submodule "src/dependencies/moveit_studio_ur_pstop_manager"]
+	path = src/dependencies/moveit_studio_ur_pstop_manager
+	url = git@github.com:PickNikRobotics/moveit_studio_ur_pstop_manager.git

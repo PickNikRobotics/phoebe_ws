@@ -1,0 +1,29 @@
+based_on_package: dual_arm_mobile_sim
+
+hardware:
+  simulated: false
+
+  robot_driver_persist_launch_file:
+    package: "dual_arm_mobile_hw"
+    path: "launch/robot_drivers_to_persist.launch.py"
+
+  robot_description:
+    # TODO: Use a single common xacro file for both hw and sim and switch via xacro urdf_params
+    urdf:
+      package: "dual_arm_mobile_hw"
+      path: "description/dual_arm_mobile_hw.urdf.xacro"
+    urdf_params: []
+
+objectives:
+  # Specify source folder for objectives
+  # [Required]
+  objective_library_paths:
+    hw_objectives:
+      package_name: "dual_arm_mobile_hw"
+      relative_path: "objectives"
+  # We probably want some HW specific waypoints
+  # Specify the location of the saved waypoints file.
+  # [Required]
+  waypoints_file:
+    package_name: "dual_arm_mobile_hw"
+    relative_path: "waypoints/waypoints.yaml"

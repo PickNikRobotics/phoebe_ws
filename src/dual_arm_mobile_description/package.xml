@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<package format="3">
+  <name>dual_arm_mobile_description</name>
+  <version>8.3.0</version>
+
+  <description>
+    Shared description files for the dual arm mobile simulation and hardware
+    configs.
+  </description>
+
+  <maintainer email="david.yackzan@picknik.ai">David Yackzan</maintainer>
+
+  <license>Proprietary</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <exec_depend>clearpath_hardware_interfaces</exec_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>
