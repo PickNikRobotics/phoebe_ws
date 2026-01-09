@@ -19,3 +19,6 @@
 [submodule "src/dependencies/moveit_pro_clipseg"]
 	path = src/dependencies/moveit_pro_clipseg
 	url = https://github.com/PickNikRobotics/moveit_pro_clipseg.git
+[submodule "src/dependencies/serial"]
+	path = src/dependencies/serial
+	url = https://github.com/tylerjw/serial.git
