@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <root BTCPP_format="4" main_tree_to_execute="ML Register Bottle">
   <BehaviorTree ID="ML Register Bottle" _description="" _favorite="true">
-    <Control ID="Sequence">
+    <Control ID="Sequence" _collapsed="true">
       <Decorator ID="Repeat" num_cycles="1">
-        <Control ID="Sequence" name="TopLevelSequence">
+        <Control ID="Sequence" name="TopLevelSequence" _collapsed="true">
           <Action
             ID="SwitchController"
             activate_asap="true"
@@ -69,7 +69,7 @@
             ID="BreakpointSubscriber"
             breakpoint_topic="/moveit_pro_breakpoint"
           />
-          <Control ID="Sequence" _collapsed="false">
+          <Control ID="Sequence" _collapsed="true">
             <SubTree
               ID="Move to Pose"
               controller_names="left_manipulator_joint_trajectory_controller;left_robotiq_gripper_controller"
@@ -164,14 +164,36 @@
             timeout="-1.000000"
             activate_controllers="joint_trajectory_controller"
           />
+          <Action
+            ID="CreateStampedPose"
+            reference_frame="left_grasp_link"
+            stamped_pose="{flip_stamped_pose}"
+            position_xyz="0;0.25;0"
+            orientation_xyzw="0.0;0.0;0.707;0.707"
+          />
           <SubTree
-            ID="Multi-tip Path Re-Orient and Move Up"
-            _collapsed="false"
+            ID="Multi-tip Path Move With Pose"
+            _collapsed="true"
+            stamped_pose="{flip_stamped_pose}"
+          />
+          <Action
+            ID="CreateStampedPose"
+            reference_frame="left_grasp_link"
+            stamped_pose="{flip_stamped_pose}"
+            position_xyz="0;-0.2;0"
+            orientation_xyzw="0.0;0.0;0.0;1.0"
+          />
+          <SubTree
+            ID="Multi-tip Path Move With Pose"
+            _collapsed="true"
+            stamped_pose="{flip_stamped_pose}"
           />
           <Action
             ID="BreakpointSubscriber"
             breakpoint_topic="/moveit_pro_breakpoint"
+            _skipIf="true"
           />
+          <Action ID="WaitForDuration" delay_duration="1.000000" />
           <SubTree ID="Open Left Gripper" _collapsed="true" />
           <SubTree ID="Open Right Gripper" _collapsed="true" />
         </Control>
