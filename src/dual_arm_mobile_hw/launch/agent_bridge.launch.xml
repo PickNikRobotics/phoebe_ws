@@ -6,7 +6,6 @@
   <include
     file="$(find-pkg-share dual_arm_mobile_hw)/launch/rs_cameras.launch.xml"
   >
-    <arg name="scene_camera_serial_no" value="'135322061686'" />
     <arg name="wrist_camera_serial_no" value="'211122063503'" />
   </include>
 </launch>

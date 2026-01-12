@@ -776,7 +776,7 @@ right_velocity_force_controller:
 
 left_force_torque_sensor_broadcaster:
   ros__parameters:
-    sensor_name: left_robotiq_ft_sensor
+    sensor_name: left_tcp_fts_sensor
     state_interface_names:
       - force.x
       - force.y
@@ -788,7 +788,7 @@ left_force_torque_sensor_broadcaster:
 
 right_force_torque_sensor_broadcaster:
   ros__parameters:
-    sensor_name: right_robotiq_ft_sensor
+    sensor_name: right_tcp_fts_sensor
     state_interface_names:
       - force.x
       - force.y

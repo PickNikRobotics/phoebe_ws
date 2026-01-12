@@ -27,3 +27,14 @@ mobile_base:
   target_tolerance: 0.001
   solve_mode: "optimize_distance"
   optimization_timeout: 0.005
+
+arms_lift_only:
+  kinematics_solver: pose_ik_plugin/PoseIKPlugin
+  target_tolerance: 0.001
+  solve_mode: "optimize_distance"
+  optimization_timeout: 0.005
+
+arms_only:
+  kinematics_solver: pose_ik_plugin/PoseIKPlugin
+  target_tolerance: 0.001
+  solve_mode: "optimize_distance"

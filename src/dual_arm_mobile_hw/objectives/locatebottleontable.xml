@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root BTCPP_format="4" main_tree_to_execute="LocateBottleOnTable">
+  <!--//////////-->
+  <BehaviorTree ID="LocateBottleOnTable">
+    <Control ID="Sequence">
+      <SubTree
+        ID="Segment Image from No Negative Text Prompt Subtree"
+        clip_model_path="models/clip.onnx"
+        clipseg_model_path="models/clipseg.onnx"
+        erosion_size="2"
+        masks_visualization_topic="/masks_visualization"
+        model_package="moveit_pro_clipseg"
+        threshold="0.15"
+        prompts="a bottle"
+        image_topic_name="/camera/left_wrist_mounted_camera/color/image_raw"
+        masks2d="{masks2d}"
+        masks2d_refined="{masks2d}"
+      />
+      <Action
+        ID="GetElementOfVector"
+        element="{bottle_element}"
+        index="0"
+        vector_in="{masks2d}"
+      />
+      <Action
+        ID="GetCenterFromMask2D"
+        center="{center}"
+        mask="{bottle_element}"
+      />
+      <Action
+        ID="GetImage"
+        message_out="{sam2image}"
+        publisher_timeout_sec="5.000000"
+        timeout_sec="5.000000"
+        topic_name="/camera/left_wrist_mounted_camera/color/image_raw"
+      />
+      <Action
+        ID="GetMasks2DFromPointQuery"
+        masks2d="{sam2masks2d}"
+        decoder_model_path="models/decoder.onnx"
+        encoder_model_path="models/sam2_hiera_large_encoder.onnx"
+        model_package="dual_arm_mobile_sim"
+        pixel_coords="{center}"
+        image="{sam2image}"
+      />
+      <Action
+        ID="PublishMask2D"
+        image="{sam2image}"
+        masks="{sam2masks2d}"
+        masks_visualization_topic="/masks_visualization"
+        opacity="0.500000"
+      />
+      <Action
+        ID="GetCameraInfo"
+        message_out="{left_camera_info}"
+        publisher_timeout_sec="5.000000"
+        timeout_sec="5.000000"
+        topic_name="/camera/left_wrist_mounted_camera/color/camera_info"
+      />
+      <Action
+        ID="GetPointCloud"
+        message_out="{left_point_cloud}"
+        publisher_timeout_sec="5.000000"
+        timeout_sec="5.000000"
+        topic_name="/camera/left_wrist_mounted_camera/depth/color/points"
+      />
+      <Action
+        ID="GetMasks3DFromMasks2D"
+        camera_info="{left_camera_info}"
+        masks2d="{sam2masks2d}"
+        masks3d="{masks3d}"
+        point_cloud="{left_point_cloud}"
+      />
+      <Action
+        ID="GetElementOfVector"
+        element="{mask3d}"
+        index="0"
+        vector_in="{masks3d}"
+      />
+      <Action
+        ID="GetPointCloudFromMask3D"
+        mask3d="{mask3d}"
+        point_cloud="{left_point_cloud}"
+        point_cloud_fragment="{point_cloud_fragment}"
+      />
+      <Action
+        ID="TransformPointCloudFrame"
+        input_cloud="{point_cloud_fragment}"
+        output_cloud="{point_cloud_fragment}"
+        target_frame="world"
+      />
+      <Action ID="ClearSnapshot" />
+      <Action
+        ID="SendPointCloudToUI"
+        pcd_topic="/pcd_pointcloud_captures"
+        point_cloud="{point_cloud_fragment}"
+      />
+      <Action
+        ID="LoadPointCloudFromFile"
+        frame_id="world"
+        num_sampled_points="10000"
+        point_cloud="{ref_bottle_point_cloud}"
+        scale="0.001"
+        package_name="dual_arm_mobile_sim"
+        random_seed="0"
+        file_path="description/assets/trainer_hatch/collision/cylinder_mockup_full_length.stl"
+        color="255;0;0"
+      />
+      <Action
+        ID="TransformPointCloud"
+        input_cloud="{ref_bottle_point_cloud}"
+        transform_pose="{bottle_init_pose}"
+        output_cloud="{ref_bottle_point_cloud}"
+      />
+      <Action ID="ClearSnapshot" />
+      <Action
+        ID="SendPointCloudToUI"
+        pcd_topic="/pcd_pointcloud_captures"
+        point_cloud="{ref_bottle_point_cloud}"
+      />
+      <Action
+        ID="RegisterPointClouds"
+        max_correspondence_distance="5.000000"
+        max_iterations="30"
+        target_point_cloud="{point_cloud_fragment}"
+        target_pose_in_base_frame="{bottle_icp_transform}"
+        base_point_cloud="{ref_bottle_point_cloud}"
+      />
+      <Action
+        ID="TransformPointCloud"
+        input_cloud="{ref_bottle_point_cloud}"
+        output_cloud="{output_cloud}"
+        transform_pose="{bottle_icp_transform}"
+      />
+      <Action
+        ID="VisualizePose"
+        marker_lifetime="0.000000"
+        marker_name="pose"
+        marker_size="0.100000"
+        pose="{bottle_icp_transform}"
+      />
+      <Action
+        ID="SendPointCloudToUI"
+        pcd_topic="/pcd_pointcloud_captures"
+        point_cloud="{output_cloud}"
+      />
+    </Control>
+  </BehaviorTree>
+  <TreeNodesModel>
+    <SubTree ID="LocateBottleOnTable">
+      <MetadataFields>
+        <Metadata runnable="false" />
+        <Metadata subcategory="Application - Advanced Examples" />
+      </MetadataFields>
+      <inout_port
+        name="bottle_init_pose"
+        default="{bottle_init_pose}"
+        type="geometry_msgs::msg::PoseStamped_&lt;std::allocator&lt;void&gt; &gt;"
+      >
+        Initial position of bottle base, for ICP
+      </inout_port>
+      <inout_port
+        name="bottle_icp_transform"
+        default="{bottle_icp_transform}"
+        type="geometry_msgs::msg::PoseStamped_&lt;std::allocator&lt;void&gt; &gt;"
+      >
+        Returning variable for bottle pose as a result of ICP
+      </inout_port>
+    </SubTree>
+  </TreeNodesModel>
+</root>
