@@ -3,15 +3,9 @@
   BTCPP_format="4"
   main_tree_to_execute="GetLeftRightPickPoseFromBottlePose"
 >
-  <!-- ////////// -->
+  <!--//////////-->
   <BehaviorTree ID="GetLeftRightPickPoseFromBottlePose">
     <Control ID="Sequence" name="TopLevelSequence">
-      <Action
-        ID="TransformPoseWithPose"
-        input_pose="{bottle_init_pose}"
-        output_pose="{bottle_in_world_pose}"
-        transform_pose="{bottle_icp_transform}"
-      />
       <Action
         ID="CreateStampedPose"
         reference_frame="world"
@@ -96,6 +90,27 @@
         <Metadata runnable="false" />
         <Metadata subcategory="Application - Advanced Examples" />
       </MetadataFields>
+      <inout_port
+        name="bottle_bottom_aligned_left_pose"
+        default="{bottle_bottom_aligned_left_pose}"
+        type="geometry_msgs::msg::PoseStamped_&lt;std::allocator&lt;void&gt; &gt;"
+      >
+        left pre-grasp pose
+      </inout_port>
+      <inout_port
+        name="bottle_bottom_aligned_right_pose"
+        default="{bottle_bottom_aligned_right_pose}"
+        type="geometry_msgs::msg::PoseStamped_&lt;std::allocator&lt;void&gt; &gt;"
+      >
+        right pre-grasp pose
+      </inout_port>
+      <inout_port
+        name="bottle_in_world_pose"
+        default="{bottle_in_world_pose}"
+        type="geometry_msgs::msg::PoseStamped_&lt;std::allocator&lt;void&gt; &gt;"
+      >
+        Input for current pose of bottle in world frame
+      </inout_port>
     </SubTree>
   </TreeNodesModel>
 </root>

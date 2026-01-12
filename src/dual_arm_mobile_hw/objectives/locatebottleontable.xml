@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <root BTCPP_format="4" main_tree_to_execute="LocateBottleOnTable">
-  <!-- ////////// -->
+  <!--//////////-->
   <BehaviorTree ID="LocateBottleOnTable">
     <Control ID="Sequence">
       <SubTree
@@ -107,13 +107,6 @@
         color="255;0;0"
       />
       <Action
-        ID="CreateStampedPose"
-        reference_frame="world"
-        stamped_pose="{bottle_init_pose}"
-        orientation_xyzw="0;0;0;1"
-        position_xyz="1.16;0.43;1.12"
-      />
-      <Action
         ID="TransformPointCloud"
         input_cloud="{ref_bottle_point_cloud}"
         transform_pose="{bottle_init_pose}"
@@ -159,6 +152,20 @@
         <Metadata runnable="false" />
         <Metadata subcategory="Application - Advanced Examples" />
       </MetadataFields>
+      <inout_port
+        name="bottle_init_pose"
+        default="{bottle_init_pose}"
+        type="geometry_msgs::msg::PoseStamped_&lt;std::allocator&lt;void&gt; &gt;"
+      >
+        Initial position of bottle base, for ICP
+      </inout_port>
+      <inout_port
+        name="bottle_icp_transform"
+        default="{bottle_icp_transform}"
+        type="geometry_msgs::msg::PoseStamped_&lt;std::allocator&lt;void&gt; &gt;"
+      >
+        Returning variable for bottle pose as a result of ICP
+      </inout_port>
     </SubTree>
   </TreeNodesModel>
 </root>

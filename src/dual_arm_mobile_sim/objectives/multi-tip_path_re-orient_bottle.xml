@@ -36,9 +36,10 @@
         <Action
           ID="BreakpointSubscriber"
           breakpoint_topic="/moveit_pro_breakpoint"
+          _skipIf="true"
         />
       </Control>
-      <Control ID="Fallback">
+      <Control ID="Sequence">
         <Action
           ID="PlanCartesianPath"
           acceleration_scale_factor="1.000000"
@@ -60,6 +61,7 @@
           ID="WaitForUserTrajectoryApproval"
           solution="{debug_solution}"
           cartesian_path_links="left_grasp_link"
+          _skipIf="true"
         />
       </Control>
       <Action

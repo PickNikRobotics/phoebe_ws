@@ -24,7 +24,7 @@
           ID="CreateStampedPose"
           reference_frame="left_grasp_link"
           stamped_pose="{stamped_pose}"
-          position_xyz="0.15;0;0"
+          position_xyz="0.25;0;0"
           orientation_xyzw="0.0;0.0;0.0;1.0"
         />
         <Action
@@ -42,9 +42,10 @@
         <Action
           ID="BreakpointSubscriber"
           breakpoint_topic="/moveit_pro_breakpoint"
+          _skipIf="true"
         />
       </Control>
-      <Control ID="Fallback">
+      <Control ID="Sequence">
         <Action
           ID="PlanCartesianPath"
           acceleration_scale_factor="1.000000"
@@ -66,6 +67,7 @@
           ID="WaitForUserTrajectoryApproval"
           solution="{debug_solution}"
           cartesian_path_links="left_grasp_link"
+          _skipIf="true"
         />
       </Control>
       <Action
