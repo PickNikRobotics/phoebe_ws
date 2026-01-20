@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root
+  BTCPP_format="4"
+  main_tree_to_execute="Single-tip Path Admittance Move Push Bottle"
+>
+  <BehaviorTree
+    ID="Single-tip Path Admittance Move Push Bottle"
+    _description=""
+  >
+    <Control ID="Sequence">
+      <Control ID="Sequence">
+        <Action
+          ID="CreateStampedPose"
+          reference_frame="left_grasp_link"
+          stamped_pose="{stamped_pose}"
+          _skipIf="true"
+        />
+        <Action
+          ID="AddPoseStampedToVector"
+          input="{stamped_pose}"
+          vector="{pose_stamped_vector}"
+          _skipIf="true"
+        />
+        <Action
+          ID="VisualizePose"
+          marker_lifetime="0.000000"
+          marker_name="pose"
+          marker_size="0.100000"
+          pose="{stamped_pose}"
+          _skipIf="true"
+        />
+        <Action
+          ID="CreateStampedPose"
+          reference_frame="left_grasp_link"
+          stamped_pose="{stamped_pose}"
+          position_xyz="0;-0.17;0"
+          orientation_xyzw="0.0;0.0;0.0;1.0"
+        />
+        <Action
+          ID="AddPoseStampedToVector"
+          input="{stamped_pose}"
+          vector="{pose_stamped_vector}"
+        />
+        <Action
+          ID="VisualizePose"
+          marker_lifetime="0.000000"
+          marker_name="pose2"
+          marker_size="0.100000"
+          pose="{stamped_pose}"
+        />
+        <Action
+          ID="BreakpointSubscriber"
+          breakpoint_topic="/moveit_pro_breakpoint"
+        />
+      </Control>
+      <Control ID="Fallback">
+        <Action
+          ID="PlanCartesianPath"
+          acceleration_scale_factor="1.000000"
+          blending_radius="0.020000"
+          debug_solution="{debug_solution}"
+          ik_cartesian_space_density="0.010000"
+          ik_joint_space_density="0.100000"
+          joint_trajectory_msg="{joint_trajectory_msg}"
+          path="{pose_stamped_vector}"
+          position_only="false"
+          tip_links="left_grasp_link"
+          trajectory_sampling_rate="100"
+          velocity_scale_factor="1.000000"
+          max_optimizer_iterations="1"
+          tip_offset="0;0;0;0;0;0"
+          planning_group_name="arms_only"
+        />
+        <Action
+          ID="WaitForUserTrajectoryApproval"
+          solution="{debug_solution}"
+          cartesian_path_links="left_grasp_link"
+        />
+      </Control>
+      <Action
+        ID="ExecuteFollowJointTrajectory"
+        execute_follow_joint_trajectory_action_name="/joint_trajectory_controller/follow_joint_trajectory"
+        goal_duration_tolerance="-1.000000"
+        goal_position_tolerance="0.000000"
+        goal_time_tolerance="0.000000"
+        joint_trajectory_msg="{joint_trajectory_msg}"
+        trajectory_remainder="{joint_trajectory_remainder}"
+        _skipIf="true"
+      />
+      <Control ID="Sequence" _collapsed="false">
+        <Action
+        ID="SwitchController"
+        activate_controllers="joint_trajectory_admittance_controller"
+        />
+        <Action
+          ID="CallTriggerService"
+          response_timeout="3.000000"
+          service_name="/joint_trajectory_admittance_controller/zero_fts/tool0"
+        />
+        <Action
+          ID="SetAdmittanceParameters"
+          config_file_name="admittance_parameters_left_push.yaml"
+        />
+        <Action ID="ExecuteTrajectoryWithAdmittance" />
+      </Control>
+    </Control>
+  </BehaviorTree>
+  <TreeNodesModel>
+    <SubTree ID="Single-tip Path Admittance Move Push Bottle">
+      <MetadataFields>
+        <Metadata runnable="true" />
+        <Metadata subcategory="Application - Advanced Examples" />
+      </MetadataFields>
+    </SubTree>
+  </TreeNodesModel>
+</root>
