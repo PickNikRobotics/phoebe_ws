@@ -1,5 +1,5 @@
 1. `cd ~`
-2. `git clone git@github.com:PickNikRobotics/dual_arm_mobile_ws.git`
+2. `git clone git@github.com:PickNikRobotics/phoebe_ws.git`
 3. `cd dual_arm_mobile_ws`
 4. `git submodule update --init --recursive`
 5. `touch src/dependencies/clearpath_common/clearpath_generator_common/COLCON_IGNORE`
