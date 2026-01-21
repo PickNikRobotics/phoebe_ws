@@ -148,6 +148,30 @@
             />
             <SubTree ID="Close Left Gripper" _collapsed="true" />
             <SubTree ID="Close Right Gripper" _collapsed="true" />
+            <Control ID="Sequence" _skipIf="true">
+              <Action
+                ID="AddPoseStampedToVector"
+                vector="{left_pose_stamped_vector}"
+                input="{bottle_bottom_aligned_left_pose}"
+              />
+              <Action
+                ID="AddPoseStampedToVector"
+                vector="{left_pose_stamped_vector}"
+                input="{left-pick-pose}"
+              />
+              <Action
+                ID="PlanCartesianPath"
+                joint_trajectory_msg="{left_joint_trajectory_msg}"
+                path="{left_pose_stamped_vector}"
+                planning_group_name="left_manipulator"
+                position_only="false"
+              />
+              <Action
+                ID="ExecuteFollowJointTrajectory"
+                execute_follow_joint_trajectory_action_name="/left_manipulator_joint_trajectory_controller/follow_joint_trajectory"
+                joint_trajectory_msg="{left_joint_trajectory_msg}"
+              />
+            </Control>
           </Control>
           <Action
             ID="BreakpointSubscriber"
