@@ -85,6 +85,8 @@ ros2_control:
     - "right_velocity_force_controller"
     - "base_left_velocity_force_controller"
     - "base_right_velocity_force_controller"
+    - "left_manipulator_joint_trajectory_admittance_controller"
+    - "right_manipulator_joint_trajectory_admittance_controller"
 
 objectives:
   # List of plugins for loading custom behaviors.

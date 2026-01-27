@@ -11,6 +11,10 @@ controller_manager:
       type: joint_trajectory_controller/JointTrajectoryController
     right_manipulator_joint_trajectory_controller:
       type: joint_trajectory_controller/JointTrajectoryController
+    left_manipulator_joint_trajectory_admittance_controller:
+      type: joint_trajectory_admittance_controller/JointTrajectoryAdmittanceController
+    right_manipulator_joint_trajectory_admittance_controller:
+      type: joint_trajectory_admittance_controller/JointTrajectoryAdmittanceController
     servo_controller:
       type: joint_trajectory_controller/JointTrajectoryController
     lift_joint_trajectory_controller:
@@ -208,6 +212,54 @@ left_manipulator_joint_trajectory_controller:
     action_monitor_rate: 20.0
     # Need partial joint trajectories for IMarker planning group selection support
     allow_partial_joints_goal: true
+
+left_manipulator_joint_trajectory_admittance_controller:
+  ros__parameters:
+    joints:
+      - left_shoulder_pan_joint
+      - left_shoulder_lift_joint
+      - left_elbow_joint
+      - left_wrist_1_joint
+      - left_wrist_2_joint
+      - left_wrist_3_joint
+    # Specifies the base link of the kinematic chain. Must exist in the robot description.
+    base_frame: left_base_link
+    # Specifies the frame/link name of the force torque sensor. Must exist in the robot description.
+    sensor_frame: left_tool0
+    # Specifies the frame/link name of the end-effector frame. Must exist in the robot description.
+    ee_frame: left_grasp_link
+    # The name of the force/torque ros2_control hardware interface which will be used in the admittance calculation.
+    # If empty, the controller will run without admittance.
+    ft_sensor_name: left_robotiq_ft_sensor
+    # Joint accelerations to use for immediate stops (e.g. when cancelling a running trajectory).
+    # Chosen to match MoveIt configs.
+    stop_accelerations: [30.0, 30.0, 30.0, 30.0, 30.0, 30.0, 30.0]
+    # The ratio of the cutoff frequency to the sampling frequency. Valid values range
+    # from 0 to 1, where 1 is the sampling frequency. By default, this is set to 1.0, which means no filtering is
+    # applied.
+    ft_cutoff_frequency_ratio: 1.0
+    # The deadband threshold for the force / torque measurements in Newtons and Newtons-meter. By default, these are set
+    # to 0.0. Increase these values if the force readings from your force torque sensor are noisy and cause linear /
+    # rotational motion along the FTS axes when the admittance controller is activated.
+    ft_force_deadband: 0.0
+    ft_torque_deadband: 0.0
+    # The rate in Hz at which the controller will publish the state. By default, this is set to 50 Hz.
+    state_publish_rate: 50
+    # The damping coefficient for the Jacobian damped least-squares inverse. By default, this value is set to 0.01.
+    # Increase this value if your robot moves too quickly while admittance control is active when it nears singularities.
+    jacobian_damping: 0.01
+    # The gravity vector in the base frame. By default, this is set to [0.0, 0.0, -9.8]. This value is used to calculate
+    # the gravity compensation torque. If your robot is not in the same orientation as the base frame, you should
+    # provide the gravity vector in the base frame.
+    gravity_vector: [0.0, 0.0, -9.8]
+    # Default maximum joint-space deviation accepted along the trajectory, if not specified in the goal message.
+    default_path_tolerance: 0.05
+    # Default maximum joint-space deviation accepted at the trajectory end-point, if not specified in the goal message.
+    default_goal_tolerance: 0.05
+    # Default maximum absolute force torque readings allowed from the force torque sensor along each Cartesian space
+    # axis, if not specified in the goal message. If exceeded, execution will abort.
+    default_absolute_force_torque_threshold: [45.0, 45.0, 45.0, 10.0, 10.0, 10.0]
+
 right_manipulator_joint_trajectory_controller:
   ros__parameters:
     joints:
@@ -235,6 +287,55 @@ right_manipulator_joint_trajectory_controller:
     action_monitor_rate: 20.0
     # Need partial joint trajectories for IMarker planning group selection support
     allow_partial_joints_goal: true
+
+right_manipulator_joint_trajectory_admittance_controller:
+  ros__parameters:
+    joints:
+      - right_shoulder_pan_joint
+      - right_shoulder_lift_joint
+      - right_elbow_joint
+      - right_wrist_1_joint
+      - right_wrist_2_joint
+      - right_wrist_3_joint
+     # Specifies the base link of the kinematic chain. Must exist in the robot description.
+    base_frame: right_base_link
+    # Specifies the frame/link name of the force torque sensor. Must exist in the robot description.
+    sensor_frame: right_tool0
+    # Specifies the frame/link name of the end-effector frame. Must exist in the robot description.
+    ee_frame: right_grasp_link
+    # The name of the force/torque ros2_control hardware interface which will be used in the admittance calculation.
+    # If empty, the controller will run without admittance.
+    ft_sensor_name: right_robotiq_ft_sensor
+    # Joint accelerations to use for immediate stops (e.g. when cancelling a running trajectory).
+    # Chosen to match MoveIt configs.
+    stop_accelerations: [30.0, 30.0, 30.0, 30.0, 30.0, 30.0, 30.0]
+    # The ratio of the cutoff frequency to the sampling frequency. Valid values range
+    # from 0 to 1, where 1 is the sampling frequency. By default, this is set to 1.0, which means no filtering is
+    # applied.
+    ft_cutoff_frequency_ratio: 1.0
+    # The deadband threshold for the force / torque measurements in Newtons and Newtons-meter. By default, these are set
+    # to 0.0. Increase these values if the force readings from your force torque sensor are noisy and cause linear /
+    # rotational motion along the FTS axes when the admittance controller is activated.
+    ft_force_deadband: 0.0
+    ft_torque_deadband: 0.0
+    # The rate in Hz at which the controller will publish the state. By default, this is set to 50 Hz.
+    state_publish_rate: 50
+    # The damping coefficient for the Jacobian damped least-squares inverse. By default, this value is set to 0.01.
+    # Increase this value if your robot moves too quickly while admittance control is active when it nears singularities.
+    jacobian_damping: 0.01
+    # The gravity vector in the base frame. By default, this is set to [0.0, 0.0, -9.8]. This value is used to calculate
+    # the gravity compensation torque. If your robot is not in the same orientation as the base frame, you should
+    # provide the gravity vector in the base frame.
+    gravity_vector: [0.0, 0.0, -9.8]
+    # Default maximum joint-space deviation accepted along the trajectory, if not specified in the goal message.
+    default_path_tolerance: 0.05
+    # Default maximum joint-space deviation accepted at the trajectory end-point, if not specified in the goal message.
+    default_goal_tolerance: 0.05
+    # Default maximum absolute force torque readings allowed from the force torque sensor along each Cartesian space
+    # axis, if not specified in the goal message. If exceeded, execution will abort.
+    default_absolute_force_torque_threshold: [45.0, 45.0, 45.0, 10.0, 10.0, 10.0]
+
+
 servo_controller:
   ros__parameters:
     joints:
@@ -784,7 +885,7 @@ left_force_torque_sensor_broadcaster:
       - torque.x
       - torque.y
       - torque.z
-    frame_id: left_ft_frame
+    frame_id: left_tool0
 
 right_force_torque_sensor_broadcaster:
   ros__parameters:
@@ -796,7 +897,7 @@ right_force_torque_sensor_broadcaster:
       - torque.x
       - torque.y
       - torque.z
-    frame_id: right_ft_frame
+    frame_id: right_tool0
 
 left_robotiq_gripper_controller:
   ros__parameters:

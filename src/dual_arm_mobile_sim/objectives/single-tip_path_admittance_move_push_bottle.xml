@@ -89,19 +89,24 @@
       />
       <Control ID="Sequence" _collapsed="false">
         <Action
-        ID="SwitchController"
-        activate_controllers="joint_trajectory_admittance_controller"
+          ID="SwitchController"
+          activate_controllers="left_manipulator_joint_trajectory_admittance_controller"
+          controller_list_action_name="/controller_manager/list_controllers"
+          automatic_deactivation="true"
         />
         <Action
           ID="CallTriggerService"
           response_timeout="3.000000"
-          service_name="/joint_trajectory_admittance_controller/zero_fts/tool0"
+          service_name="/left_manipulator_joint_trajectory_admittance_controller/zero_fts/left_tool0"
         />
         <Action
           ID="SetAdmittanceParameters"
           config_file_name="admittance_parameters_left_push.yaml"
         />
-        <Action ID="ExecuteTrajectoryWithAdmittance" />
+        <Action
+          ID="ExecuteTrajectoryWithAdmittance"
+          controller_action_name="/left_manipulator_joint_trajectory_admittance_controller/follow_joint_trajectory"
+        />
       </Control>
     </Control>
   </BehaviorTree>
