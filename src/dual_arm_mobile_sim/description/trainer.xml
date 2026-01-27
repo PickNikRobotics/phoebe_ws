@@ -150,92 +150,6 @@
         group="3"
         rgba="0.85 0.85 0.85 1"
       />
-      <!--IVR Trainer Bench-->
-      <geom
-        size="0.354 0.025 0.025"
-        pos="-2.07612 0.824571 0.5019"
-        quat="-0.706686 0 0 0.707527"
-        type="box"
-        rgba="0.85 0.85 0.85 1"
-      />
-      <geom
-        size="0.354 0.025 0.025"
-        pos="-1.23077 0.823566 0.5019"
-        quat="-0.706686 0 0 0.707527"
-        type="box"
-        rgba="0.85 0.85 0.85 1"
-      />
-      <geom
-        size="0.025 0.4475 0.025"
-        pos="-1.65402 0.491869 0.5019"
-        quat="-0.706686 0 0 0.707527"
-        type="box"
-        rgba="0.85 0.85 0.85 1"
-      />
-
-      <geom
-        pos="-2.02069 1.18951 0.457"
-        quat="-0.706686 0 0 0.707527"
-        type="mesh"
-        rgba="0.85 0.85 0.85 1"
-        mesh="front_left_face"
-      />
-      <geom
-        pos="-2.02069 1.18951 0.982"
-        quat="-0.706686 0 0 0.707527"
-        type="mesh"
-        rgba="0.85 0.85 0.85 1"
-        mesh="cubby_1"
-      />
-      <geom
-        pos="-2.02069 1.18951 1.332"
-        quat="-0.706686 0 0 0.707527"
-        type="mesh"
-        rgba="0.85 0.85 0.85 1"
-        mesh="cubby_2"
-      />
-      <geom
-        pos="-1.63569 1.18905 0.457"
-        quat="-0.706686 0 0 0.707527"
-        type="mesh"
-        rgba="0.85 0.85 0.85 1"
-        mesh="front_right_face"
-      />
-      <geom
-        pos="-1.21317 1.62655 0.04"
-        quat="-0.706686 0 0 0.707527"
-        type="mesh"
-        rgba="0.85 0.85 0.85 1"
-        mesh="side_bottom_face"
-      />
-      <geom
-        pos="-1.21317 1.62655 0.548419"
-        quat="-0.706686 0 0 0.707527"
-        type="mesh"
-        rgba="0.85 0.85 0.85 1"
-        mesh="side_top_face"
-      />
-
-      <body
-        name="bench_lid"
-        pos="-2.10085 1.0516 0.5244"
-        quat="-0.706686 0 0 0.707527"
-      >
-        <site name="bench_lid_site" />
-        <joint
-          name="bench_lid_joint"
-          pos="0 0 0"
-          axis="0 -1 0"
-          range="0 1.65806"
-          actuatorfrcrange="-10 10"
-        />
-        <geom
-          size="0.3015 0.46 0.01625"
-          pos="0.309 0.46 0.025"
-          type="box"
-          rgba="0 0 1 1"
-        />
-      </body>
       <body
         name="cabinet_1"
         pos="-1.28991 1.17164 1.17"
@@ -468,6 +382,107 @@
           <geom type="mesh" rgba="0 0 1 1" mesh="recessed_latch_handle" />
         </body>
       </body>
+      <!--IVR Trainer Bench-->
+      <!-- <geom
+        size="0.354 0.025 0.025"
+        pos="-2.07612 0.824571 0.5019"
+        quat="-0.706686 0 0 0.707527"
+        type="box"
+        rgba="0.85 0.85 0.85 1"
+      />
+      <geom
+        size="0.354 0.025 0.025"
+        pos="-1.23077 0.823566 0.5019"
+        quat="-0.706686 0 0 0.707527"
+        type="box"
+        rgba="0.85 0.85 0.85 1"
+      />
+      <geom
+        size="0.025 0.4475 0.025"
+        pos="-1.65402 0.491869 0.5019"
+        quat="-0.706686 0 0 0.707527"
+        type="box"
+        rgba="0.85 0.85 0.85 1"
+      />
+
+      <geom
+        pos="-2.02069 1.18951 0.457"
+        quat="-0.706686 0 0 0.707527"
+        type="mesh"
+        rgba="0.85 0.85 0.85 1"
+        mesh="front_left_face"
+      />
+      <geom
+        pos="-2.02069 1.18951 0.982"
+        quat="-0.706686 0 0 0.707527"
+        type="mesh"
+        rgba="0.85 0.85 0.85 1"
+        mesh="cubby_1"
+      />
+      <geom
+        pos="-2.02069 1.18951 1.332"
+        quat="-0.706686 0 0 0.707527"
+        type="mesh"
+        rgba="0.85 0.85 0.85 1"
+        mesh="cubby_2"
+      />
+      <geom
+        pos="-1.63569 1.18905 0.457"
+        quat="-0.706686 0 0 0.707527"
+        type="mesh"
+        rgba="0.85 0.85 0.85 1"
+        mesh="front_right_face"
+      />
+      <geom
+        pos="-1.21317 1.62655 0.04"
+        quat="-0.706686 0 0 0.707527"
+        type="mesh"
+        rgba="0.85 0.85 0.85 1"
+        mesh="side_bottom_face"
+      />
+      <geom
+        pos="-1.21317 1.62655 0.548419"
+        quat="-0.706686 0 0 0.707527"
+        type="mesh"
+        rgba="0.85 0.85 0.85 1"
+        mesh="side_top_face"
+      />
+
+      <body
+        name="bench_lid"
+        pos="-2.10085 1.0516 0.5244"
+        quat="-0.706686 0 0 0.707527"
+      >
+        <site name="bench_lid_site" />
+        <joint
+          name="bench_lid_joint"
+          pos="0 0 0"
+          axis="0 -1 0"
+          range="0 1.65806"
+          actuatorfrcrange="-10 10"
+        />
+        <geom
+          size="0.3015 0.46 0.01625"
+          pos="0.309 0.46 0.025"
+          type="box"
+          rgba="0 0 1 1"
+        />
+      </body> -->
+    </body>
+    <!-- Table edge -->
+    <body name="table" pos="0.99 0 0">
+      <geom
+        size="0.2 0.325 0.01"
+        pos="0 0 0.71"
+        type="box"
+        rgba="0.2 0.2 0.2 1"
+      />
+      <geom
+        size="0.02 0.02 0.35"
+        pos="0 0 0.35"
+        type="box"
+        rgba="0.2 0.2 0.2 1"
+      />
     </body>
   </worldbody>
 </mujoco>
