@@ -233,7 +233,7 @@ left_manipulator_joint_trajectory_admittance_controller:
     ft_sensor_name: left_robotiq_ft_sensor
     # Joint accelerations to use for immediate stops (e.g. when cancelling a running trajectory).
     # Chosen to match MoveIt configs.
-    stop_accelerations: [30.0, 30.0, 30.0, 30.0, 30.0, 30.0, 30.0]
+    stop_accelerations: [30.0, 30.0, 30.0, 30.0, 30.0, 30.0]
     # The ratio of the cutoff frequency to the sampling frequency. Valid values range
     # from 0 to 1, where 1 is the sampling frequency. By default, this is set to 1.0, which means no filtering is
     # applied.
@@ -308,7 +308,7 @@ right_manipulator_joint_trajectory_admittance_controller:
     ft_sensor_name: right_robotiq_ft_sensor
     # Joint accelerations to use for immediate stops (e.g. when cancelling a running trajectory).
     # Chosen to match MoveIt configs.
-    stop_accelerations: [30.0, 30.0, 30.0, 30.0, 30.0, 30.0, 30.0]
+    stop_accelerations: [30.0, 30.0, 30.0, 30.0, 30.0, 30.0]
     # The ratio of the cutoff frequency to the sampling frequency. Valid values range
     # from 0 to 1, where 1 is the sampling frequency. By default, this is set to 1.0, which means no filtering is
     # applied.
@@ -497,6 +497,8 @@ base_left_velocity_force_controller:
     # The frame where the force / torque sensor reading is given.
     # (Needs to exist in the kinematic chain).
     sensor_frame: left_tool0
+    # The force/torque ros2_control hardware interface name.
+    ft_sensor_name: left_robotiq_ft_sensor
     # Maximum joint-space velocities.
     max_joint_velocity:
       - 1.0
@@ -584,6 +586,8 @@ base_right_velocity_force_controller:
     # The frame where the force / torque sensor reading is given.
     # (Needs to exist in the kinematic chain).
     sensor_frame: right_tool0
+    # The force/torque ros2_control hardware interface name.
+    ft_sensor_name: right_robotiq_ft_sensor
     # Maximum joint-space velocities.
     max_joint_velocity:
       - 1.0

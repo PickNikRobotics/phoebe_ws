@@ -38,9 +38,6 @@ moveit_params:
   kinematics:
     package: "dual_arm_mobile_sim"
     path: "config/moveit/pose_ik_distance.yaml"
-  servo_kinematics:
-    package: "dual_arm_mobile_sim"
-    path: "config/moveit/pose_ik_speed.yaml"
   pose_jog:
     package: "dual_arm_mobile_sim"
     path: "config/moveit/pose_jog.yaml"

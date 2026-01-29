@@ -69,7 +69,7 @@
           velocity_scale_factor="1.000000"
           max_optimizer_iterations="1"
           tip_offset="0;0;0;0;0;0"
-          planning_group_name="arms_only"
+          planning_group_name="left_manipulator"
         />
         <Action
           ID="WaitForUserTrajectoryApproval"
