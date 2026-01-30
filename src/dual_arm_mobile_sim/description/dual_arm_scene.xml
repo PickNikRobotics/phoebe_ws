@@ -18,6 +18,7 @@
   <include file="trainer.xml" />
   <!-- <include file="hatch.xml" /> -->
   <include file="bottle.xml" />
+  <include file="rack.xml" />
   <statistic center="0.3 0 0.4" extent="0.8" />
 
   <visual>
