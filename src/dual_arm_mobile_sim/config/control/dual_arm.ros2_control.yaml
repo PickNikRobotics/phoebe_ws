@@ -230,7 +230,7 @@ left_manipulator_joint_trajectory_admittance_controller:
     ee_frame: left_grasp_link
     # The name of the force/torque ros2_control hardware interface which will be used in the admittance calculation.
     # If empty, the controller will run without admittance.
-    ft_sensor_name: left_robotiq_ft_sensor
+    ft_sensor_name: left_tcp_fts_sensor
     # Joint accelerations to use for immediate stops (e.g. when cancelling a running trajectory).
     # Chosen to match MoveIt configs.
     stop_accelerations: [30.0, 30.0, 30.0, 30.0, 30.0, 30.0]
@@ -305,7 +305,7 @@ right_manipulator_joint_trajectory_admittance_controller:
     ee_frame: right_grasp_link
     # The name of the force/torque ros2_control hardware interface which will be used in the admittance calculation.
     # If empty, the controller will run without admittance.
-    ft_sensor_name: right_robotiq_ft_sensor
+    ft_sensor_name: right_tcp_fts_sensor
     # Joint accelerations to use for immediate stops (e.g. when cancelling a running trajectory).
     # Chosen to match MoveIt configs.
     stop_accelerations: [30.0, 30.0, 30.0, 30.0, 30.0, 30.0]
@@ -498,7 +498,7 @@ base_left_velocity_force_controller:
     # (Needs to exist in the kinematic chain).
     sensor_frame: left_tool0
     # The force/torque ros2_control hardware interface name.
-    ft_sensor_name: left_robotiq_ft_sensor
+    ft_sensor_name: left_tcp_fts_sensor
     # Maximum joint-space velocities.
     max_joint_velocity:
       - 1.0
@@ -587,7 +587,7 @@ base_right_velocity_force_controller:
     # (Needs to exist in the kinematic chain).
     sensor_frame: right_tool0
     # The force/torque ros2_control hardware interface name.
-    ft_sensor_name: right_robotiq_ft_sensor
+    ft_sensor_name: right_tcp_fts_sensor
     # Maximum joint-space velocities.
     max_joint_velocity:
       - 1.0
@@ -881,7 +881,7 @@ right_velocity_force_controller:
 
 left_force_torque_sensor_broadcaster:
   ros__parameters:
-    sensor_name: left_robotiq_ft_sensor
+    sensor_name: left_tcp_fts_sensor
     state_interface_names:
       - force.x
       - force.y
@@ -893,7 +893,7 @@ left_force_torque_sensor_broadcaster:
 
 right_force_torque_sensor_broadcaster:
   ros__parameters:
-    sensor_name: right_robotiq_ft_sensor
+    sensor_name: right_tcp_fts_sensor
     state_interface_names:
       - force.x
       - force.y

@@ -2,11 +2,7 @@
   <compiler angle="radian" meshdir="assets" />
 
   <asset>
-    <mesh
-      name="rack_mesh"
-      file="rack.stl"
-      scale="0.001 0.001 0.001"
-    />
+    <mesh name="rack_mesh" file="rack.stl" scale="0.001 0.001 0.001" />
   </asset>
 
   <worldbody>
