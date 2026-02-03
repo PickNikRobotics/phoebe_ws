@@ -33,7 +33,7 @@
     <SubTree ID="Reset Simulation to Keyframe">
       <MetadataFields>
         <Metadata runnable="true" />
-        <Metadata subcategory="MuJoCo Simulation" />
+        <Metadata subcategory="User Input" />
       </MetadataFields>
     </SubTree>
   </TreeNodesModel>
