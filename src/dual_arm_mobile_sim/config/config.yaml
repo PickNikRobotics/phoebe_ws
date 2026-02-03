@@ -38,9 +38,6 @@ moveit_params:
   kinematics:
     package: "dual_arm_mobile_sim"
     path: "config/moveit/pose_ik_distance.yaml"
-  servo_kinematics:
-    package: "dual_arm_mobile_sim"
-    path: "config/moveit/pose_ik_speed.yaml"
   pose_jog:
     package: "dual_arm_mobile_sim"
     path: "config/moveit/pose_jog.yaml"
@@ -85,6 +82,8 @@ ros2_control:
     - "right_velocity_force_controller"
     - "base_left_velocity_force_controller"
     - "base_right_velocity_force_controller"
+    - "left_manipulator_joint_trajectory_admittance_controller"
+    - "right_manipulator_joint_trajectory_admittance_controller"
 
 objectives:
   # List of plugins for loading custom behaviors.

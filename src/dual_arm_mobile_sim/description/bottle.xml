@@ -11,7 +11,7 @@
 
   <worldbody>
     <!-- bottle mockup -->
-    <body name="bottle" pos="0.8 0 0.6" quat="0.707107 0 0 -0.707107">
+    <body name="bottle" pos="0.57 0 0.6" quat="0.707107 0 0 -0.707107" gravcomp="0">
       <freejoint />
       <inertial mass="0.5" pos="0 0 0.15" diaginertia="0.001 0.001 0.0005" />
       <!-- <site name="bottle_top" pos="0 0 0.365" quat="0 0 0.707107 0.707107" group="0"/> -->
