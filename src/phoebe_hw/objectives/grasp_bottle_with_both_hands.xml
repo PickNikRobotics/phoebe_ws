@@ -3,7 +3,7 @@
   <!--//////////-->
   <BehaviorTree ID="Grasp Bottle With Both Hands" _favorite="true">
     <Control ID="Sequence" _collapsed="true">
-      <SubTree ID="GetLeftRightPickPoseFromBottlePose" _collapsed="true" />
+      <SubTree ID="Get Left Right Pick Pose from Bottle Pose" _collapsed="true" />
       <SubTree
         ID="Move to Pose"
         controller_names="left_manipulator_joint_trajectory_controller;left_robotiq_gripper_controller"

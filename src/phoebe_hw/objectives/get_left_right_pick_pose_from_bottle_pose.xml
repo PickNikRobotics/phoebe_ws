@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <root
   BTCPP_format="4"
-  main_tree_to_execute="GetLeftRightPickPoseFromBottlePose"
+  main_tree_to_execute="Get Left Right Pick Pose from Bottle Pose"
 >
   <!--//////////-->
-  <BehaviorTree ID="GetLeftRightPickPoseFromBottlePose">
+  <BehaviorTree ID="Get Left Right Pick Pose from Bottle Pose">
     <Control ID="Sequence" name="TopLevelSequence">
       <Action
         ID="CreateStampedPose"
@@ -15,7 +15,7 @@
         position_xyz="0;0;0"
       />
       <SubTree
-        ID="GetQuaternionVectorFromPoseStamped"
+        ID="Get Quaternion Vector From Pose Stamped"
         pose_stamped_in="{table_pose}"
         quaternion_vector="{table_quaternion_vector}"
       />
@@ -85,7 +85,7 @@
     </Control>
   </BehaviorTree>
   <TreeNodesModel>
-    <SubTree ID="GetLeftRightPickPoseFromBottlePose">
+    <SubTree ID="Get Left Right Pick Pose from Bottle Pose">
       <MetadataFields>
         <Metadata runnable="false" />
         <Metadata subcategory="Application - Advanced Examples" />
