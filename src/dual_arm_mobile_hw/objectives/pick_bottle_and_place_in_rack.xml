@@ -61,7 +61,7 @@
         position_xyz="1.16;0.43;1.12"
       />
       <SubTree
-        ID="LocateBottleOnTable"
+        ID="Locate Bottle On Table"
         _collapsed="true"
         bottle_init_pose="{bottle_init_pose}"
       />

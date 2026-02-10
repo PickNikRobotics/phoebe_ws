@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <root
   BTCPP_format="4"
-  main_tree_to_execute="GetQuaternionVectorFromPoseStamped"
+  main_tree_to_execute="Get Quaternion Vector From Pose Stamped"
 >
   <!--//////////-->
-  <BehaviorTree ID="GetQuaternionVectorFromPoseStamped">
+  <BehaviorTree ID="Get Quaternion Vector From Pose Stamped">
     <Control ID="Sequence" name="">
       <Action
         ID="UnpackPoseStampedMessage"
@@ -58,7 +58,7 @@
     </Control>
   </BehaviorTree>
   <TreeNodesModel>
-    <SubTree ID="GetQuaternionVectorFromPoseStamped">
+    <SubTree ID="Get Quaternion Vector From Pose Stamped">
       <MetadataFields>
         <Metadata runnable="false" />
         <Metadata subcategory="Pose Handling" />

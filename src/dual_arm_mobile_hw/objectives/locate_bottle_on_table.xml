@@ -1,27 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<root BTCPP_format="4" main_tree_to_execute="ML Register Bottle">
-  <BehaviorTree ID="ML Register Bottle" _description="" _favorite="true">
-    <Control ID="Sequence" name="TopLevelSequence">
-      <SubTree
-        ID="Move to Waypoint"
-        _collapsed="true"
-        acceleration_scale_factor="1.0"
-        controller_action_server="/joint_trajectory_controller/follow_joint_trajectory"
-        controller_names="joint_trajectory_controller"
-        joint_group_name="manipulator"
-        keep_orientation="false"
-        keep_orientation_tolerance="0.05"
-        link_padding="0.01"
-        seed="0"
-        velocity_scale_factor="1.0"
-        waypoint_name="lookattable-left"
-      />
-      <Action ID="ClearSnapshot" />
-      <SubTree ID="Take Wrist Camera Snapshot" _collapsed="false" />
-      <Action
-        ID="SwitchUIPrimaryView"
-        primary_view_name="/masks_visualization"
-      />
+<root BTCPP_format="4" main_tree_to_execute="Locate Bottle On Table">
+  <!--//////////-->
+  <BehaviorTree ID="Locate Bottle On Table">
+    <Control ID="Sequence">
       <SubTree
         ID="Segment Image from No Negative Text Prompt Subtree"
         clip_model_path="models/clip.onnx"
@@ -31,8 +12,9 @@
         model_package="moveit_pro_clipseg"
         threshold="0.15"
         prompts="a bottle"
-        image_topic_name="/left_wrist_camera/color"
+        image_topic_name="/camera/left_wrist_mounted_camera/color/image_raw"
         masks2d="{masks2d}"
+        masks2d_refined="{masks2d}"
       />
       <Action
         ID="GetElementOfVector"
@@ -50,7 +32,7 @@
         message_out="{sam2image}"
         publisher_timeout_sec="5.000000"
         timeout_sec="5.000000"
-        topic_name="/left_wrist_camera/color"
+        topic_name="/camera/left_wrist_mounted_camera/color/image_raw"
       />
       <Action
         ID="GetMasks2DFromPointQuery"
@@ -73,14 +55,14 @@
         message_out="{left_camera_info}"
         publisher_timeout_sec="5.000000"
         timeout_sec="5.000000"
-        topic_name="/left_wrist_camera/camera_info"
+        topic_name="/camera/left_wrist_mounted_camera/color/camera_info"
       />
       <Action
         ID="GetPointCloud"
         message_out="{left_point_cloud}"
         publisher_timeout_sec="5.000000"
         timeout_sec="5.000000"
-        topic_name="/left_wrist_camera/points"
+        topic_name="/camera/left_wrist_mounted_camera/depth/color/points"
       />
       <Action
         ID="GetMasks3DFromMasks2D"
@@ -114,29 +96,27 @@
         point_cloud="{point_cloud_fragment}"
       />
       <Action
-        ID="BreakpointSubscriber"
-        breakpoint_topic="/moveit_pro_breakpoint"
-      />
-      <Action
         ID="LoadPointCloudFromFile"
         frame_id="world"
         num_sampled_points="10000"
         point_cloud="{ref_bottle_point_cloud}"
-        scale="2.000000"
+        scale="0.001"
         package_name="dual_arm_mobile_sim"
         random_seed="0"
-        file_path="description/assets/bottle.stl"
+        file_path="description/assets/trainer_hatch/collision/cylinder_mockup_full_length.stl"
         color="255;0;0"
       />
-      <Action ID="ClearSnapshot" _skipIf="true" />
+      <Action
+        ID="TransformPointCloud"
+        input_cloud="{ref_bottle_point_cloud}"
+        transform_pose="{bottle_init_pose}"
+        output_cloud="{ref_bottle_point_cloud}"
+      />
+      <Action ID="ClearSnapshot" />
       <Action
         ID="SendPointCloudToUI"
         pcd_topic="/pcd_pointcloud_captures"
         point_cloud="{ref_bottle_point_cloud}"
-      />
-      <Action
-        ID="BreakpointSubscriber"
-        breakpoint_topic="/moveit_pro_breakpoint"
       />
       <Action
         ID="RegisterPointClouds"
@@ -153,79 +133,39 @@
         transform_pose="{bottle_icp_transform}"
       />
       <Action
-        ID="SendPointCloudToUI"
-        pcd_topic="/pcd_pointcloud_captures"
-        point_cloud="{output_cloud}"
-      />
-      <Action
-        ID="BreakpointSubscriber"
-        breakpoint_topic="/moveit_pro_breakpoint"
-      />
-      <Action ID="AlwaysFailure" />
-      <Action
         ID="VisualizePose"
         marker_lifetime="0.000000"
         marker_name="pose"
         marker_size="0.100000"
-        pose="{stamped_pose}"
-      />
-      <SubTree ID="Open Left Gripper" _collapsed="true" />
-      <Action
-        ID="CreateStampedPose"
-        reference_frame="bottle_bottom_grasp"
-        stamped_pose="{prepick-pose}"
-        name="create-prepick-pose"
-        position_xyz="0;0;-0.07"
-      />
-      <SubTree
-        ID="Move to Pose"
-        controller_names="left_manipulator_joint_trajectory_controller;left_robotiq_gripper_controller"
-        ik_frame="left_grasp_link"
-        link_padding="0.01"
-        planning_group_name="left_manipulator"
-        require_user_approval="false"
-        target_pose="{prepick-pose}"
-        velocity_scale_factor="1.0"
-        name="move-to-prepick"
-        _collapsed="true"
+        pose="{bottle_icp_transform}"
       />
       <Action
-        ID="CreateStampedPose"
-        reference_frame="bottle_bottom_grasp"
-        stamped_pose="{pick-pose}"
-        name="create-prepick-pose"
-        position_xyz="0;0;0.03"
-      />
-      <SubTree
-        ID="Move to Pose"
-        controller_names="left_manipulator_joint_trajectory_controller;left_robotiq_gripper_controller"
-        ik_frame="left_grasp_link"
-        link_padding="0.01"
-        planning_group_name="left_manipulator"
-        require_user_approval="false"
-        target_pose="{pick-pose}"
-        velocity_scale_factor="1.0"
-        name="move-to-prepick"
-        _collapsed="true"
-      />
-      <SubTree ID="Close Left Gripper" _collapsed="true" />
-      <SubTree
-        ID="Move to Waypoint"
-        _collapsed="true"
-        acceleration_scale_factor="1.0"
-        controller_action_server="/joint_trajectory_controller/follow_joint_trajectory"
-        controller_names="joint_trajectory_controller"
-        joint_group_name="manipulator"
-        keep_orientation="false"
-        keep_orientation_tolerance="0.05"
-        link_padding="0.01"
-        seed="0"
-        velocity_scale_factor="1.0"
-        waypoint_name="high_pick_waypoint"
+        ID="SendPointCloudToUI"
+        pcd_topic="/pcd_pointcloud_captures"
+        point_cloud="{output_cloud}"
       />
     </Control>
   </BehaviorTree>
   <TreeNodesModel>
-    <SubTree ID="ML Register Bottle" />
+    <SubTree ID="Locate Bottle On Table">
+      <MetadataFields>
+        <Metadata runnable="false" />
+        <Metadata subcategory="Application - Advanced Examples" />
+      </MetadataFields>
+      <inout_port
+        name="bottle_init_pose"
+        default="{bottle_init_pose}"
+        type="geometry_msgs::msg::PoseStamped_&lt;std::allocator&lt;void&gt; &gt;"
+      >
+        Initial position of bottle base, for ICP
+      </inout_port>
+      <inout_port
+        name="bottle_icp_transform"
+        default="{bottle_icp_transform}"
+        type="geometry_msgs::msg::PoseStamped_&lt;std::allocator&lt;void&gt; &gt;"
+      >
+        Returning variable for bottle pose as a result of ICP
+      </inout_port>
+    </SubTree>
   </TreeNodesModel>
 </root>

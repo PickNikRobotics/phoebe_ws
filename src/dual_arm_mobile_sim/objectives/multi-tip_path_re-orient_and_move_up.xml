@@ -6,7 +6,7 @@
   <BehaviorTree
     ID="Multi-tip Path Re-Orient and Move Up"
     _description="Example of Re-Orientation for a bottle and then moving it up. "
-    _favorite="true"
+    _favorite="false"
   >
     <Control ID="Sequence">
       <SubTree ID="Multi-tip Path Re-Orient Bottle" _collapsed="false" />
