@@ -16,33 +16,33 @@ hardware:
 
   robot_description:
     urdf:
-      package: "dual_arm_mobile_sim"
-      path: "description/dual_arm_mobile_sim.urdf.xacro"
+      package: "phoebe_sim"
+      path: "description/phoebe_sim.urdf.xacro"
     srdf:
-      package: "dual_arm_mobile_sim"
-      path: "config/moveit/dual_arm_mobile_sim.srdf"
+      package: "phoebe_sim"
+      path: "config/moveit/phoebe_sim.srdf"
     urdf_params:
       - mujoco_model: "description/dual_arm_scene.xml"
 
 moveit_params:
   joint_group_name: "manipulator"
   servo:
-    package: "dual_arm_mobile_sim"
+    package: "phoebe_sim"
     path: "config/moveit/servo.yaml"
   joint_limits:
-    package: "dual_arm_mobile_sim"
+    package: "phoebe_sim"
     path: "config/moveit/joint_limits.yaml"
   servo_joint_limits:
-    package: "dual_arm_mobile_sim"
+    package: "phoebe_sim"
     path: "config/moveit/hard_joint_limits.yaml"
   kinematics:
-    package: "dual_arm_mobile_sim"
+    package: "phoebe_sim"
     path: "config/moveit/pose_ik_distance.yaml"
   pose_jog:
-    package: "dual_arm_mobile_sim"
+    package: "phoebe_sim"
     path: "config/moveit/pose_jog.yaml"
   ompl_planning:
-    package: "dual_arm_mobile_sim"
+    package: "phoebe_sim"
     path: "config/moveit/ompl_planning.yaml"
 
   publish:
@@ -61,7 +61,7 @@ moveit_params:
 # [Required, if using ros2_control]
 ros2_control:
   config:
-    package: "dual_arm_mobile_sim"
+    package: "phoebe_sim"
     path: "config/control/dual_arm.ros2_control.yaml"
   controllers_active_at_startup:
     - "joint_state_broadcaster"
@@ -118,10 +118,10 @@ objectives:
       package_name: "moveit_pro_objectives"
       relative_path: "objectives/visualization"
     sim_objectives:
-      package_name: "dual_arm_mobile_sim"
+      package_name: "phoebe_sim"
       relative_path: "objectives"
   # Specify the location of the saved waypoints file.
   # [Required]
   waypoints_file:
-    package_name: "dual_arm_mobile_sim"
+    package_name: "phoebe_sim"
     relative_path: "waypoints/waypoints.yaml"

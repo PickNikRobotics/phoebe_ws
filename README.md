@@ -6,6 +6,6 @@
 6. `touch src/dependencies/ewellix_lift/ewellix_examples/COLCON_IGNORE`
 7. `pwd && moveit_pro configure`
 8. `moveit_pro build`
-9. `moveit_pro run -v -c dual_arm_mobile_sim`
+9. `moveit_pro run -v -c phoebe_sim`
 
-See [src/dual_arm_mobile_hw/README.md](src/dual_arm_mobile_hw/README.md) for details on running on hardware.
+See [src/phoebe_hw/README.md](src/phoebe_hw/README.md) for details on running on hardware.

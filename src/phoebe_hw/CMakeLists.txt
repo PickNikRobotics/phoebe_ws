@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.22)
-project(dual_arm_mobile_hw)
+project(phoebe_hw)
 
 find_package(ament_cmake REQUIRED)
 

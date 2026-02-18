@@ -13,9 +13,9 @@ def generate_launch_description():
             " ",
             PathJoinSubstitution(
                 [
-                    FindPackageShare("dual_arm_mobile_sim"),
+                    FindPackageShare("phoebe_sim"),
                     "urdf",
-                    "dual_arm_mobile_sim.urdf.xacro",
+                    "phoebe_sim.urdf.xacro",
                 ]
             ),
         ]
@@ -27,7 +27,7 @@ def generate_launch_description():
     }
 
     rviz_config_file = PathJoinSubstitution(
-        [FindPackageShare("dual_arm_mobile_sim"), "rviz", "view_robot.rviz"]
+        [FindPackageShare("phoebe_sim"), "rviz", "view_robot.rviz"]
     )
 
     joint_state_publisher_node = Node(

@@ -456,7 +456,7 @@
     <link name="lift_rails">
       <visual>
         <geometry>
-          <mesh filename="package://dual_arm_mobile_description/meshes/lift_rails.STL"/>
+          <mesh filename="package://phoebe_description/meshes/lift_rails.STL"/>
         </geometry>
         <material name="clearpath_dark_grey"/>
       </visual>
@@ -476,7 +476,7 @@
     <link name="rear_shelf">
       <visual>
         <geometry>
-          <mesh filename="package://dual_arm_mobile_description/meshes/shelf.STL"/>
+          <mesh filename="package://phoebe_description/meshes/shelf.STL"/>
         </geometry>
         <material name="clearpath_dark_grey"/>
       </visual>
@@ -496,7 +496,7 @@
     <link name="front_shelf">
       <visual>
         <geometry>
-          <mesh filename="package://dual_arm_mobile_description/meshes/shelf.STL"/>
+          <mesh filename="package://phoebe_description/meshes/shelf.STL"/>
         </geometry>
         <material name="clearpath_dark_grey"/>
       </visual>
@@ -516,7 +516,7 @@
     <link name="monitor_hinge_base">
       <visual>
         <geometry>
-          <mesh filename="package://dual_arm_mobile_description/meshes/monitor_hinge_base.STL"/>
+          <mesh filename="package://phoebe_description/meshes/monitor_hinge_base.STL"/>
         </geometry>
         <material name="clearpath_dark_grey"/>
       </visual>
@@ -536,7 +536,7 @@
     <link name="monitor_hinge_top">
       <visual>
         <geometry>
-          <mesh filename="package://dual_arm_mobile_description/meshes/monitor_hinge_top.STL"/>
+          <mesh filename="package://phoebe_description/meshes/monitor_hinge_top.STL"/>
         </geometry>
         <material name="clearpath_dark_grey"/>
       </visual>
@@ -556,7 +556,7 @@
     <link name="left_monitor">
       <visual>
         <geometry>
-          <mesh filename="package://dual_arm_mobile_description/meshes/monitor.STL"/>
+          <mesh filename="package://phoebe_description/meshes/monitor.STL"/>
         </geometry>
         <material name="clearpath_dark_grey"/>
       </visual>
@@ -576,7 +576,7 @@
     <link name="right_monitor">
       <visual>
         <geometry>
-          <mesh filename="package://dual_arm_mobile_description/meshes/monitor.STL"/>
+          <mesh filename="package://phoebe_description/meshes/monitor.STL"/>
         </geometry>
         <material name="clearpath_dark_grey"/>
       </visual>
@@ -596,7 +596,7 @@
     <link name="rear_ur_control_box">
       <visual>
         <geometry>
-          <mesh filename="package://dual_arm_mobile_description/meshes/ur_control_box.STL"/>
+          <mesh filename="package://phoebe_description/meshes/ur_control_box.STL"/>
         </geometry>
         <material name="clearpath_aluminum"/>
       </visual>
@@ -616,7 +616,7 @@
     <link name="front_ur_control_box">
       <visual>
         <geometry>
-          <mesh filename="package://dual_arm_mobile_description/meshes/ur_control_box.STL"/>
+          <mesh filename="package://phoebe_description/meshes/ur_control_box.STL"/>
         </geometry>
         <material name="clearpath_aluminum"/>
       </visual>
@@ -636,7 +636,7 @@
     <link name="rear_scu">
       <visual>
         <geometry>
-          <mesh filename="package://dual_arm_mobile_description/meshes/scu.STL"/>
+          <mesh filename="package://phoebe_description/meshes/scu.STL"/>
         </geometry>
         <material name="clearpath_aluminum"/>
       </visual>
@@ -656,7 +656,7 @@
     <link name="front_scu">
       <visual>
         <geometry>
-          <mesh filename="package://dual_arm_mobile_description/meshes/scu.STL"/>
+          <mesh filename="package://phoebe_description/meshes/scu.STL"/>
         </geometry>
         <material name="clearpath_aluminum"/>
       </visual>
@@ -676,7 +676,7 @@
     <link name="autec_receiver">
       <visual>
         <geometry>
-          <mesh filename="package://dual_arm_mobile_description/meshes/autec_receiver.STL"/>
+          <mesh filename="package://phoebe_description/meshes/autec_receiver.STL"/>
         </geometry>
         <material name="clearpath_yellow"/>
       </visual>
@@ -696,7 +696,7 @@
     <link name="right_wifi_antenna">
       <visual>
         <geometry>
-          <mesh filename="package://dual_arm_mobile_description/meshes/wifi_antenna.STL"/>
+          <mesh filename="package://phoebe_description/meshes/wifi_antenna.STL"/>
         </geometry>
         <material name="clearpath_dark_grey"/>
       </visual>
@@ -716,7 +716,7 @@
     <link name="left_wifi_antenna">
       <visual>
         <geometry>
-          <mesh filename="package://dual_arm_mobile_description/meshes/wifi_antenna.STL"/>
+          <mesh filename="package://phoebe_description/meshes/wifi_antenna.STL"/>
         </geometry>
         <material name="clearpath_dark_grey"/>
       </visual>
@@ -736,7 +736,7 @@
     <link name="autec_antenna">
       <visual>
         <geometry>
-          <mesh filename="package://dual_arm_mobile_description/meshes/autec_antenna.STL"/>
+          <mesh filename="package://phoebe_description/meshes/autec_antenna.STL"/>
         </geometry>
         <material name="clearpath_dark_grey"/>
       </visual>
@@ -756,13 +756,13 @@
     <link name="left_arm_mount_plate">
       <visual>
         <geometry>
-          <mesh filename="package://dual_arm_mobile_description/meshes/arm_mount.STL"/>
+          <mesh filename="package://phoebe_description/meshes/arm_mount.STL"/>
         </geometry>
         <material name="clearpath_dark_grey"/>
       </visual>
       <collision>
         <geometry>
-          <mesh filename="package://dual_arm_mobile_description/meshes/arm_mount_collision.STL"/>
+          <mesh filename="package://phoebe_description/meshes/arm_mount_collision.STL"/>
         </geometry>
       </collision>
     </link>
@@ -775,13 +775,13 @@
     <link name="right_arm_mount_plate">
       <visual>
         <geometry>
-          <mesh filename="package://dual_arm_mobile_description/meshes/arm_mount.STL"/>
+          <mesh filename="package://phoebe_description/meshes/arm_mount.STL"/>
         </geometry>
         <material name="clearpath_dark_grey"/>
       </visual>
       <collision>
         <geometry>
-          <mesh filename="package://dual_arm_mobile_description/meshes/arm_mount_collision.STL"/>
+          <mesh filename="package://phoebe_description/meshes/arm_mount_collision.STL"/>
         </geometry>
       </collision>
     </link>

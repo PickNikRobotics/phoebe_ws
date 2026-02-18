@@ -4,7 +4,7 @@
   <arg name="wrist_camera_serial_no" default="'0'" />
 
   <!-- Scene camera  -->
-  <include file="$(find-pkg-share dual_arm_mobile_hw)/launch/pro_rs_launch.py">
+  <include file="$(find-pkg-share phoebe_hw)/launch/pro_rs_launch.py">
     <arg name="camera_name" value="scene_camera" />
     <arg name="serial_no" value="$(var scene_camera_serial_no)" />
     <arg name="device_type" value="D415" />
@@ -35,7 +35,7 @@
     />
   </include>
   <!-- Wrist camera  -->
-  <include file="$(find-pkg-share dual_arm_mobile_hw)/launch/pro_rs_launch.py">
+  <include file="$(find-pkg-share phoebe_hw)/launch/pro_rs_launch.py">
     <arg name="camera_name" value="left_wrist_mounted_camera" />
     <arg name="serial_no" value="$(var wrist_camera_serial_no)" />
     <arg name="device_type" value="D415" />

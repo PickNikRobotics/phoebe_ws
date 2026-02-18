@@ -115,19 +115,19 @@ For the final demo, we will probably just want to disable the lifts. Their motio
 of the system and they probably cause more problems than they are worth with all their failure modes.
 To disable the lifts the following steps will need to be taken:
 - In the ewellix_tlt500.macro.xacro file, change the
-  [lower_joint](https://github.com/PickNikRobotics/dual_arm_mobile_ws/blob/b1a4c8641fb5436d8143ee6ca906dca3acb48e5e/src/dual_arm_mobile_description/xacro/ewellix_tlt500.macro.xacro#L95-L103)
+  [lower_joint](https://github.com/PickNikRobotics/phoebe_ws/blob/b1a4c8641fb5436d8143ee6ca906dca3acb48e5e/src/phoebe_description/xacro/ewellix_tlt500.macro.xacro#L95-L103)
   and
-  [upper_joint](https://github.com/PickNikRobotics/dual_arm_mobile_ws/blob/b1a4c8641fb5436d8143ee6ca906dca3acb48e5e/src/dual_arm_mobile_description/xacro/ewellix_tlt500.macro.xacro#L129-L136)
+  [upper_joint](https://github.com/PickNikRobotics/phoebe_ws/blob/b1a4c8641fb5436d8143ee6ca906dca3acb48e5e/src/phoebe_description/xacro/ewellix_tlt500.macro.xacro#L129-L136)
   to fixed joints by removing their axis, limit, and dynamics tags.
 - Remove references to `lift_left_upper_joint` and `lift_right_upper_joint` in the
-  [ros2_control.yaml file](https://github.com/PickNikRobotics/dual_arm_mobile_ws/blob/main/src/dual_arm_mobile_sim/config/control/dual_arm.ros2_control.yaml),
+  [ros2_control.yaml file](https://github.com/PickNikRobotics/phoebe_ws/blob/main/src/phoebe_sim/config/control/dual_arm.ros2_control.yaml),
   (and probably the joint_limits files as well).
 - Remove 2 of the values in the
-  [joint_limit_margins](https://github.com/PickNikRobotics/dual_arm_mobile_ws/blob/b1a4c8641fb5436d8143ee6ca906dca3acb48e5e/src/dual_arm_mobile_hw/config/moveit/servo.yaml#L51)
+  [joint_limit_margins](https://github.com/PickNikRobotics/phoebe_ws/blob/b1a4c8641fb5436d8143ee6ca906dca3acb48e5e/src/phoebe_hw/config/moveit/servo.yaml#L51)
   list in servo.yaml.
 
 NOTE: removing these joints will invalidate all the waypoints in
-[waypoints.yaml](https://github.com/PickNikRobotics/dual_arm_mobile_ws/blob/main/src/dual_arm_mobile_hw/waypoints/waypoints.yaml).
+[waypoints.yaml](https://github.com/PickNikRobotics/phoebe_ws/blob/main/src/phoebe_hw/waypoints/waypoints.yaml).
 You can either manually remove the positions in each waypoint that were for the lifts or re-create the waypoints from
 scratch.
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <package format="3">
-  <name>dual_arm_mobile_hw</name>
+  <name>phoebe_hw</name>
   <version>8.3.0</version>
 
   <description>

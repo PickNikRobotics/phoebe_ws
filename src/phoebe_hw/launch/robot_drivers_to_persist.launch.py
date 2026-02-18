@@ -91,7 +91,7 @@ def ur5e_nodes_to_launch(prefix, robot_ip_value, controller_config):
         tool_comms_launch = IncludeLaunchDescription(
             AnyLaunchDescriptionSource(
                 [
-                    FindPackageShare("dual_arm_mobile_hw"),
+                    FindPackageShare("phoebe_hw"),
                     "/launch/ur_tool_comms.launch.xml",
                 ]
             ),
@@ -108,7 +108,7 @@ def ur5e_nodes_to_launch(prefix, robot_ip_value, controller_config):
 
 def generate_launch_description():
     # Get path to config share directory.
-    pkg_dual_arm_mobile_hw = FindPackageShare("dual_arm_mobile_hw")
+    pkg_phoebe_hw = FindPackageShare("phoebe_hw")
 
     # Declare launch arguments for robot IPs.
     left_robot_ip_arg = DeclareLaunchArgument(
@@ -137,7 +137,7 @@ def generate_launch_description():
     )
 
     odom_offset_node = Node(
-        package="dual_arm_mobile_hw",
+        package="phoebe_hw",
         executable="odom_offset_node.py",
         name="odom_offset_node",
         output="screen",
