@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root
+  BTCPP_format="4"
+  main_tree_to_execute="Get Left Right Pick Pose from Bottle Pose"
+>
+  <!--//////////-->
+  <BehaviorTree ID="Get Left Right Pick Pose from Bottle Pose">
+    <Control ID="Sequence" name="TopLevelSequence">
+      <Action
+        ID="CreateStampedPose"
+        reference_frame="world"
+        stamped_pose="{table_pose}"
+        orientation_xyzw="0.5;0.5;0.5;0.5"
+        name="Hard coding the table pose for now but should be taken from qr code on the table"
+        position_xyz="0;0;0"
+      />
+      <SubTree
+        ID="Get Quaternion Vector From Pose Stamped"
+        pose_stamped_in="{table_pose}"
+        quaternion_vector="{table_quaternion_vector}"
+      />
+      <SubTree
+        ID="GetPositionVectorFromPoseStamped"
+        pose_stamped_in="{bottle_in_world_pose}"
+        position_vector="{position_vector}"
+      />
+      <Action
+        ID="CreateStampedPose"
+        reference_frame="world"
+        orientation_xyzw="{table_quaternion_vector}"
+        position_xyz="{position_vector}"
+        stamped_pose="{bottle_bottom_aligned_pose}"
+      />
+      <Action
+        ID="TransformPose"
+        input_pose="{bottle_bottom_aligned_pose}"
+        output_pose="{bottle_bottom_aligned_pose}"
+        translation_xyz="0;0;0"
+        quaternion_xyzw="0;-0.7071;0;0.7071"
+      />
+      <Action
+        ID="CreateStampedPose"
+        reference_frame="world"
+        orientation_xyzw="{table_quaternion_vector}"
+        position_xyz="{position_vector}"
+        stamped_pose="{bottle_bottom_aligned_left_pose}"
+      />
+      <Action
+        ID="TransformPose"
+        input_pose="{bottle_bottom_aligned_pose}"
+        output_pose="{bottle_bottom_aligned_left_pose}"
+        translation_xyz="0;0.35;-0.1"
+        quaternion_xyzw="0;0;0;0"
+      />
+      <Action
+        ID="CreateStampedPose"
+        reference_frame="world"
+        orientation_xyzw="{table_quaternion_vector}"
+        position_xyz="{position_vector}"
+        stamped_pose="{bottle_bottom_aligned_right_pose}"
+      />
+      <Action
+        ID="TransformPose"
+        input_pose="{bottle_bottom_aligned_pose}"
+        output_pose="{bottle_bottom_aligned_right_pose}"
+        translation_xyz="0;0.15;0.16"
+        quaternion_xyzw="0;1;0;0"
+      />
+      <Action
+        ID="VisualizePose"
+        marker_lifetime="0.000000"
+        marker_name="bottle_bottom_aligned_left_pose"
+        marker_size="0.100000"
+        pose="{bottle_bottom_aligned_left_pose}"
+        marker_text="bottle_bottom_aligned_left_pose"
+      />
+      <Action
+        ID="VisualizePose"
+        marker_lifetime="0.000000"
+        marker_name="bottle_bottom_aligned_right_pose"
+        marker_size="0.100000"
+        pose="{bottle_bottom_aligned_right_pose}"
+        marker_text="bottle_bottom_aligned_right_pose"
+      />
+    </Control>
+  </BehaviorTree>
+  <TreeNodesModel>
+    <SubTree ID="Get Left Right Pick Pose from Bottle Pose">
+      <MetadataFields>
+        <Metadata runnable="false" />
+        <Metadata subcategory="Application - Advanced Examples" />
+      </MetadataFields>
+      <inout_port
+        name="bottle_bottom_aligned_left_pose"
+        default="{bottle_bottom_aligned_left_pose}"
+        type="geometry_msgs::msg::PoseStamped_&lt;std::allocator&lt;void&gt; &gt;"
+      >
+        left pre-grasp pose
+      </inout_port>
+      <inout_port
+        name="bottle_bottom_aligned_right_pose"
+        default="{bottle_bottom_aligned_right_pose}"
+        type="geometry_msgs::msg::PoseStamped_&lt;std::allocator&lt;void&gt; &gt;"
+      >
+        right pre-grasp pose
+      </inout_port>
+      <inout_port
+        name="bottle_in_world_pose"
+        default="{bottle_in_world_pose}"
+        type="geometry_msgs::msg::PoseStamped_&lt;std::allocator&lt;void&gt; &gt;"
+      >
+        Input for current pose of bottle in world frame
+      </inout_port>
+    </SubTree>
+  </TreeNodesModel>
+</root>
