@@ -77,7 +77,7 @@
     <SubTree ID="Multi-tip Path Re-Orient Bottle">
       <MetadataFields>
         <Metadata runnable="true" />
-        <Metadata subcategory="Application - Advanced Examples" />
+        <Metadata subcategory="Motion - Execute" />
       </MetadataFields>
     </SubTree>
   </TreeNodesModel>

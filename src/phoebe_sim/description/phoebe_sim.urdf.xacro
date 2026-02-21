@@ -129,7 +129,7 @@
       <plugin>picknik_mujoco_ros/MujocoSystem</plugin>
       <param name="mujoco_model">$(arg mujoco_model)</param>
       <param name="mujoco_model_package">phoebe_sim</param>
-      <param name="mujoco_viewer">true</param>
+      <param name="mujoco_viewer">false</param>
       <param name="render_publish_rate">60</param>
       <param name="tf_publish_rate">60</param>
       <param name="lidar_publish_rate">10</param>

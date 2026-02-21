@@ -6,7 +6,7 @@
   <BehaviorTree
     ID="Multi-tip Path Re-Orient, Move Up and Push"
     _description="Example of Re-Orientation for a bottle and then moving it up. "
-    _favorite="false"
+    _favorite="true"
   >
     <Control ID="Sequence">
       <!--hard coded moving robot to bottle and grasping-->

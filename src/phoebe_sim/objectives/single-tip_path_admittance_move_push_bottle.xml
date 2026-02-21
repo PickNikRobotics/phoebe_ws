@@ -126,7 +126,7 @@
     <SubTree ID="Single-tip Path Admittance Move Push Bottle">
       <MetadataFields>
         <Metadata runnable="true" />
-        <Metadata subcategory="Application - Advanced Examples" />
+        <Metadata subcategory="Motion - Execute" />
       </MetadataFields>
     </SubTree>
   </TreeNodesModel>
