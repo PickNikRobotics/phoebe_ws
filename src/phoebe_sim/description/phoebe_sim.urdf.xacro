@@ -2,6 +2,7 @@
 <robot name="phoebe" xmlns:xacro="http://wiki.ros.org/xacro">
   <!-- Args that users may need to change. -->
   <xacro:arg name="mujoco_model" default=""/>
+  <xacro:arg name="mujoco_model_package" default="phoebe_sim"/>
 
   <!-- Mobile base joints -->
   <link name="world"/>
@@ -128,7 +129,7 @@
     <hardware>
       <plugin>picknik_mujoco_ros/MujocoSystem</plugin>
       <param name="mujoco_model">$(arg mujoco_model)</param>
-      <param name="mujoco_model_package">phoebe_sim</param>
+      <param name="mujoco_model_package">$(arg mujoco_model_package)</param>
       <param name="mujoco_viewer">true</param>
       <param name="render_publish_rate">60</param>
       <param name="tf_publish_rate">60</param>

@@ -4,6 +4,9 @@
   <arg name="wrist_camera_serial_no" default="'0'" />
 
   <!-- Scene camera  -->
+  <!-- Commented out: Scene camera with serial 135322061686 is not connected.
+       Uncomment below and set scene_camera_serial_no to the correct serial when the camera is available. -->
+  <!--
   <include file="$(find-pkg-share phoebe_hw)/launch/pro_rs_launch.py">
     <arg name="camera_name" value="scene_camera" />
     <arg name="serial_no" value="$(var scene_camera_serial_no)" />
@@ -14,7 +17,6 @@
     <arg name="pointcloud.ordered_pc" value="True" />
     <arg name="decimation_filter.enable" value="False" />
 
-    <!--# information about the topics the camera publishes the raw image and info-->
     <arg name="rgb_info" value="/scene_camera/color/camera_info" />
     <arg name="rgb_image" value="/scene_camera/color/image_raw" />
     <arg
@@ -34,6 +36,7 @@
       value="/scene_camera/depth/image_rect_raw"
     />
   </include>
+  -->
   <!-- Wrist camera  -->
   <include file="$(find-pkg-share phoebe_hw)/launch/pro_rs_launch.py">
     <arg name="camera_name" value="left_wrist_mounted_camera" />

@@ -16,6 +16,9 @@
 [submodule "src/dependencies/moveit_studio_ur_pstop_manager"]
 	path = src/dependencies/moveit_studio_ur_pstop_manager
 	url = git@github.com:PickNikRobotics/moveit_studio_ur_pstop_manager.git
+[submodule "src/dependencies/moveit_pro_clipseg"]
+	path = src/dependencies/moveit_pro_clipseg
+	url = https://github.com/PickNikRobotics/moveit_pro_clipseg.git
 [submodule "src/dependencies/serial"]
 	path = src/dependencies/serial
 	url = https://github.com/tylerjw/serial.git

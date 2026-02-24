@@ -9,6 +9,7 @@ install(
     description
     launch
     meshes
+    models
     objectives
     rviz
     waypoints

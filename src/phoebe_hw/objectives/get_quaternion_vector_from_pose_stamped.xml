@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root
+  BTCPP_format="4"
+  main_tree_to_execute="Get Quaternion Vector From Pose Stamped"
+>
+  <!--//////////-->
+  <BehaviorTree ID="Get Quaternion Vector From Pose Stamped">
+    <Control ID="Sequence" name="">
+      <Action
+        ID="UnpackPoseStampedMessage"
+        header="{header}"
+        pose_stamped="{pose_stamped_in}"
+        pose="{temp_pose_1}"
+      />
+      <Action
+        ID="UnpackPoseMessage"
+        orientation="{orientation_quat}"
+        pose="{temp_pose_1}"
+        position="{pc_centroid_position}"
+      />
+      <Action
+        ID="UnpackQuaternionMessage"
+        quaternion="{orientation_quat}"
+        w="{qw}"
+        x="{qx}"
+        y="{qy}"
+        z="{qz}"
+      />
+      <Action ID="ResetVector" vector="{quaternion_vector}" />
+      <Action
+        ID="InsertInVector"
+        index="0"
+        input_vector="{quaternion_vector}"
+        output_vector="{quaternion_vector}"
+        element="{qx}"
+      />
+      <Action
+        ID="InsertInVector"
+        input_vector="{quaternion_vector}"
+        output_vector="{quaternion_vector}"
+        element="{qy}"
+        index="1"
+      />
+      <Action
+        ID="InsertInVector"
+        index="2"
+        input_vector="{quaternion_vector}"
+        output_vector="{quaternion_vector}"
+        element="{qz}"
+      />
+      <Action
+        ID="InsertInVector"
+        index="3"
+        input_vector="{quaternion_vector}"
+        output_vector="{quaternion_vector}"
+        element="{qw}"
+      />
+    </Control>
+  </BehaviorTree>
+  <TreeNodesModel>
+    <SubTree ID="Get Quaternion Vector From Pose Stamped">
+      <MetadataFields>
+        <Metadata runnable="false" />
+        <Metadata subcategory="Pose Handling" />
+      </MetadataFields>
+      <inout_port
+        name="pose_stamped_in"
+        default="{pose_stamped_in}"
+        type="geometry_msgs::msg::PoseStamped_&lt;std::allocator&lt;void&gt; &gt;"
+      />
+      <inout_port
+        name="quaternion_vector"
+        default="{quaternion_vector}"
+        type="std:vector&lt;double&gt;"
+      />
+    </SubTree>
+  </TreeNodesModel>
+</root>

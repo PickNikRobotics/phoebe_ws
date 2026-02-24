@@ -156,13 +156,17 @@
   favorite: false
   joint_group_names:
   - left_gripper
+  - left_lift
   - left_manipulator
   - left_mobile_manipulator
   - manipulator
   - mobile_base
+  - right_arm_only
   - right_gripper
+  - right_lift
   - right_manipulator
   - right_mobile_manipulator
+  - z_mobile_base_ee_group
   joint_state:
     effort: []
     header:
@@ -171,17 +175,13 @@
         nanosec: 0
         sec: 0
     name:
+    - lift_left_upper_joint
     - left_shoulder_pan_joint
     - left_shoulder_lift_joint
     - left_elbow_joint
     - left_wrist_1_joint
     - left_wrist_2_joint
     - left_wrist_3_joint
-    - left_robotiq_85_left_knuckle_joint
-    - lift_left_upper_joint
-    - linear_x_joint
-    - linear_y_joint
-    - rotational_yaw_joint
     - lift_right_upper_joint
     - right_shoulder_pan_joint
     - right_shoulder_lift_joint
@@ -189,27 +189,31 @@
     - right_wrist_1_joint
     - right_wrist_2_joint
     - right_wrist_3_joint
+    - left_robotiq_85_left_knuckle_joint
+    - linear_x_joint
+    - linear_y_joint
+    - rotational_yaw_joint
     - right_robotiq_85_left_knuckle_joint
     position:
-    - -1.8029052944392314
-    - -0.20307778026295867
-    - -1.6153702603843867
-    - -0.3181004988984825
-    - 3.076246829682435
-    - 0.7183064971330111
-    - 0.03959349766369607
-    - 3.5969056557262184e-05
-    - 0.012598223830958086
-    - -0.4250719220493378
-    - 0.015645849189366193
-    - 7.0104795703321245e-09
-    - 0.00021521641310508693
-    - 8.349436250042091e-05
-    - 3.297048944252031e-05
-    - 3.6294041536446884e-05
-    - -2.366199991157944e-05
-    - 2.74187960053119e-07
-    - 0.0934394258416759
+    - 0.0001864114231515832
+    - -1.7535846702629654
+    - -2.3595657516189674
+    - -1.5617889537921854
+    - -1.2496865245203999
+    - 0.909978510436498
+    - 2.305364568346204
+    - 8.015977362862589e-06
+    - 1.6451148765757633
+    - -0.3248152471327874
+    - 1.091910435863936
+    - -1.7215442293214207
+    - -1.0029090711046846
+    - -2.4711258652942605
+    - 0.034282584011235365
+    - -0.045671320739885446
+    - 0.0146909546435057
+    - -0.0030845951352903994
+    - 0.09190446228339062
     velocity: []
   multi_dof_joint_state:
     header:
@@ -221,7 +225,84 @@
     transforms: []
     twist: []
     wrench: []
-  name: Look at Trainer
+  name: ApproachBottle
+- description: ''
+  favorite: false
+  joint_group_names:
+  - arms_lift_only
+  - arms_only
+  - left_arm_only
+  - left_gripper
+  - left_lift
+  - left_manipulator
+  - left_mobile_manipulator
+  - manipulator
+  - mobile_base
+  - right_arm_only
+  - right_gripper
+  - right_lift
+  - right_manipulator
+  - right_mobile_manipulator
+  - z_mobile_base_ee_group
+  joint_state:
+    effort: []
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    name:
+    - lift_left_upper_joint
+    - left_shoulder_pan_joint
+    - left_shoulder_lift_joint
+    - left_elbow_joint
+    - left_wrist_1_joint
+    - left_wrist_2_joint
+    - left_wrist_3_joint
+    - lift_right_upper_joint
+    - right_shoulder_pan_joint
+    - right_shoulder_lift_joint
+    - right_elbow_joint
+    - right_wrist_1_joint
+    - right_wrist_2_joint
+    - right_wrist_3_joint
+    - left_robotiq_85_left_knuckle_joint
+    - linear_x_joint
+    - linear_y_joint
+    - rotational_yaw_joint
+    - right_robotiq_85_left_knuckle_joint
+    position:
+    - 0.00018641140324554586
+    - -1.7535803499221847
+    - -2.3595615778304784
+    - -1.56178458059938
+    - -1.2496855579621042
+    - 0.90997915873928
+    - 2.305367197940256
+    - 8.015591913328488e-06
+    - 1.645111814446742
+    - -0.324814282480218
+    - 1.0919090553880397
+    - -1.7215409615424582
+    - -1.0029074801947668
+    - -2.4711216194461967
+    - 0.02172407522551698
+    - -0.5997909784565573
+    - 0.010916498750701449
+    - 0.012557093690858077
+    - 0.04958756789668505
+    velocity: []
+  multi_dof_joint_state:
+    header:
+      frame_id: ''
+      stamp:
+        nanosec: 0
+        sec: 0
+    joint_names: []
+    transforms: []
+    twist: []
+    wrench: []
+  name: AwayTable
 - description: ''
   favorite: false
   joint_group_names:
