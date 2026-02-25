@@ -46,6 +46,7 @@
                       target_joint_state="{target_joint_state}"
                       controller_names="{joint_trajectory_controller_name}"
                       controller_action_server="{controller_action_server}"
+                      execution_pipeline="jtc"
                       planning_group_name="{default_planning_group}"
                       velocity_scale_factor="{velocity_scale_factor}"
                       acceleration_scale_factor="1.0"
@@ -100,6 +101,8 @@
                       _collapsed="false"
                       target_pose="{target_pose}"
                       controller_names="{joint_trajectory_controller_name}"
+                      controller_action_name="{controller_action_server}"
+                      execution_pipeline="jtc"
                       link_padding="{link_padding}"
                       planning_group_name="{planning_group}"
                       ik_frame="{tip_link}"
@@ -142,6 +145,7 @@
                       acceleration_scale_factor="1.0"
                       controller_action_server="{controller_action_server}"
                       controller_names="{joint_trajectory_controller_name}"
+                      execution_pipeline="jtc"
                       joint_group_name="{default_planning_group}"
                       link_padding="{link_padding}"
                       keep_orientation="false"
@@ -193,10 +197,44 @@
             </Control>
             <!--Joint jogging-->
             <Control ID="Sequence" _while="teleop_mode == 1">
-              <Action
-                ID="TeleoperateJointJog"
-                controller_name="servo_controller"
-              />
+              <Decorator ID="Repeat" num_cycles="-1">
+                <Control ID="Sequence">
+                  <Action
+                    ID="SwitchController"
+                    activate_asap="true"
+                    automatic_deactivation="true"
+                    controller_list_action_name="/controller_manager/list_controllers"
+                    controller_switch_action_name="/controller_manager/switch_controller"
+                    strictness="1"
+                    timeout="-1.000000"
+                    activate_controllers="{controllers}"
+                  />
+                  <Decorator ID="ForceSuccess">
+                    <Decorator ID="Repeat" num_cycles="-1">
+                      <Control
+                        ID="Parallel"
+                        success_count="1"
+                        failure_count="1"
+                      >
+                        <Decorator ID="KeepRunningUntilFailure">
+                          <Action
+                            ID="GetElementOfVector"
+                            vector_in="{controllers}"
+                            index="0"
+                            element="{first_controller}"
+                          />
+                        </Decorator>
+                        <Action
+                          ID="JointJog"
+                          controller_name="{first_controller}"
+                          link_padding="0.00000"
+                          stop_safety_factor="1.500000"
+                        />
+                      </Control>
+                    </Decorator>
+                  </Decorator>
+                </Control>
+              </Decorator>
             </Control>
           </Control>
         </Decorator>

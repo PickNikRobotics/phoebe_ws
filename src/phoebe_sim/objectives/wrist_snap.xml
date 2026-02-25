@@ -11,7 +11,7 @@
       <Action
         ID="GetPointCloud"
         topic_name="/camera/left_wrist_mounted_camera/depth/color/points"
-        timeout_sec="15"
+        message_timeout_sec="15"
         message_out="{point_cloud}"
         publisher_timeout_sec="5.000000"
       />

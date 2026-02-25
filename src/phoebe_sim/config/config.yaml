@@ -26,24 +26,18 @@ hardware:
 
 moveit_params:
   joint_group_name: "manipulator"
-  servo:
-    package: "phoebe_sim"
-    path: "config/moveit/servo.yaml"
   joint_limits:
     package: "phoebe_sim"
     path: "config/moveit/joint_limits.yaml"
-  servo_joint_limits:
-    package: "phoebe_sim"
-    path: "config/moveit/hard_joint_limits.yaml"
   kinematics:
     package: "phoebe_sim"
     path: "config/moveit/pose_ik_distance.yaml"
   pose_jog:
     package: "phoebe_sim"
     path: "config/moveit/pose_jog.yaml"
-  ompl_planning:
+  joint_jog:
     package: "phoebe_sim"
-    path: "config/moveit/ompl_planning.yaml"
+    path: "config/moveit/joint_jog.yaml"
 
   publish:
     planning_scene: True
@@ -73,7 +67,6 @@ ros2_control:
     - "platform_velocity_controller"
   # Load but do not start these controllers so they can be activated later if needed.
   controllers_inactive_at_startup:
-    - "servo_controller"
     - "left_manipulator_joint_trajectory_controller"
     - "right_manipulator_joint_trajectory_controller"
     - "lift_joint_trajectory_controller"
@@ -84,6 +77,8 @@ ros2_control:
     - "base_right_velocity_force_controller"
     - "left_manipulator_joint_trajectory_admittance_controller"
     - "right_manipulator_joint_trajectory_admittance_controller"
+    - "left_joint_velocity_controller"
+    - "right_joint_velocity_controller"
 
 objectives:
   # List of plugins for loading custom behaviors.
@@ -92,13 +87,12 @@ objectives:
     # This plugin will load the core MoveIt Pro Behaviors.
     # Add additional plugin loaders as needed.
     core:
-      - "moveit_studio::behaviors::CoreBehaviorsLoader"
-      - "moveit_studio::behaviors::MTCCoreBehaviorsLoader"
-      - "moveit_studio::behaviors::NavBehaviorsLoader"
-      - "moveit_studio::behaviors::ServoBehaviorsLoader"
-      - "moveit_studio::behaviors::VisionBehaviorsLoader"
-      - "moveit_studio::behaviors::ConverterBehaviorsLoader"
-      - "moveit_studio::behaviors::MujocoBehaviorsLoader"
+      - "moveit_pro::behaviors::CoreBehaviorsLoader"
+      - "moveit_pro::behaviors::MTCCoreBehaviorsLoader"
+      - "moveit_pro::behaviors::NavBehaviorsLoader"
+      - "moveit_pro::behaviors::VisionBehaviorsLoader"
+      - "moveit_pro::behaviors::ConverterBehaviorsLoader"
+      - "moveit_pro::behaviors::MujocoBehaviorsLoader"
   # Specify source folder for objectives
   # [Required]
   objective_library_paths:
