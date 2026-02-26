@@ -8,8 +8,8 @@
   >
     <Control ID="Sequence" name="TopLevelSequence">
       <Action
-        ID="ActivateControllers"
-        controller_names="/right_joint_trajectory_admittance_controller"
+        ID="SwitchController"
+        activate_controllers="right_manipulator_joint_trajectory_admittance_controller"
       />
       <Action
         ID="CallTriggerService"
@@ -37,10 +37,11 @@
         config_file_name="jtac_parameters.yaml"
       />
       <Action
-        ID="ExecuteTrajectoryWithAdmittance"
+        ID="ExecuteTrajectory"
+        execution_pipeline="jtac"
         absolute_force_torque_threshold="45;45;45;10;10;10"
         admittance_parameters_msg="{admittance_parameters_msg}"
-        controller_action_name="/right_joint_trajectory_admittance_controller/follow_joint_trajectory"
+        controller_action_name="/right_manipulator_joint_trajectory_admittance_controller/follow_joint_trajectory"
         goal_duration_tolerance="-1.000000"
         goal_position_tolerance="0.001000"
         joint_trajectory_msg="{joint_trajectory_msg}"

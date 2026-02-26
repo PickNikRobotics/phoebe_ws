@@ -15,8 +15,10 @@ controller_manager:
       type: joint_trajectory_admittance_controller/JointTrajectoryAdmittanceController
     right_manipulator_joint_trajectory_admittance_controller:
       type: joint_trajectory_admittance_controller/JointTrajectoryAdmittanceController
-    servo_controller:
-      type: joint_trajectory_controller/JointTrajectoryController
+    left_joint_velocity_controller:
+      type: joint_velocity_controller/JointVelocityController
+    right_joint_velocity_controller:
+      type: joint_velocity_controller/JointVelocityController
     lift_joint_trajectory_controller:
       type: joint_trajectory_controller/JointTrajectoryController
     base_velocity_force_controller:
@@ -215,15 +217,7 @@ left_manipulator_joint_trajectory_controller:
 
 left_manipulator_joint_trajectory_admittance_controller:
   ros__parameters:
-    joints:
-      - left_shoulder_pan_joint
-      - left_shoulder_lift_joint
-      - left_elbow_joint
-      - left_wrist_1_joint
-      - left_wrist_2_joint
-      - left_wrist_3_joint
-    # Specifies the base link of the kinematic chain. Must exist in the robot description.
-    base_frame: left_base_link
+    planning_group_name: left_manipulator
     # Specifies the frame/link name of the force torque sensor. Must exist in the robot description.
     sensor_frame: left_tool0
     # Specifies the frame/link name of the end-effector frame. Must exist in the robot description.
@@ -290,15 +284,7 @@ right_manipulator_joint_trajectory_controller:
 
 right_manipulator_joint_trajectory_admittance_controller:
   ros__parameters:
-    joints:
-      - right_shoulder_pan_joint
-      - right_shoulder_lift_joint
-      - right_elbow_joint
-      - right_wrist_1_joint
-      - right_wrist_2_joint
-      - right_wrist_3_joint
-     # Specifies the base link of the kinematic chain. Must exist in the robot description.
-    base_frame: right_base_link
+    planning_group_name: right_manipulator
     # Specifies the frame/link name of the force torque sensor. Must exist in the robot description.
     sensor_frame: right_tool0
     # Specifies the frame/link name of the end-effector frame. Must exist in the robot description.
@@ -336,53 +322,6 @@ right_manipulator_joint_trajectory_admittance_controller:
     default_absolute_force_torque_threshold: [45.0, 45.0, 45.0, 10.0, 10.0, 10.0]
 
 
-servo_controller:
-  ros__parameters:
-    joints:
-      - linear_x_joint
-      - linear_y_joint
-      - rotational_yaw_joint
-      - lift_left_upper_joint
-      - lift_right_upper_joint
-      - left_shoulder_pan_joint
-      - left_shoulder_lift_joint
-      - left_elbow_joint
-      - left_wrist_1_joint
-      - left_wrist_2_joint
-      - left_wrist_3_joint
-      - right_shoulder_pan_joint
-      - right_shoulder_lift_joint
-      - right_elbow_joint
-      - right_wrist_1_joint
-      - right_wrist_2_joint
-      - right_wrist_3_joint
-    command_interfaces:
-      - position
-    state_interfaces:
-      - position
-      - velocity
-    command_joints:
-      - linear_x_joint
-      - linear_y_joint
-      - rotational_yaw_joint
-      - lift_left_upper_joint
-      - lift_right_upper_joint
-      - left_shoulder_pan_joint
-      - left_shoulder_lift_joint
-      - left_elbow_joint
-      - left_wrist_1_joint
-      - left_wrist_2_joint
-      - left_wrist_3_joint
-      - right_shoulder_pan_joint
-      - right_shoulder_lift_joint
-      - right_elbow_joint
-      - right_wrist_1_joint
-      - right_wrist_2_joint
-      - right_wrist_3_joint
-    state_publish_rate: 100.0
-    action_monitor_rate: 20.0
-    allow_partial_joints_goal: false
-
 lift_joint_trajectory_controller:
   ros__parameters:
     joints:
@@ -402,12 +341,7 @@ lift_joint_trajectory_controller:
 
 base_velocity_force_controller:
   ros__parameters:
-    # Joints that the controller will use.
-    # The joints must be in the same order as they appear in the kinematic chain.
-    joints:
-      - linear_x_joint
-      - linear_y_joint
-      - rotational_yaw_joint
+    planning_group_name: mobile_base
     # The joints that the controller will command.
     # The 'platform' joints are renamed to match the joint names exposed by the 'platform_velocity_controller', which
     # enables layered control of those joints.
@@ -417,8 +351,6 @@ base_velocity_force_controller:
       - rotational_yaw_joint
     # Command just position since the mobile base interface only supports position.
     command_interfaces: ["position"]
-    # Base frame of the kinematic chain, for computation of arm kinematics.
-    base_frame: world
     # The tip link of the kinematic chain, i.e. the frame that will be controlled.
     ee_frame: base_link
     # The frame where the force / torque sensor reading is given.
@@ -461,19 +393,7 @@ base_velocity_force_controller:
 
 base_left_velocity_force_controller:
   ros__parameters:
-    # Joints that the controller will use.
-    # The joints must be in the same order as they appear in the kinematic chain.
-    joints:
-      - linear_x_joint
-      - linear_y_joint
-      - rotational_yaw_joint
-      - lift_left_upper_joint
-      - left_shoulder_pan_joint
-      - left_shoulder_lift_joint
-      - left_elbow_joint
-      - left_wrist_1_joint
-      - left_wrist_2_joint
-      - left_wrist_3_joint
+    planning_group_name: left_mobile_manipulator
     # The joints that the controller will command.
     # The 'platform' joints are renamed to match the joint names exposed by the 'platform_velocity_controller', which
     # enables layered control of those joints.
@@ -490,8 +410,6 @@ base_left_velocity_force_controller:
       - left_wrist_3_joint
     # Command just position since the mobile base and lift interfaces only support position.
     command_interfaces: ["position"]
-    # Base frame of the kinematic chain, for computation of arm kinematics.
-    base_frame: world
     # The tip link of the kinematic chain, i.e. the frame that will be controlled.
     ee_frame: left_grasp_link
     # The frame where the force / torque sensor reading is given.
@@ -550,19 +468,7 @@ base_left_velocity_force_controller:
 
 base_right_velocity_force_controller:
   ros__parameters:
-    # Joints that the controller will use.
-    # The joints must be in the same order as they appear in the kinematic chain.
-    joints:
-      - linear_x_joint
-      - linear_y_joint
-      - rotational_yaw_joint
-      - lift_right_upper_joint
-      - right_shoulder_pan_joint
-      - right_shoulder_lift_joint
-      - right_elbow_joint
-      - right_wrist_1_joint
-      - right_wrist_2_joint
-      - right_wrist_3_joint
+    planning_group_name: right_mobile_manipulator
     # The joints that the controller will command.
     # The 'platform' joints are renamed to match the joint names exposed by the 'platform_velocity_controller', which
     # enables layered control of those joints.
@@ -579,8 +485,6 @@ base_right_velocity_force_controller:
       - right_wrist_3_joint
     # Command just position since the mobile base and lift interfaces only support position.
     command_interfaces: ["position"]
-    # Base frame of the kinematic chain, for computation of arm kinematics.
-    base_frame: world
     # The tip link of the kinematic chain, i.e. the frame that will be controlled.
     ee_frame: right_grasp_link
     # The frame where the force / torque sensor reading is given.
@@ -639,15 +543,7 @@ base_right_velocity_force_controller:
 
 left_velocity_force_controller:
   ros__parameters:
-    # Joints that the controller will use (arm-only, without base joints).
-    # The joints must be in the same order as they appear in the kinematic chain.
-    joints:
-      - left_shoulder_pan_joint
-      - left_shoulder_lift_joint
-      - left_elbow_joint
-      - left_wrist_1_joint
-      - left_wrist_2_joint
-      - left_wrist_3_joint
+    planning_group_name: left_manipulator
     # The joints that the controller will command (arm-only, without base joints).
     command_joints:
       - left_shoulder_pan_joint
@@ -658,9 +554,6 @@ left_velocity_force_controller:
       - left_wrist_3_joint
     # Command just position since the lift interface only supports position.
     command_interfaces: ["position"]
-    # Base frame of the kinematic chain, for computation of arm kinematics.
-    # Using base_link since we're not controlling the mobile base.
-    base_frame: base_link
     # The tip link of the kinematic chain, i.e. the frame that will be controlled.
     ee_frame: left_grasp_link
     # The frame where the force / torque sensor reading is given.
@@ -709,15 +602,7 @@ left_velocity_force_controller:
 
 right_velocity_force_controller:
   ros__parameters:
-    # Joints that the controller will use (arm-only, without base joints).
-    # The joints must be in the same order as they appear in the kinematic chain.
-    joints:
-      - right_shoulder_pan_joint
-      - right_shoulder_lift_joint
-      - right_elbow_joint
-      - right_wrist_1_joint
-      - right_wrist_2_joint
-      - right_wrist_3_joint
+    planning_group_name: right_manipulator
     # The joints that the controller will command (arm-only, without base joints).
     command_joints:
       - right_shoulder_pan_joint
@@ -728,9 +613,6 @@ right_velocity_force_controller:
       - right_wrist_3_joint
     # Command just position since the lift interface only supports position.
     command_interfaces: ["position"]
-    # Base frame of the kinematic chain, for computation of arm kinematics.
-    # Using base_link since we're not controlling the mobile base.
-    base_frame: base_link
     # The tip link of the kinematic chain, i.e. the frame that will be controlled.
     ee_frame: right_grasp_link
     # The frame where the force / torque sensor reading is given.
@@ -776,6 +658,50 @@ right_velocity_force_controller:
     command_timeout: 0.2
     # Padding (in radians) to add to joint position limits as a safety margin.
     joint_limit_position_tolerance: 0.02
+
+left_joint_velocity_controller:
+  ros__parameters:
+    planning_group_name: left_manipulator
+    max_joint_velocity:
+      - 1.0
+      - 1.0
+      - 1.0
+      - 1.0
+      - 1.0
+      - 1.0
+    max_joint_acceleration:
+      - 2.0
+      - 2.0
+      - 2.0
+      - 2.0
+      - 2.0
+      - 2.0
+    command_interfaces: ["position"]
+    joint_limit_position_tolerance: 0.02
+    command_timeout: 0.2
+    state_publish_rate: 20
+
+right_joint_velocity_controller:
+  ros__parameters:
+    planning_group_name: right_manipulator
+    max_joint_velocity:
+      - 1.0
+      - 1.0
+      - 1.0
+      - 1.0
+      - 1.0
+      - 1.0
+    max_joint_acceleration:
+      - 2.0
+      - 2.0
+      - 2.0
+      - 2.0
+      - 2.0
+      - 2.0
+    command_interfaces: ["position"]
+    joint_limit_position_tolerance: 0.02
+    command_timeout: 0.2
+    state_publish_rate: 20
 
 # left_lift_velocity_force_controller:
 #   ros__parameters:

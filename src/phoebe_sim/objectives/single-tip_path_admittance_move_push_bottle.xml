@@ -54,13 +54,12 @@
         />
       </Control>
       <Action
-        ID="ExecuteFollowJointTrajectory"
-        execute_follow_joint_trajectory_action_name="/joint_trajectory_controller/follow_joint_trajectory"
+        ID="ExecuteTrajectory"
+        execution_pipeline="jtc"
+        controller_action_name="/joint_trajectory_controller/follow_joint_trajectory"
         goal_duration_tolerance="-1.000000"
         goal_position_tolerance="0.000000"
-        goal_time_tolerance="0.000000"
         joint_trajectory_msg="{joint_trajectory_msg}"
-        trajectory_remainder="{joint_trajectory_remainder}"
         _skipIf="true"
       />
       <Control ID="Sequence" _collapsed="false">
@@ -114,9 +113,11 @@
       </Control>
       <Control ID="Sequence">
         <Action
-          ID="ExecuteTrajectoryWithAdmittance"
+          ID="ExecuteTrajectory"
+          execution_pipeline="jtac"
           controller_action_name="/left_manipulator_joint_trajectory_admittance_controller/follow_joint_trajectory"
           path_position_tolerance="1"
+          goal_duration_tolerance="30.000000"
           admittance_parameters_msg="{admittance_parameters_msg}"
         />
       </Control>
