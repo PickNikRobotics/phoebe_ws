@@ -8,7 +8,7 @@
         ID="GetPointCloud"
         topic_name="/right_wrist_camera/points"
         message_out="{point_cloud}"
-        timeout_sec="5.000000"
+        message_timeout_sec="5.000000"
       />
       <Action
         ID="SendPointCloudToUI"
