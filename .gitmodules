@@ -3,4 +3,4 @@
 	url = https://github.com/clearpathrobotics/ewellix_lift.git
 [submodule "src/dependencies/moveit_studio_ur_pstop_manager"]
 	path = src/dependencies/moveit_studio_ur_pstop_manager
-	url = git@github.com:PickNikRobotics/moveit_studio_ur_pstop_manager.git
+	url = https://github.com/PickNikRobotics/moveit_studio_ur_pstop_manager.git
