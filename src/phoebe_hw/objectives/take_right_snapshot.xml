@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root BTCPP_format="4" main_tree_to_execute="Take Right Snapshot">
+  <!--//////////-->
+  <BehaviorTree ID="Take Right Snapshot" _description="" _favorite="false">
+    <Control ID="Sequence" name="TopLevelSequence">
+      <!--Since we have multiple cameras, we don't clear snapshot data in these Objectives-->
+      <Action
+        ID="GetPointCloud"
+        message_out="{point_cloud}"
+        timeout_sec="5.000000"
+        topic_name="/camera/right_wrist_mounted_camera/depth/color/points"
+      />
+      <Action
+        ID="SendPointCloudToUI"
+        pcd_topic="/pcd_pointcloud_captures"
+        point_cloud="{point_cloud}"
+      />
+    </Control>
+  </BehaviorTree>
+  <TreeNodesModel>
+    <SubTree ID="Take Right Snapshot">
+      <MetadataFields>
+        <Metadata runnable="true" />
+        <Metadata subcategory="Perception - Visualization" />
+      </MetadataFields>
+    </SubTree>
+  </TreeNodesModel>
+</root>
