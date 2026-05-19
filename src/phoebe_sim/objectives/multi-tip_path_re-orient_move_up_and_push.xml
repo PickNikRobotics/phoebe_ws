@@ -113,7 +113,6 @@
         ID="VisualizePose"
         marker_lifetime="0.000000"
         marker_name="pose3"
-        pose="{stamped_pose}"
       />
       <Action ID="BreakpointSubscriber" />
       <Control ID="Fallback">
