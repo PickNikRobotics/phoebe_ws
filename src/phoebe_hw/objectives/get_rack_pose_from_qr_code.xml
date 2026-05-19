@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root BTCPP_format="4" main_tree_to_execute="Get Rack Pose From QR Code">
+  <!--//////////-->
+  <BehaviorTree ID="Get Rack Pose From QR Code">
+    <Control ID="Sequence">
+      <Action
+        ID="SwitchController"
+        activate_asap="true"
+        automatic_deactivation="true"
+        controller_list_action_name="/controller_manager/list_controllers"
+        controller_switch_action_name="/controller_manager/switch_controller"
+        strictness="1"
+        timeout="-1.000000"
+        deactivate_controllers="joint_trajectory_controller"
+      />
+      <SubTree
+        ID="Move to Waypoint"
+        _collapsed="true"
+        acceleration_scale_factor="1.0"
+        controller_action_server="/left_manipulator_joint_trajectory_controller/follow_joint_trajectory"
+        controller_names="left_manipulator_joint_trajectory_controller"
+        joint_group_name="left_manipulator"
+        keep_orientation="false"
+        keep_orientation_tolerance="0.05"
+        link_padding="0.01"
+        seed="0"
+        velocity_scale_factor="1.0"
+        waypoint_name="Look For Task Trainer"
+      />
+      <SubTree ID="Clear Snapshot" _collapsed="true" />
+      <SubTree ID="Take Left Snapshot" _collapsed="true" />
+      <Action
+        ID="GetImage"
+        message_out="{cabinet_image}"
+        topic_name="/camera/left_wrist_mounted_camera/color/image_raw"
+        timeout_sec="5.000000"
+      />
+      <Action
+        ID="GetCameraInfo"
+        message_out="{left_camera_info}"
+        topic_name="/camera/left_wrist_mounted_camera/color/camera_info"
+      />
+      <Action
+        ID="DetectAprilTags"
+        apriltag_family_name="36h11"
+        camera_info="{left_camera_info}"
+        detections="{april_detections}"
+        image="{cabinet_image}"
+        tag_size="0.051"
+        max_hamming="0"
+      />
+      <Action
+        ID="GetDetectionPose"
+        detection_pose="{detection_pose}"
+        detections="{april_detections}"
+        target_id="0"
+      />
+      <Action
+        ID="TransformPoseFrame"
+        input_pose="{detection_pose}"
+        output_pose="{detection_pose}"
+      />
+      <Action
+        ID="VisualizePose"
+        marker_lifetime="0.000000"
+        marker_name="april_tag"
+        pose="{detection_pose}"
+      />
+      <Control ID="Sequence" _collapsed="false">
+        <Action
+          ID="TransformPose"
+          input_pose="{detection_pose}"
+          output_pose="{rack_left_preplace_pose}"
+          quaternion_xyzw="0.0;0.707;0.707;0.0"
+          translation_xyz="-0.12;-0.04;0.35"
+        />
+        <Action
+          ID="TransformPose"
+          input_pose="{detection_pose}"
+          output_pose="{rack_right_preplace_pose}"
+          quaternion_xyzw="0.0;0.707;0.707;0.0"
+          translation_xyz="-0.12;0.04;0.35"
+        />
+        <Action
+          ID="VisualizePose"
+          marker_lifetime="0.000000"
+          marker_name="rack_left_preplace"
+          pose="{rack_left_preplace_pose}"
+          marker_size="0.100000"
+        />
+        <Action
+          ID="VisualizePose"
+          marker_lifetime="0.000000"
+          marker_name="rack_right_preplace"
+          pose="{rack_right_preplace_pose}"
+          marker_size="0.100000"
+        />
+      </Control>
+    </Control>
+  </BehaviorTree>
+  <TreeNodesModel>
+    <SubTree ID="Get Rack Pose From QR Code">
+      <MetadataFields>
+        <Metadata runnable="false" />
+        <Metadata subcategory="Application - Advanced Examples" />
+      </MetadataFields>
+      <inout_port
+        name="rack_left_preplace_pose"
+        default="{rack_left_preplace_pose}"
+        type="geometry_msgs::msg::PoseStamped_&lt;std::allocator&lt;void&gt; &gt;"
+      />
+    </SubTree>
+  </TreeNodesModel>
+</root>
