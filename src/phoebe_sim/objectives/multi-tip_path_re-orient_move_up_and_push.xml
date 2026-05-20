@@ -92,23 +92,23 @@
       <!--Move right arm out of the way-->
       <SubTree ID="Open Right Gripper" _collapsed="true" />
       <Action
-        ID="CreateStampedPose"
+        ID="CreatePoseStamped"
         reference_frame="right_grasp_link"
         position_xyz="0;0;-0.2"
-        stamped_pose="{stamped_pose}"
+        pose_stamped="{pose_stamped}"
       />
       <Action
         ID="AddPoseStampedToVector"
-        input="{stamped_pose}"
+        input="{pose_stamped}"
         vector="{pose_stamped_vector}"
       />
       <Action
-        ID="CreateStampedPose"
+        ID="CreatePoseStamped"
         reference_frame="right_grasp_link"
         position_xyz="0.3;0;-0.2"
-        stamped_pose="{stamped_pose}"
+        pose_stamped="{pose_stamped}"
       />
-      <Action ID="AddPoseStampedToVector" input="{stamped_pose}" />
+      <Action ID="AddPoseStampedToVector" input="{pose_stamped}" />
       <Action
         ID="VisualizePose"
         marker_lifetime="0.000000"
