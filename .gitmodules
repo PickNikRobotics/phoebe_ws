@@ -1,6 +1,6 @@
 [submodule "src/dependencies/ewellix_lift"]
 	path = src/dependencies/ewellix_lift
-	url = https://github.com/PickNikRobotics/ewellix_lift.git
+	url = https://github.com/clearpathrobotics/ewellix_lift.git
 [submodule "src/dependencies/moveit_studio_ur_pstop_manager"]
 	path = src/dependencies/moveit_studio_ur_pstop_manager
 	url = https://github.com/PickNikRobotics/moveit_studio_ur_pstop_manager.git
