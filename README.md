@@ -8,4 +8,4 @@
 8. `moveit_pro build`
 9. `moveit_pro run -v -c phoebe_sim`
 
-See [src/phoebe_hw/README.md](src/phoebe_hw/README.md) for details on running on hardware.
+See the phoebe_hw package for details on running on hardware.
