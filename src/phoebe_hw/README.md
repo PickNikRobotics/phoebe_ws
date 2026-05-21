@@ -114,17 +114,14 @@ the reset process to verify.
 For the final demo, we will probably just want to disable the lifts. Their motion is not smooth or aligned with the rest
 of the system and they probably cause more problems than they are worth with all their failure modes.
 To disable the lifts the following steps will need to be taken:
-- In the ewellix_tlt500.macro.xacro file, change the
-  [lower_joint](https://github.com/PickNikRobotics/phoebe_ws/blob/b1a4c8641fb5436d8143ee6ca906dca3acb48e5e/src/phoebe_description/xacro/ewellix_tlt500.macro.xacro#L95-L103)
-  and
-  [upper_joint](https://github.com/PickNikRobotics/phoebe_ws/blob/b1a4c8641fb5436d8143ee6ca906dca3acb48e5e/src/phoebe_description/xacro/ewellix_tlt500.macro.xacro#L129-L136)
+- In the ewellix_tlt500.macro.xacro file (`src/phoebe_description/xacro/ewellix_tlt500.macro.xacro`),
+  change the `lower_joint` (~L95-L103) and `upper_joint` (~L129-L136)
   to fixed joints by removing their axis, limit, and dynamics tags.
 - Remove references to `lift_left_upper_joint` and `lift_right_upper_joint` in the
   [ros2_control.yaml file](https://github.com/PickNikRobotics/phoebe_ws/blob/main/src/phoebe_sim/config/control/dual_arm.ros2_control.yaml),
   (and probably the joint_limits files as well).
-- Remove 2 of the values in the
-  [joint_limit_margins](https://github.com/PickNikRobotics/phoebe_ws/blob/b1a4c8641fb5436d8143ee6ca906dca3acb48e5e/src/phoebe_hw/config/moveit/servo.yaml#L51)
-  list in servo.yaml.
+- Remove 2 of the values in the `joint_limit_margins` list in
+  `src/phoebe_hw/config/moveit/servo.yaml` (~L51).
 
 NOTE: removing these joints will invalidate all the waypoints in
 [waypoints.yaml](https://github.com/PickNikRobotics/phoebe_ws/blob/main/src/phoebe_hw/waypoints/waypoints.yaml).
