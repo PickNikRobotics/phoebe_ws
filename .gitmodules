@@ -9,7 +9,7 @@
 	url = git@github.com:PickNikRobotics/clearpath_controller_interface.git
 [submodule "src/dependencies/ewellix_lift"]
 	path = src/dependencies/ewellix_lift
-	url = https://github.com/clearpathrobotics/ewellix_lift.git
+	url = https://github.com/PickNikRobotics/ewellix_lift.git
 [submodule "src/dependencies/clearpath_common"]
 	path = src/dependencies/clearpath_common
 	url = git@github.com:clearpathrobotics/clearpath_common.git
