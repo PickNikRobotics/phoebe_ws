@@ -5,7 +5,8 @@
 >
   <BehaviorTree
     ID="Single-tip Path Admittance Move Push Bottle"
-    _description=""
+    _description="Requires a bottle in the scene — will time out without one. Performs a force-controlled admittance push with the left arm."
+    _favorite="false"
   >
     <Control ID="Sequence">
       <Control ID="Sequence">
