@@ -5,19 +5,20 @@
 >
   <BehaviorTree
     ID="Single-tip Path Admittance Move Push Bottle"
-    _description=""
+    _description="Requires a bottle in the scene — will time out without one. Performs a force-controlled admittance push with the left arm."
+    _favorite="false"
   >
     <Control ID="Sequence">
       <Control ID="Sequence">
         <Action
-          ID="CreateStampedPose"
+          ID="CreatePoseStamped"
           reference_frame="left_grasp_link"
-          stamped_pose="{stamped_pose}"
+          pose_stamped="{pose_stamped}"
           _skipIf="true"
         />
         <Action
           ID="AddPoseStampedToVector"
-          input="{stamped_pose}"
+          input="{pose_stamped}"
           vector="{pose_stamped_vector}"
           _skipIf="true"
         />
@@ -26,19 +27,19 @@
           marker_lifetime="0.000000"
           marker_name="pose"
           marker_size="0.100000"
-          pose="{stamped_pose}"
+          pose="{pose_stamped}"
           _skipIf="true"
         />
         <Action
-          ID="CreateStampedPose"
+          ID="CreatePoseStamped"
           reference_frame="left_grasp_link"
-          stamped_pose="{stamped_pose}"
+          pose_stamped="{pose_stamped}"
           position_xyz="0;-0.17;0"
           orientation_xyzw="0.0;0.0;0.0;1.0"
         />
         <Action
           ID="AddPoseStampedToVector"
-          input="{stamped_pose}"
+          input="{pose_stamped}"
           vector="{pose_stamped_vector}"
         />
         <Action
@@ -46,7 +47,7 @@
           marker_lifetime="0.000000"
           marker_name="pose2"
           marker_size="0.100000"
-          pose="{stamped_pose}"
+          pose="{pose_stamped}"
         />
         <Action
           ID="BreakpointSubscriber"

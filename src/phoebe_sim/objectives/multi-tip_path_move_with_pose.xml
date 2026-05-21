@@ -4,18 +4,18 @@
     <Control ID="Sequence">
       <Control ID="Sequence">
         <Action
-          ID="CreateStampedPose"
+          ID="CreatePoseStamped"
           reference_frame="left_grasp_link"
-          stamped_pose="{init_stamped_pose}"
+          pose_stamped="{init_pose_stamped}"
         />
         <Action
           ID="AddPoseStampedToVector"
-          input="{init_stamped_pose}"
+          input="{init_pose_stamped}"
           vector="{pose_stamped_vector}"
         />
         <Action
           ID="AddPoseStampedToVector"
-          input="{stamped_pose}"
+          input="{pose_stamped}"
           vector="{pose_stamped_vector}"
         />
       </Control>
@@ -65,8 +65,8 @@
         <Metadata subcategory="Application - Advanced Examples" />
       </MetadataFields>
       <inout_port
-        name="stamped_pose"
-        default="{stamped_pose}"
+        name="pose_stamped"
+        default="{pose_stamped}"
         type="geometry_msgs::msg::PoseStamped_&lt;std::allocator&lt;void&gt; &gt;"
       >
         moves both arms with the given transform(trajectory relative to left
