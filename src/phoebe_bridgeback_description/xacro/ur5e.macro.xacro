@@ -501,14 +501,14 @@
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
           <mesh
-              filename="package://picknik_accessories/descriptions/brackets/ur_realsense_camera_adapter/picknik_ur5_realsense_camera_adapter_rev2.dae"/>
+              filename="package://phoebe_description/meshes/picknik_ur5_realsense_camera_adapter_rev2.dae"/>
         </geometry>
       </visual>
       <collision>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
           <mesh
-              filename="package://picknik_accessories/descriptions/brackets/ur_realsense_camera_adapter/picknik_ur5_realsense_camera_adapter_rev2_collision.stl"/>
+              filename="package://phoebe_description/meshes/picknik_ur5_realsense_camera_adapter_rev2_collision.stl"/>
         </geometry>
       </collision>
     </link>
