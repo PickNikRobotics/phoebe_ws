@@ -1,6 +1,4 @@
 hardware:
-  simulated: true
-
   # If the MoveIt Pro Agent should launch the ros2 controller node.
   # [Optional, default=True]
   launch_control_node: True
@@ -9,10 +7,6 @@ hardware:
   # This should be false if you are launching the robot state publisher as part of drivers.
   # [Optional, default=True]
   launch_robot_state_publisher: True
-
-  robot_driver_persist_launch_file:
-    package: "moveit_studio_agent"
-    path: "launch/blank.launch.py"
 
   robot_description:
     urdf:
