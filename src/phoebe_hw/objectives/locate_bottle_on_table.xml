@@ -5,16 +5,12 @@
     <Control ID="Sequence">
       <SubTree
         ID="Segment Image from No Negative Text Prompt Subtree"
-        clip_model_path="models/clip.onnx"
-        clipseg_model_path="models/clipseg.onnx"
-        erosion_size="2"
-        masks_visualization_topic="/masks_visualization"
-        model_package="moveit_pro_clipseg"
-        threshold="0.15"
-        prompts="a bottle"
+        confidence_threshold="0.5"
         image_topic_name="/camera/left_wrist_mounted_camera/color/image_raw"
+        masks_visualization_topic="/masks_visualization"
         masks2d="{masks2d}"
-        masks2d_refined="{masks2d}"
+        model_package="moveit_pro_sam3"
+        text_prompt="a bottle"
       />
       <Action
         ID="GetElementOfVector"
@@ -39,7 +35,7 @@
         masks2d="{sam2masks2d}"
         decoder_model_path="models/decoder.onnx"
         encoder_model_path="models/sam2_hiera_large_encoder.onnx"
-        model_package="dual_arm_mobile_sim"
+        model_package="phoebe_hw"
         pixel_coords="{center}"
         image="{sam2image}"
       />
@@ -101,7 +97,7 @@
         num_sampled_points="10000"
         point_cloud="{ref_bottle_point_cloud}"
         scale="0.001"
-        package_name="dual_arm_mobile_sim"
+        package_name="phoebe_sim"
         random_seed="0"
         file_path="description/assets/trainer_hatch/collision/cylinder_mockup_full_length.stl"
         color="255;0;0"
