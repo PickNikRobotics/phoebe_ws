@@ -10,7 +10,8 @@
 
   <maintainer email="david.yackzan@picknik.ai">David Yackzan</maintainer>
 
-  <license>Proprietary</license>
+  <license>BSD-3-Clause</license>
+  <license>Apache-2.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
@@ -23,7 +24,10 @@
   <exec_depend>clearpath_sensors_description</exec_depend>
   <exec_depend>ewellix_description</exec_depend>
   <exec_depend>moveit_studio_ur_pstop_manager</exec_depend>
+  <exec_depend>moveit_pro_compat</exec_depend>
+  <exec_depend>moveit_pro_sam3</exec_depend>
   <exec_depend>phoebe_description</exec_depend>
+  <exec_depend>phoebe_sim</exec_depend>
   <exec_depend>robotiq_controllers</exec_depend>
   <exec_depend>robotiq_description</exec_depend>
   <exec_depend>robotiq_driver</exec_depend>
