@@ -8,3 +8,10 @@
 8. `moveit_pro run -v -c phoebe_sim`
 
 See the phoebe_hw package for details on running on hardware.
+
+## Licensing
+
+PickNik-authored material is available under the BSD 3-Clause license in
+[`LICENSE`](LICENSE). This repository also contains separately licensed
+third-party robot assets. See [`COPYING`](COPYING), [`NOTICE`](NOTICE), and
+[`LICENSES/`](LICENSES/) for the complete license map and attribution.
