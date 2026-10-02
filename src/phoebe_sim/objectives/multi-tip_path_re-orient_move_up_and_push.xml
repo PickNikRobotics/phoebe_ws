@@ -137,7 +137,6 @@
         execution_pipeline="jtac"
         controller_action_name="/arms_only_joint_trajectory_admittance_controller/follow_joint_trajectory"
         joint_trajectory_msg="{joint_trajectory_msg}"
-        goal_position_tolerance="0.000000"
       />
       <!--Now try to push with admittance with just left arm-->
       <SubTree

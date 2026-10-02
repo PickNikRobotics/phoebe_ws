@@ -51,7 +51,6 @@
         execution_pipeline="jtac"
         controller_action_name="/arms_only_joint_trajectory_admittance_controller/follow_joint_trajectory"
         goal_duration_tolerance="-1.000000"
-        goal_position_tolerance="0.000000"
         joint_trajectory_msg="{joint_trajectory_msg}"
       />
     </Control>
